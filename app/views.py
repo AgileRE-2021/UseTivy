@@ -6,7 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django import template
 
 @login_required(login_url="/login/")
@@ -17,6 +17,24 @@ def index(request):
 
     html_template = loader.get_template( 'index.html' )
     return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def usecase(request):
+    
+    context = {}
+    context['segment'] = 'usecase'
+
+    html_template = loader.get_template( 'usecase.html' )
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def basic_info(request):
+    
+    context = {}
+    context['segment'] = 'basic_info'
+
+    html_template = loader.get_template( 'basic_info.html' )
+    return HttpResponse(html_template.render(context, request))    
 
 @login_required(login_url="/login/")
 def pages(request):
@@ -40,3 +58,6 @@ def pages(request):
     
         html_template = loader.get_template( 'page-500.html' )
         return HttpResponse(html_template.render(context, request))
+
+
+

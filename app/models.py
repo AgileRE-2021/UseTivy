@@ -8,15 +8,17 @@ from django.contrib.auth.models import User
 from django.db.models.base import Model
 
 # Create your models here.
+'''
 class user(models.Model):
     id_user=models.AutoField(primary_key=True)
     nama_user=models.CharField(max_length=20)
     email_user=models.EmailField()
     password_user=models.CharField(max_length=8)
+'''
 
 class project(models.Model):
     id_project=models.AutoField(primary_key=True)
-    id_user=models.ForeignKey(user,on_delete=models.CASCADE)
+    id_user=models.IntegerField(default=0)
     nama_project=models.CharField(max_length=50)
     datecreated=models.DateTimeField()
     dateaccessed=models.DateTimeField()
@@ -44,8 +46,6 @@ class usecase(models.Model):
     secondary_actor=models.CharField(max_length=20)
     dependency=models.CharField(max_length=30,default='Add Value Here')
     generalization=models.CharField(max_length=30,default='Add Value Here')
-
-
 
 class alternative_flow(models.Model):
     id_alternativeflow=models.AutoField(primary_key=True)

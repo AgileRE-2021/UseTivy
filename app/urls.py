@@ -24,6 +24,21 @@ urlpatterns = [
     #create new project
     path('new_project', views.new_project, name="new_project"),
 
+    #form basic flow
+    path('basic_flow', views.basic_flow, name="basic_flow"),
+
+    #form specific flow
+    path('specific_flow', views.specific_flow, name="specific_flow"),
+
+    #form bounded flow
+    path('bounded_flow', views.bounded_flow, name="bounded_flow"),
+
+    #form global flow
+    path('global_flow', views.global_flow, name="global_flow"),
+
+    # activity diagram page
+    path('activity_diagram', views.activity_diagram, name="activity_diagram"),
+
     # Matches any html file
     url(r'^.*\.*', views.pages, name='pages'),
 ]

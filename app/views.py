@@ -75,4 +75,49 @@ def basic_info(request):
     context['segment'] = 'basic_info'
 
     html_template = loader.get_template( 'page/basic_info.html' )
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def basic_flow(request):
+    
+    context = {}
+    context['segment'] = 'basic_flow'
+
+    html_template = loader.get_template( 'page/basic_flow.html' )
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def specific_flow(request):
+    
+    context = {}
+    context['segment'] = 'specific_flow'
+
+    html_template = loader.get_template( 'page/specific_flow.html' )
+    return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def bounded_flow(request):
+    
+    context = {}
+    context['segment'] = 'bounded_flow'
+
+    html_template = loader.get_template( 'page/bounded_flow.html' )
+    return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def global_flow(request):
+    
+    context = {}
+    context['segment'] = 'global_flow'
+
+    html_template = loader.get_template( 'page/global_flow.html' )
+    return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def activity_diagram(request):
+    
+    context = {}
+    context['segment'] = 'activity_diagram'
+
+    html_template = loader.get_template( 'page/activity_diagram.html' )
     return HttpResponse(html_template.render(context, request)) 

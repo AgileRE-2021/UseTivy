@@ -39,6 +39,12 @@ urlpatterns = [
     # activity diagram page
     path('activity_diagram', views.activity_diagram, name="activity_diagram"),
 
+    #project view page
+    path('project_view', views.project_view, name="project_view"),
+
+    #edit project page
+    path('edit_project', views.edit_project, name="edit_project"),
+
     # Matches any html file
     url(r'^.*\.*', views.pages, name='pages'),
 ]

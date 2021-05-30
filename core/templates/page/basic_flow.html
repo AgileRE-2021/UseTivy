@@ -16,20 +16,32 @@
                     <div class="card" style="width: 100%;">
                         <div class="card-body">
                             <h1 class="card-title"></h1>Basic Flow</h1>
-                            <hr>
+                            <hr>                                                                                                        
                             <div class="form-group">                                          
                                 <label for="exampleInputEmail1">Step</label>
                                 <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="input-group mb-4">
-                                            <input class="form-control" placeholder="Step 1" type="text">
+                                    <div class="dropdown">
+                                        <div class="col-md-8">
+                                            <a class="btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom :10px">
+                                            Choose RUCM Rule 
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="#">Rule 1</a>
+                                                <a class="dropdown-item" href="#">Rule 2</a>
+                                                <a class="dropdown-item" href="#">Rule 3</a>
+                                            </div>                                        
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <button class="btn btn-primary text-white" v-on:click="addStep"> <i
+                                        <div class="input-group mb-3">
+                                            <input class="form-control" placeholder="Step 1" type="text">
+                                        </div>
+                                    </div>                                
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
                                             class="fa fa-plus pr-2"></i></button>
-                                    </div>
-                                </div>                                                                                                      
+                                    </div>                                
+                                </div>                                                                                                                                      
                                 <label for="exampleInputEmail1">Post Condition</label>
                                 <div class="row">
                                     <div class="col-md-8">

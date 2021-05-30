@@ -121,3 +121,21 @@ def activity_diagram(request):
 
     html_template = loader.get_template( 'page/activity_diagram.html' )
     return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def project_view(request):
+    
+    context = {}
+    context['segment'] = 'project_view'
+
+    html_template = loader.get_template( 'page/project_view.html' )
+    return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def edit_project(request):
+    
+    context = {}
+    context['segment'] = 'edit_project'
+
+    html_template = loader.get_template( 'page/edit_project.html' )
+    return HttpResponse(html_template.render(context, request)) 

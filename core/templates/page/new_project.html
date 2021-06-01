@@ -15,30 +15,23 @@
               <div class="col-md-12">
                   <div class="card" style="width: 100%;">
                       <div class="card-body">
-                        <a href="dashboard" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
-                            <div>
-                              <i class="ni ni-bold-left"></i>
-                              <span> Back</span>
-                            </div>
-                          </a>
-                          <h1 class="card-title"></h1>Create Project</h1>
-                          <hr>
+                        <h1 class="card-title"></h1>Create Project</h1>
+                        <hr>
+                        <form method=POST action='/new_project/create'>
+                          {% csrf_token %}
                           <div class="form-group">                                          
                               <label for="exampleInputEmail1">Project Name</label>
                               <div class="row">
                                   <div class="col-md-8">
                                       <div class="input-group mb-4">
-                                          <input class="form-control" placeholder="Project Name" type="text">
+                                          <input class="form-control" name="nama_project" placeholder="Project Name" type="text">
                                       </div>
                                   </div>
                               </div>                                                                                                                                    
                           </div>
-                          <a href="dashboard" class="btn btn-primary collapsible">
-                            <div>
-                              <i class="ni ni-check-bold"></i>
-                              <span> Save</span>
-                            </div>
-                          </a>
+                          <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
+                          <button type="submit" class="btn btn-primary">Create Project</button>
+                        </form>
                       </div>
                     </div>
               </div>

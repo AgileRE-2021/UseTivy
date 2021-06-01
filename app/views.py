@@ -157,12 +157,12 @@ def activity_diagram(request):
     return HttpResponse(html_template.render(context, request)) 
 
 @login_required(login_url="/login/")
-def project_view(request):
+def usecase_view(request):
     
     context = {}
-    context['segment'] = 'project_view'
+    context['segment'] = 'usecase_view'
 
-    html_template = loader.get_template( 'page/project_view.html' )
+    html_template = loader.get_template( 'page/usecase_view.html' )
     return HttpResponse(html_template.render(context, request)) 
 
 @login_required(login_url="/login/")

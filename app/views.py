@@ -77,15 +77,21 @@ def edit_project(request, id_project):
 def update_project(request):
     
     context = {}
-    project_to_edit = get_object_or_404(project, pk=request.POST.get("id_project"))
+    project_target = get_object_or_404(project, pk=request.POST.get("id_project"))
     projectName = request.POST.get("nama_project")
 
     #update value
-    project_to_edit.nama_project = projectName
-    project_to_edit.dateaccessed = timezone.now()
-    project_to_edit.save()
+    project_target.nama_project = projectName
+    project_target.dateaccessed = timezone.now()
+    project_target.save()
 
     return redirect('dashboard') 
+
+@login_required(login_url="/login/")
+def delete_project(request, id_project):
+    
+    project_target = get_object_or_404(project, pk=id_project).delete()
+    return redirect('dashboard')  
 
 @login_required(login_url="/login/")
 def usecase(request):

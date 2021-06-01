@@ -22,16 +22,17 @@
                           <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                               <tr>
+                                <th scope="col">No</th>
                                 <th scope="col">Project</th>
                                 <th scope="col">Last Update</th>
                                 <th scope="col">Use Case</th>
-                                <th scope="col">Activity Diagram</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
                             {% for p in context.project %}
                               <tr>
+                                <td>{{ forloop.counter }}</td>
                                 <td>
                                   <div class="media align-items-center">
                                     <p>{{p.nama_project}}</p>
@@ -49,20 +50,15 @@
                                 </td>
                                 <td>
                                   <div class="row">
-                                    <a href="activity_diagram" class="btn btn-sm btn-primary">Activity Diagram</a>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="row">
-                                    <a href="" class="btn btn-sm btn-icon-only "  role="button"
-                                      style="background-color:#CB4335"
-                                      data-toggle="tooltip" title="Delete">
-                                      <i class="ni ni-basket" style="color:white"></i>
-                                    </a>
                                     <a href="edit_project/{{ p.id_project }}" class="btn btn-sm btn-icon-only" role="button"  
                                       style="background-color: #58D68D "
                                       data-toggle="tooltip" title="Edit">
                                       <i class="ni ni-bag-17" style="color:white;"></i>
+                                    </a>
+                                    <a href="" class="btn btn-sm btn-icon-only "  role="button"
+                                      style="background-color:#CB4335"
+                                      data-toggle="tooltip" title="Delete">
+                                      <i class="ni ni-basket" style="color:white"></i>
                                     </a>
                                   </div>
                                 </td>

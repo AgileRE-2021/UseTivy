@@ -28,6 +28,9 @@ urlpatterns = [
     path('edit_project/<int:id_project>', views.edit_project, name="edit_project"),
     path('edit_project/update', views.update_project, name="update_project"),
 
+    #delete project
+    path('delete_project/<int:id_project>', views.delete_project, name="delete_project"),
+
     #form basic flow
     path('basic_flow', views.basic_flow, name="basic_flow"),
 

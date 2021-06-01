@@ -24,6 +24,10 @@ urlpatterns = [
     #create new project
     path('new_project', views.new_project, name="new_project"),
 
+    #edit project page
+    path('edit_project/<int:id_project>', views.edit_project, name="edit_project"),
+    path('edit_project/update', views.update_project, name="update_project"),
+
     #form basic flow
     path('basic_flow', views.basic_flow, name="basic_flow"),
 
@@ -42,8 +46,8 @@ urlpatterns = [
     #project view page
     path('project_view', views.project_view, name="project_view"),
 
-    #edit project page
-    path('edit_project', views.edit_project, name="edit_project"),
+    #edit use case
+    path('edit_use_case', views.edit_use_case, name="edit_use_case"),
 
     # Matches any html file
     url(r'^.*\.*', views.pages, name='pages'),

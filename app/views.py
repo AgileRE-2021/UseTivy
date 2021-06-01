@@ -8,6 +8,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse, request
 from django import template
+from app.models import alternative_flow, usecase, basic_flow, activity_diagram, project
+from django.utils import timezone
 
 @login_required(login_url="/login/")
 def index(request):
@@ -46,9 +48,11 @@ def dashboard(request):
     
     context = {}
     context['segment'] = 'dashboard'
+    context['project'] = project.objects.filter(id_user=request.user.id)
+    #print(context['project'])
 
-    html_template = loader.get_template( 'page/dashboard.html' )
-    return HttpResponse(html_template.render(context, request))   
+    #html_template = loader.get_template( 'page/dashboard.html' )
+    return render(request, 'page/dashboard.html', {'context': context})   
 
 @login_required(login_url="/login/")
 def new_project(request):
@@ -58,6 +62,30 @@ def new_project(request):
 
     html_template = loader.get_template( 'page/new_project.html' )
     return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def edit_project(request, id_project):
+    
+    context = {}
+    context['segment'] = 'edit_project'
+    context['id_project'] = id_project
+    context['project'] = project.objects.filter(pk=id_project).get()
+
+    return render(request, 'page/edit_project.html', {'context': context})  
+
+@login_required(login_url="/login/")
+def update_project(request):
+    
+    context = {}
+    project_to_edit = get_object_or_404(project, pk=request.POST.get("id_project"))
+    projectName = request.POST.get("nama_project")
+
+    #update value
+    project_to_edit.nama_project = projectName
+    project_to_edit.dateaccessed = timezone.now()
+    project_to_edit.save()
+
+    return redirect('dashboard') 
 
 @login_required(login_url="/login/")
 def usecase(request):
@@ -132,10 +160,10 @@ def project_view(request):
     return HttpResponse(html_template.render(context, request)) 
 
 @login_required(login_url="/login/")
-def edit_project(request):
+def edit_use_case(request):
     
     context = {}
     context['segment'] = 'edit_project'
 
-    html_template = loader.get_template( 'page/edit_project.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    html_template = loader.get_template( 'page/edit_use_case.html' )
+    return HttpResponse(html_template.render(context, request))

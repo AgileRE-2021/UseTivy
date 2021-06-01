@@ -23,187 +23,31 @@
                     </a>
                       <h1 class="card-title"></h1>Edit Project</h1>
                       <hr>                                                         
-                                      <form>
-                                        <h6 class="heading-small text-muted mb-4">Basic Information</h6>
-                                        <div class="pl-lg-4">
-                                          <div class="row">
-                                            <div class="col-lg-8">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-usecase-name">Usecase Name</label>
-                                                <input type="text" id="input-usecase-name" class="form-control form-control-alternative" placeholder="Usecase Name" 
-                                                       value="">
-                                              </div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-brief-desc">Brief Description</label>
-                                                <input type="text" id="input-brief-desc" class="form-control form-control-alternative" 
-                                                       placeholder="Brief Description">
-                                              </div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-precondition">Precondition</label>
-                                                <input type="text" id="input-precond" class="form-control form-control-alternative" 
-                                                       placeholder="Precondition">
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-6">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-first-name">Primary Actor</label>
-                                                <input type="text" id="input-primary-actor" class="form-control form-control-alternative" placeholder="Primary Actor" >
-                                              </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-sec-actor">Secondary Actor</label>
-                                                <input type="text" id="input-sec-actor" class="form-control form-control-alternative" placeholder="Secondary Actor" >
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-6">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-depedency">Depedency</label>
-                                                <input type="text" id="input-depedency" class="form-control form-control-alternative" placeholder="Depedency" >
-                                              </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-generalization">Generalization</label>
-                                                <input type="text" id="input-generalization" class="form-control form-control-alternative" placeholder="Generalization" >
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <hr class="my-4" />
-                                        <!-- Basic FLow -->
-                                        <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
-                                        <div class="pl-lg-4">
-                                          <label class="form-control-label" for="input-address">Step</label>
-                                          <div class="row">
-                                            <div class="dropdown">
-                                              <div class="col-md-8">
-                                                  <a class="btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom :10px">
-                                                  Choose RUCM Rule 
-                                                  </a>
-                                                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                      <a class="dropdown-item" href="#">Rule 1</a>
-                                                      <a class="dropdown-item" href="#">Rule 2</a>
-                                                      <a class="dropdown-item" href="#">Rule 3</a>
-                                                  </div>                                        
-                                              </div>
-                                          </div>
-                                            <div class="col-md-4">
-                                              <div class="form-group">                                                
-                                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
-                                              </div>                                              
-                                            </div>
-                                            <div class="col-md-4">
-                                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
-                                                  class="fa fa-plus pr-2"></i></button>
-                                          </div>                                                            
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-8">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                                              </div>
-                                            </div>                                            
-                                          </div>
-                                        </div>
-                                        <hr class="my-4" />
-                                        <!-- Specific FLow -->
-                                        <h6 class="heading-small text-muted mb-4">Specific Flow</h6>
-                                        <div class="pl-lg-4">
-                                          <label class="form-control-label" for="input-address">Step</label>
-                                          <div class="row">
-                                            <div class="col-md-4">
-                                              <div class="form-group">                                                
-                                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
-                                              </div>                                              
-                                            </div>
-                                            <div class="col-md-4">
-                                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
-                                                  class="fa fa-plus pr-2"></i></button>
-                                          </div>                                                            
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-8">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                                              </div>
-                                            </div>                                            
-                                          </div>
-                                        </div>
-                                        <hr class="my-4" />
-                                        <!-- Bounded FLow -->
-                                        <h6 class="heading-small text-muted mb-4">Bounded Flow</h6>
-                                        <div class="pl-lg-4">
-                                          <label class="form-control-label" for="input-address">Step</label>
-                                          <div class="row">
-                                            <div class="col-md-4">
-                                              <div class="form-group">                                                
-                                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
-                                              </div>                                              
-                                            </div>
-                                            <div class="col-md-4">
-                                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
-                                                  class="fa fa-plus pr-2"></i></button>
-                                          </div>                                                            
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-8">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                                              </div>
-                                            </div>                                            
-                                          </div>
-                                        </div>
-                                        <hr class="my-4" />
-                                        <!-- Global FLow -->
-                                        <h6 class="heading-small text-muted mb-4">Global Flow</h6>
-                                        <div class="pl-lg-4">
-                                          <label class="form-control-label" for="input-address">Step</label>
-                                          <div class="row">
-                                            <div class="col-md-4">
-                                              <div class="form-group">                                                
-                                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
-                                              </div>                                              
-                                            </div>
-                                            <div class="col-md-4">
-                                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
-                                                  class="fa fa-plus pr-2"></i></button>
-                                          </div>                                                            
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-8">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                                              </div>
-                                            </div>                                            
-                                          </div>
-                                        </div>
-                                        <hr class="my-4" />
-                                        <a href="project_view" class="btn btn-primary">Save Project</a>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>                    
-                            </div>                                   
-                          </div>                                                                                             
-                        </div>      
-                      </div>
-                    </div>
-                  </div>  
+                      <form method="POST" action="/edit_project/update">
+                        {% csrf_token %}
+                        <input type="hidden" class="form-control" name="id_project" value="{{context.id_project}}">
+                        <div class="pl-lg-4">
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-usecase-name">Project Name</label>
+                                <br>
+                                <br>
+                                <input type="text" name='nama_project' class="form-control form-control-alternative" placeholder="Project Name" value="{{context.project.nama_project}}">
+                              </div>
+                            </div>
+                        </div>
+                        <br>
+                        <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save Project</button>
+                      </form>
+                   </div>
                 </div>
+            </div>
+          </div>                    
+        </div>                                   
+     </div>                                                                                             
+</div>
 
 {% endblock content %}
 

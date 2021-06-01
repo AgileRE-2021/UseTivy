@@ -45,6 +45,9 @@ urlpatterns = [
     #edit project page
     path('edit_project', views.edit_project, name="edit_project"),
 
+    #edit use case
+    path('edit_use_case', views.edit_use_case, name="edit_use_case"),
+
     # Matches any html file
     url(r'^.*\.*', views.pages, name='pages'),
 ]

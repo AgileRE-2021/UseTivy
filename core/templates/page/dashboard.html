@@ -29,45 +29,44 @@
                               </tr>
                             </thead>
                             <tbody>
+                            {% for p in context.project %}
                               <tr>
-                                <th scope="row">
-                                  <div class="media align-items-center">
-                                    <p>Project Peminjaman Buku Perpus</p>
-                                  </div>
-                                </th>
                                 <td>
                                   <div class="media align-items-center">
-                                    <p>27-05-2021 00:00</p>
+                                    <p>{{p.nama_project}}</p>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="media align-items-center">
-                                    <p>27-05-2021 00:00</p>
+                                    <p>{{p.dateaccessed}}</p>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="media align-items-center">
+                                    <p>{{p.datecreated}}</p>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="row">
                                     <a href="usecase" class="btn btn-sm btn-icon-only"  role="button"  
                                       style="background-color:#F4D03F"
-                                      data-toggle="tooltip" title="Use Case Details">
+                                      data-toggle="tooltip" title="Use Case">
                                       <i class="ni ni-folder-17" style="color:white;"></i>
                                     </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      <a class="dropdown-item" href="project_view">See Project</a>
-                                      <a class="dropdown-item" href="edit_project">Edit Project</a>
-                                      <a class="dropdown-item" href="#">Delete Project</a>
-                                    </div>
-                                    <button class="btn btn-sm btn-icon-only "  role="button"  
+                                    <a href="" class="btn btn-sm btn-icon-only "  role="button"  
                                       style="background-color:#CB4335"
-                                      data-toggle="tooltip" title="Delete Project">
+                                      data-toggle="tooltip" title="Delete">
                                       <i class="ni ni-basket" style="color:white"></i>
-                                    </button>
-                                    
+                                    </a>
+                                    <a href="edit_project" class="btn btn-sm btn-icon-only"  role="button"  
+                                      style="background-color: #58D68D "
+                                      data-toggle="tooltip" title="Edit">
+                                      <i class="ni ni-bag-17" style="color:white;"></i>
+                                    </a>
                                   </div>
                                 </td>
-                            
                               </tr>
+                            {% endfor %}
                             </tbody>
                           </table>
                           <a href="new_project" class="btn btn-primary">Create New Project</a>

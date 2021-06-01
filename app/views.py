@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse, request
 from django import template
+from app.models import alternative_flow, usecase, basic_flow, activity_diagram, project
 
 @login_required(login_url="/login/")
 def index(request):
@@ -46,9 +47,11 @@ def dashboard(request):
     
     context = {}
     context['segment'] = 'dashboard'
+    context['project'] = project.objects.filter(id_user=request.user.id)
+    #print(context['project'])
 
-    html_template = loader.get_template( 'page/dashboard.html' )
-    return HttpResponse(html_template.render(context, request))   
+    #html_template = loader.get_template( 'page/dashboard.html' )
+    return render(request, 'page/dashboard.html', {'context': context})   
 
 @login_required(login_url="/login/")
 def new_project(request):
@@ -139,3 +142,12 @@ def edit_project(request):
 
     html_template = loader.get_template( 'page/edit_project.html' )
     return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def edit_use_case(request):
+    
+    context = {}
+    context['segment'] = 'edit_project'
+
+    html_template = loader.get_template( 'page/edit_use_case.html' )
+    return HttpResponse(html_template.render(context, request))

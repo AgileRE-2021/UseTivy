@@ -12,15 +12,13 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
 
-    # Use Case Page 
-    path('usecase', views.usecase, name='usecase'),
-
     # Basic Info Page 
     path('basic_info', views.basic_info, name='basic_info'),
 
     #dashboard
     path('dashboard', views.dashboard, name="dashboard"),
 
+    #-------------PROJECT-------------
     #create new project
     path('new_project', views.new_project, name="new_project"),
 
@@ -30,6 +28,13 @@ urlpatterns = [
 
     #delete project
     path('delete_project/<int:id_project>', views.delete_project, name="delete_project"),
+
+    #-------------USE CASE-------------
+    # Use Case Page 
+    path('usecase', views.usecase, name='usecase'),
+
+    #view use case page
+    path('usecase_view', views.usecase_view, name="usecase_view"),
 
     #form basic flow
     path('basic_flow', views.basic_flow, name="basic_flow"),
@@ -46,8 +51,7 @@ urlpatterns = [
     # activity diagram page
     path('activity_diagram', views.activity_diagram, name="activity_diagram"),
 
-    #project view page
-    path('project_view', views.project_view, name="project_view"),
+    
 
     #edit use case
     path('edit_use_case', views.edit_use_case, name="edit_use_case"),

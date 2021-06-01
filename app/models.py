@@ -37,7 +37,6 @@ class basic_flow(models.Model):
 
 class usecase(models.Model):
     id_usecase=models.AutoField(primary_key=True)
-    id_basicflow=models.ForeignKey(basic_flow,on_delete=models.CASCADE)
     id_project=models.ForeignKey(project,on_delete=models.CASCADE)
     nama_usecase=models.CharField(max_length=20)
     brief_description=models.CharField(max_length=300,default='Add Description Here')

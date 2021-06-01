@@ -21,6 +21,7 @@ urlpatterns = [
     #-------------PROJECT-------------
     #create new project
     path('new_project', views.new_project, name="new_project"),
+    path('new_project/create', views.create_project, name="create_project"),
 
     #edit project page
     path('edit_project/<int:id_project>', views.edit_project, name="edit_project"),
@@ -28,6 +29,8 @@ urlpatterns = [
 
     #delete project
     path('delete_project/<int:id_project>', views.delete_project, name="delete_project"),
+
+
 
     #-------------USE CASE-------------
     # Use Case Page 

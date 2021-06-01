@@ -43,15 +43,17 @@ def pages(request):
         html_template = loader.get_template( 'page-500.html' )
         return HttpResponse(html_template.render(context, request))
 
+'''
+----------DASHBOARD & PROJECT----------
+'''
+
 @login_required(login_url="/login/")
 def dashboard(request):
     
     context = {}
     context['segment'] = 'dashboard'
     context['project'] = project.objects.filter(id_user=request.user.id)
-    #print(context['project'])
 
-    #html_template = loader.get_template( 'page/dashboard.html' )
     return render(request, 'page/dashboard.html', {'context': context})   
 
 @login_required(login_url="/login/")
@@ -60,8 +62,25 @@ def new_project(request):
     context = {}
     context['segment'] = 'new_project'
 
-    html_template = loader.get_template( 'page/new_project.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    return render(request,'page/new_project.html') 
+
+@login_required(login_url="/login/")
+def create_project(request):
+    
+    namaProject = request.POST.get("nama_project")
+    dateCreated=timezone.now()
+    dateAccessed=timezone.now()
+
+    newProject = project(
+        id_user=request.user.id,
+        nama_project=namaProject,
+        datecreated=dateCreated,
+        dateaccessed=dateAccessed
+    )
+
+    newProject.save()
+
+    return redirect('dashboard')  
 
 @login_required(login_url="/login/")
 def edit_project(request, id_project):
@@ -93,13 +112,39 @@ def delete_project(request, id_project):
     project_target = get_object_or_404(project, pk=id_project).delete()
     return redirect('dashboard')  
 
+
+'''
+----------USE CASE----------
+'''
+
+
 @login_required(login_url="/login/")
 def usecase(request):
     
     context = {}
     context['segment'] = 'usecase'
+    context['project'] = project.objects.filter(id_user=request.user.id)
+    #contex['usecase'] = 
 
     html_template = loader.get_template( 'page/usecase.html' )
+    return HttpResponse(html_template.render(context, request))
+    
+@login_required(login_url="/login/")
+def usecase_view(request):
+    
+    context = {}
+    context['segment'] = 'usecase_view'
+
+    html_template = loader.get_template( 'page/usecase_view.html' )
+    return HttpResponse(html_template.render(context, request)) 
+
+@login_required(login_url="/login/")
+def edit_use_case(request):
+    
+    context = {}
+    context['segment'] = 'edit_project'
+
+    html_template = loader.get_template( 'page/edit_use_case.html' )
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
@@ -155,21 +200,3 @@ def activity_diagram(request):
 
     html_template = loader.get_template( 'page/activity_diagram.html' )
     return HttpResponse(html_template.render(context, request)) 
-
-@login_required(login_url="/login/")
-def usecase_view(request):
-    
-    context = {}
-    context['segment'] = 'usecase_view'
-
-    html_template = loader.get_template( 'page/usecase_view.html' )
-    return HttpResponse(html_template.render(context, request)) 
-
-@login_required(login_url="/login/")
-def edit_use_case(request):
-    
-    context = {}
-    context['segment'] = 'edit_project'
-
-    html_template = loader.get_template( 'page/edit_use_case.html' )
-    return HttpResponse(html_template.render(context, request))

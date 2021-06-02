@@ -37,9 +37,18 @@ urlpatterns = [
     path('use_case/<int:id_project>', views.use_case, name='usecase'),
 
     #view use case page
-    path('usecase_view/<int:id_usecase>', views.usecase_view, name="usecase_view"),#edit use case
+    path('usecase_view/<int:id_usecase>', views.usecase_view, name="usecase_view"),
 
+    #create use case
+    path('new_usecase/<int:id_project>', views.new_usecase, name="new_usecase"),
+    path('usecase_create',views.usecase_create, name="usecase_create"),
+
+    #edit use caase
     path('edit_use_case/<int:id_usecase>', views.edit_use_case, name="edit_use_case"),
+    path('edit_use_case/update', views.update_use_case, name="update_use_case"),
+
+    #delete use case
+    path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
 
 
 

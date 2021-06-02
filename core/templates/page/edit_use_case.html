@@ -17,43 +17,47 @@
                   <div class="card-body">
                       <h1 class="card-title"></h1>Edit Use Case</h1>
                       <hr>                                                         
-                      <form>
+                      <form method=POST action='/edit_use_case/update'>
+                        {% csrf_token %}
+                        <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
                         <h6 class="heading-small text-muted mb-4">Basic Information</h6>
                         <div class="pl-lg-4">
                           <div class="row">
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label class="form-control-label" for="input-usecase-name">Usecase Name</label>
-                                <input type="text" id="input-usecase-name" class="form-control form-control-alternative" placeholder="Usecase Name" 
-                                        value="">
+                                <input type="text" id="input-usecase-name" name="input-usecase-name" class="form-control form-control-alternative" 
+                                        placeholder="Usecase Name" value="{{ context.use_case.nama_usecase }}">
                               </div>
                             </div>
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label class="form-control-label" for="input-brief-desc">Brief Description</label>
-                                <input type="text" id="input-brief-desc" class="form-control form-control-alternative" 
-                                        placeholder="Brief Description">
+                                <input type="text" id="input-brief-desc" name="input-brief-desc" class="form-control form-control-alternative" 
+                                        placeholder="Brief Description" value="{{ context.use_case.brief_description }}">
                               </div>
                             </div>
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label class="form-control-label" for="input-precondition">Precondition</label>
-                                <input type="text" id="input-precond" class="form-control form-control-alternative" 
-                                        placeholder="Precondition">
+                                <input type="text" id="input-precond" name="input-precondition" class="form-control form-control-alternative" 
+                                        placeholder="Precondition" value="{{ context.use_case.precondition }}">
                               </div>
-                            </div>
+                            </div> 
                           </div>
                           <div class="row">
                             <div class="col-lg-6">
                               <div class="form-group">
-                                <label class="form-control-label" for="input-first-name">Primary Actor</label>
-                                <input type="text" id="input-primary-actor" class="form-control form-control-alternative" placeholder="Primary Actor" >
+                                <label class="form-control-label" for="input-prim-actor">Primary Actor</label>
+                                <input type="text" id="input-primary-actor" name="input-prim-actor" class="form-control form-control-alternative" 
+                                        placeholder="Primary Actor" value="{{ context.use_case.primary_actor }}">
                               </div>
                             </div>
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label class="form-control-label" for="input-sec-actor">Secondary Actor</label>
-                                <input type="text" id="input-sec-actor" class="form-control form-control-alternative" placeholder="Secondary Actor" >
+                                <input type="text" id="input-sec-actor" name="input-sec-actor" class="form-control form-control-alternative" 
+                                        placeholder="Secondary Actor" value="{{ context.use_case.secondary_actor }}" >
                               </div>
                             </div>
                           </div>
@@ -61,18 +65,21 @@
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label class="form-control-label" for="input-depedency">Depedency</label>
-                                <input type="text" id="input-depedency" class="form-control form-control-alternative" placeholder="Depedency" >
+                                <input type="text" id="input-depedency" name="input-depedency" class="form-control form-control-alternative" 
+                                        placeholder="Depedency" value="{{ context.use_case.dependency }}">
                               </div>
                             </div>
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label class="form-control-label" for="input-generalization">Generalization</label>
-                                <input type="text" id="input-generalization" class="form-control form-control-alternative" placeholder="Generalization" >
+                                <input type="text" id="input-generalization" name="input-generalization"  class="form-control form-control-alternative" 
+                                        placeholder="Generalization" value="{{ context.use_case.generalization }}">
                               </div>
                             </div>
                           </div>
                         </div>
                         <hr class="my-4" />
+
                         <!-- Basic FLow -->
                         <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
                         <div class="pl-lg-4">
@@ -185,7 +192,7 @@
                           </div>
                         </div>
                         <hr class="my-4" />
-                        
+                        <button type="submit" class="btn btn-primary">Save Use Case</button>
                       </form>
                    </div>
                 </div>

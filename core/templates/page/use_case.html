@@ -17,7 +17,7 @@
           <div class="col-md-12">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                      <h1 class="card-title"></h1>Use Case List Project : {{ context.name.nama_project }}</h1>
+                      <h1 class="card-title"></h1>Use Case List Project : "{{ context.name.nama_project }}"</h1>
                       <hr>
                       <div class="form-group">                                          
                         <div class="table-responsive">
@@ -68,36 +68,8 @@
                             </tbody>
                           </table>
                           <div class="container">
-                          </br>
-                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Create New Usecase</button>
-                            <div id="demo" class="collapse">
-                              <div class="content" style="padding: 10px">
-                                <div class="col-xl-8 order-xl-1">
-                                  <div class="card bg-secondary shadow">
-                                    <div class="card-body">
-                                      <form>
-                                        <div class="pl-lg-4">
-                                          <div class="row">
-                                            <div class="col-lg-12">
-                                              <div class="form-group">
-                                                <label class="form-control-label" for="input-username">Use Case Name</label>
-                                                <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Insert use case name">
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <a href="usecase" class="btn btn-primary collapsible">
-                                          <div>
-                                            <i class="ni ni-check-bold"></i>
-                                            <span> Save</span>
-                                          </div>
-                                        </a>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            </br>
+                            <a href="/new_usecase/{{context.project}}" class="btn btn-primary">Add New Use Case</a>
                           </div>
                         </div>                              
                       </div>

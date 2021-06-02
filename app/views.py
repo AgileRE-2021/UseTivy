@@ -138,14 +138,85 @@ def usecase_view(request,id_usecase):
 
     return render(request, 'page/usecase_view.html', {'context': context})
 
+@login_required(login_url="login/")
+def new_usecase(request,id_project):
+    
+    context = {}
+    context['segment'] = 'new_usecase'
+    context['id_project'] = id_project
+    context['project'] = project.objects.filter(id_project=id_project).get()
+
+    return render(request,'page/new_use_case.html', {'context': context})
+
+@login_required(login_url="login/")
+def usecase_create(request):
+    
+    namaUseCase = request.POST.get("nama_usecase")
+    idProject = request.POST.get("id_project")
+    project_target = project.objects.filter(id_project=idProject).get()
+
+    newUseCase = usecase(
+        nama_usecase=namaUseCase,
+        id_project=project_target
+    )
+
+    newUseCase.save()
+
+    return redirect('usecase',id_project=idProject )
+
 @login_required(login_url="/login/")
-def edit_use_case(request):
+def edit_use_case(request,id_usecase):
     
     context = {}
     context['segment'] = 'edit_project'
+    context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
 
-    html_template = loader.get_template( 'page/edit_use_case.html' )
-    return HttpResponse(html_template.render(context, request))
+    return render(request, 'page/edit_use_case.html', {'context' : context})
+
+@login_required(login_url="/login/")
+def update_use_case(request):
+
+    context = {}
+    usecase_target = get_object_or_404(usecase, pk=request.POST.get("id_usecase"))
+    id_url = usecase_target.id_project.id_project
+
+    #get from request
+    namaUseCase = request.POST.get('input-usecase-name')
+    briedDes = request.POST.get('input-brief-desc')
+    preCondition = request.POST.get('input-precondition')
+    primaryActor = request.POST.get('input-prim-actor')
+    secondaryActor = request.POST.get('input-sec-actor')
+    dependency = request.POST.get('input-depedency')
+    generalization = request.POST.get('input-generalization')
+
+    #apply in usecase
+    usecase_target.nama_usecase = namaUseCase
+    usecase_target.brief_description = briedDes
+    usecase_target.precondition = preCondition
+    usecase_target.primary_actor = primaryActor
+    usecase_target.secondary_actor = secondaryActor
+    usecase_target.dependency = dependency
+    usecase_target.generalization = generalization
+
+    usecase_target.save()
+    
+    return redirect('usecase',id_project=id_url)
+
+@login_required(login_url="/login/")
+def delete_use_case(request,id_usecase):
+    
+    use_case = usecase.objects.filter(id_usecase=id_usecase).get()
+    idProject = use_case.id_project.id_project
+    print('id = ',idProject)
+    usecase_target = get_object_or_404(usecase, pk=id_usecase).delete()
+
+    return redirect('usecase',id_project=idProject)
+
+
+
+'''
+----------  FLOW  ----------
+'''
 
 @login_required(login_url="/login/")
 def basic_info(request):

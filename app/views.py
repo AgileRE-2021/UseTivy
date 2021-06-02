@@ -130,13 +130,13 @@ def use_case(request,id_project):
     return render(request, 'page/use_case.html', {'context': context})
     
 @login_required(login_url="/login/")
-def usecase_view(request):
+def usecase_view(request,id_usecase):
     
     context = {}
     context['segment'] = 'usecase_view'
+    context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
 
-    html_template = loader.get_template( 'page/usecase_view.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    return render(request, 'page/usecase_view.html', {'context': context})
 
 @login_required(login_url="/login/")
 def edit_use_case(request):

@@ -19,6 +19,7 @@
                       <hr>
                       <div class="form-group">                                          
                         <div class="table-responsive">
+                          <input type="hidden" class="form-control" name="id_project" value="{{context.id_project}}">
                           <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                               <tr>
@@ -45,7 +46,7 @@
                                 </td>
                                 <td>
                                   <div class="row">
-                                    <a href="usecase" class="btn btn-sm btn-primary">Use Case</a>
+                                    <a href="use_case/{{ p.id_project }}" class="btn btn-sm btn-primary">Use Case</a>
                                   </div>
                                 </td>
                                 <td>

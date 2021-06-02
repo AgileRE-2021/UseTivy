@@ -17,7 +17,7 @@
           <div class="col-md-12">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                      <h1 class="card-title"></h1>Use Case List</h1>
+                      <h1 class="card-title"></h1>Use Case List Project : {{ context.name.nama_project }}</h1>
                       <hr>
                       <div class="form-group">                                          
                         <div class="table-responsive">
@@ -31,45 +31,44 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td scope="row">
-                                  <div class="media align-items-center">
-                                    <p>1</p>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="media align-items-center">
-                                    <p>Sign Up</p>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="row">
-                                    <a href="activity_diagram" class="btn btn-sm btn-primary">Activity Diagram</a>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="row">
-                                    <a href="usecase_view" class="btn btn-sm btn-icon-only"  role="button"  
-                                      style="background-color:#F4D03F"
-                                      data-toggle="tooltip" title="Details">
-                                      <i class="ni ni-align-left-2" style="color:white;"></i>
-                                    </a>
-                                    <a href="edit_use_case" class="btn btn-sm btn-icon-only"  role="button"  
-                                      style="background-color: #58D68D "
-                                      data-toggle="tooltip" title="Edit">
-                                      <i class="ni ni-bag-17" style="color:white;"></i>
-                                    </a>
-                                    <a class="btn btn-sm btn-icon-only "  role="button"  
-                                      style="background-color:#CB4335"
-                                      data-toggle="tooltip" title="Delete">
-                                      <i class="ni ni-basket" style="color:white"></i>
-                                    </a>
-                                  </div>
-                                </td>
-                              </tr>
+                                {% for u in context.use_case %}
+                                  <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                      <div class="media align-items-center">
+                                        <p>{{u.nama_usecase}}</p>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div class="row">
+                                        <a href="/activity_diagram" class="btn btn-sm btn-primary">Activity Diagram</a>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div class="row">
+                                        <a href="/usecase_view" class="btn btn-sm btn-icon-only"  role="button"  
+                                          style="background-color:#F4D03F"
+                                          data-toggle="tooltip" title="Details">
+                                          <i class="ni ni-align-left-2" style="color:white;"></i>
+                                        </a>
+                                        <a href="/edit_use_case" class="btn btn-sm btn-icon-only"  role="button"  
+                                          style="background-color: #58D68D "
+                                          data-toggle="tooltip" title="Edit">
+                                          <i class="ni ni-bag-17" style="color:white;"></i>
+                                        </a>
+                                        <a href="/delete_use_case" class="btn btn-sm btn-icon-only "  role="button"  
+                                          style="background-color:#CB4335"
+                                          data-toggle="tooltip" title="Delete">
+                                          <i class="ni ni-basket" style="color:white"></i>
+                                        </a>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                {% endfor %}
                             </tbody>
                           </table>
                           <div class="container">
+                          </br>
                             <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Create New Usecase</button>
                             <div id="demo" class="collapse">
                               <div class="content" style="padding: 10px">

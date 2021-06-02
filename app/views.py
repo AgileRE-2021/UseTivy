@@ -119,15 +119,15 @@ def delete_project(request, id_project):
 
 
 @login_required(login_url="/login/")
-def usecase(request):
+def use_case(request,id_project):
     
     context = {}
     context['segment'] = 'usecase'
-    context['project'] = project.objects.filter(id_user=request.user.id)
-    #contex['usecase'] = 
+    context['project'] = id_project
+    context['name'] = project.objects.filter(id_project=id_project).get()
+    context['use_case'] = usecase.objects.filter(id_project=context['project'])
 
-    html_template = loader.get_template( 'page/usecase.html' )
-    return HttpResponse(html_template.render(context, request))
+    return render(request, 'page/use_case.html', {'context': context})
     
 @login_required(login_url="/login/")
 def usecase_view(request):

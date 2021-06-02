@@ -34,7 +34,7 @@ urlpatterns = [
 
     #-------------USE CASE-------------
     # Use Case Page 
-    path('usecase', views.usecase, name='usecase'),
+    path('use_case/<int:id_project>', views.use_case, name='usecase'),
 
     #view use case page
     path('usecase_view', views.usecase_view, name="usecase_view"),

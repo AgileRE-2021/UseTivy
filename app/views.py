@@ -225,7 +225,7 @@ def basic_info(request):
     context['segment'] = 'basic_info'
 
     html_template = loader.get_template( 'page/basic_info.html' )
-    return HttpResponse(html_template.render(context, request))
+    return render(request, 'page/basic_info.html', {'context' : context})
 
 @login_required(login_url="/login/")
 def basic_flow(request):
@@ -234,7 +234,7 @@ def basic_flow(request):
     context['segment'] = 'basic_flow'
 
     html_template = loader.get_template( 'page/basic_flow.html' )
-    return HttpResponse(html_template.render(context, request))
+    return render(request, 'page/basic_flow.html', {'context' : context})
 
 @login_required(login_url="/login/")
 def specific_flow(request):
@@ -243,7 +243,7 @@ def specific_flow(request):
     context['segment'] = 'specific_flow'
 
     html_template = loader.get_template( 'page/specific_flow.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    return render(request, 'page/specific_flow.html', {'context' : context})
 
 @login_required(login_url="/login/")
 def bounded_flow(request):
@@ -252,7 +252,7 @@ def bounded_flow(request):
     context['segment'] = 'bounded_flow'
 
     html_template = loader.get_template( 'page/bounded_flow.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    return render(request, 'page/bounded_flow.html', {'context' : context})
 
 @login_required(login_url="/login/")
 def global_flow(request):
@@ -261,7 +261,7 @@ def global_flow(request):
     context['segment'] = 'global_flow'
 
     html_template = loader.get_template( 'page/global_flow.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    return render(request, 'page/global_flow.html', {'context' : context})
 
 @login_required(login_url="/login/")
 def activity_diagram(request):
@@ -270,4 +270,4 @@ def activity_diagram(request):
     context['segment'] = 'activity_diagram'
 
     html_template = loader.get_template( 'page/activity_diagram.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    return render(request, 'page/activity_diagram.html', {'context' : context})

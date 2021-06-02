@@ -10,7 +10,7 @@ from app import views
 urlpatterns = [
 
     # The home page
-    path('', views.index, name='home'),
+    path('', views.dashboard, name='home'),
 
     # Basic Info Page 
     path('basic_info', views.basic_info, name='basic_info'),
@@ -37,8 +37,13 @@ urlpatterns = [
     path('use_case/<int:id_project>', views.use_case, name='usecase'),
 
     #view use case page
-    path('usecase_view', views.usecase_view, name="usecase_view"),
+    path('usecase_view/<int:id_usecase>', views.usecase_view, name="usecase_view"),#edit use case
 
+    path('edit_use_case/<int:id_usecase>', views.edit_use_case, name="edit_use_case"),
+
+
+
+     #------------- FLOW -------------
     #form basic flow
     path('basic_flow', views.basic_flow, name="basic_flow"),
 
@@ -51,13 +56,12 @@ urlpatterns = [
     #form global flow
     path('global_flow', views.global_flow, name="global_flow"),
 
+
+
+     #-------------ACTIVITY DIAGRAM------------
     # activity diagram page
     path('activity_diagram', views.activity_diagram, name="activity_diagram"),
 
-    
-
-    #edit use case
-    path('edit_use_case', views.edit_use_case, name="edit_use_case"),
 
     # Matches any html file
     url(r'^.*\.*', views.pages, name='pages'),

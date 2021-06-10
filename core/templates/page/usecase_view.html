@@ -80,9 +80,22 @@
                         <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
-                          <div class="row">                                                          
+                          <div class="row">                                     
                             <div class="col-md-8">
-                              <p>Rule + Step Basic Flow</p>                            
+                              <div class='table-responsive'>
+                                <table class="table align-items-center table-flush">
+                                  {% for sb in context.step_basic %} 
+                                    <tr>
+                                      <td>{{ forloop.counter }}</td>
+                                      <td>
+                                        <div class="media align-items-center">
+                                          <p><b>{{ sb.step_value }}</b></p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  {% endfor %}
+                                </table>
+                              </div>                            
                             </div>
                           </div>                            
                           <div class="row">
@@ -96,7 +109,7 @@
                         </div>
                         <hr class="my-4" />
                         <!-- Specific FLow -->
-                        <h6 class="heading-small text-muted mb-4">Specific Flow</h6>
+                        <h6 class="heading-small text-muted mb-4">Alternative Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
                           <div class="row">                                                          
@@ -114,7 +127,8 @@
                           </div>
                         </div>
                         <hr class="my-4" />
-                        <!-- Bounded FLow -->
+
+                        <!--
                         <h6 class="heading-small text-muted mb-4">Bounded Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>

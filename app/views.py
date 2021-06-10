@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse, request
 from django import template
-from app.models import alternative_flow, usecase, basic_flow, activity_diagram, project
+from app.models import project, usecase, step_basic, alternative_flow, step_alternative_flow, activity_diagram
 from django.utils import timezone
 
 @login_required(login_url="/login/")
@@ -135,6 +135,7 @@ def usecase_view(request,id_usecase):
     context = {}
     context['segment'] = 'usecase_view'
     context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
+    context['step_basic'] = step_basic.objects.filter(id_usecase=id_usecase)
 
     return render(request, 'page/usecase_view.html', {'context': context})
 
@@ -170,6 +171,7 @@ def edit_use_case(request,id_usecase):
     context = {}
     context['segment'] = 'edit_project'
     context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
+    context['step_basic'] = step_basic.filter(id_usecase=id_usecase).get()
 
     return render(request, 'page/edit_use_case.html', {'context' : context})
 
@@ -182,21 +184,21 @@ def update_use_case(request):
 
     #get from request
     namaUseCase = request.POST.get('input-usecase-name')
-    briedDes = request.POST.get('input-brief-desc')
+    briefDes = request.POST.get('input-brief-desc')
     preCondition = request.POST.get('input-precondition')
     primaryActor = request.POST.get('input-prim-actor')
-    secondaryActor = request.POST.get('input-sec-actor')
-    dependency = request.POST.get('input-depedency')
-    generalization = request.POST.get('input-generalization')
+    #secondaryActor = request.POST.get('input-sec-actor')
+    #dependency_input = request.POST.get('input-depedency')
+    #generalization_input = request.POST.get('input-generalization')
 
     #apply in usecase
     usecase_target.nama_usecase = namaUseCase
-    usecase_target.brief_description = briedDes
+    usecase_target.brief_description = briefDes
     usecase_target.precondition = preCondition
     usecase_target.primary_actor = primaryActor
-    usecase_target.secondary_actor = secondaryActor
-    usecase_target.dependency = dependency
-    usecase_target.generalization = generalization
+    #usecase_target.secondary_actor = secondaryActor
+    #usecase_target.dependency =  dependency_input
+    #usecase_target.generalization = generalization_input
 
     usecase_target.save()
     

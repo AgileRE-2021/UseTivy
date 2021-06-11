@@ -45,32 +45,18 @@
                                 <p>{{context.use_case.precondition}}</p>
                               </div>
                             </div>
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Postcondition</label>
+                                <p>{{context.use_case.postcondition}}</p>
+                              </div>
+                            </div>                                            
                           </div>
                           <div class="row">
                             <div class="col-lg-6">
                               <div class="form-group">
-                                <label class="form-control-label" for="input-first-name">Primary Actor</label>
-                                <p>{{context.use_case.primary_actor}}</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-sec-actor">Secondary Actor</label>
-                                <p>{{context.use_case.secondary_actor}}</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-depedency">Depedency</label>
-                                <p>{{context.use_case.dependency}}</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-generalization">Generalization</label>
-                                <p>{{context.use_case.generalization}}</p>
+                                <label class="form-control-label" for="input-first-name">Actor</label>
+                                <p>{{context.use_case.actor}}</p>
                               </div>
                             </div>
                           </div>
@@ -97,14 +83,6 @@
                                 </table>
                               </div>                            
                             </div>
-                          </div>                            
-                          <div class="row">
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                <p>Postcondition Basic Flow</p>
-                              </div>
-                            </div>                                            
                           </div>
                         </div>
                         <hr class="my-4" />
@@ -126,8 +104,6 @@
                             </div>                                            
                           </div>
                         </div>
-                        <hr class="my-4" />
-
                         <!--
                         <h6 class="heading-small text-muted mb-4">Bounded Flow</h6>
                         <div class="pl-lg-4">
@@ -147,7 +123,7 @@
                           </div>
                         </div>
                         <hr class="my-4" />
-                        <!-- Global FLow -->
+                        <!-- Global FLow 
                         <h6 class="heading-small text-muted mb-4">Global Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
@@ -165,6 +141,7 @@
                             </div>                                            
                           </div>
                         </div>
+                        -->
                         <hr class="my-4" />
                         <a href="/edit_use_case/{{ context.use_case.id_usecase }}" class="btn btn-primary">Edit Use Case</a>
                         <a href="activity_diagram" class="btn btn-primary">Activity Diagram</a>

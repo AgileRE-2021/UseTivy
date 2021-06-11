@@ -171,7 +171,7 @@ def edit_use_case(request,id_usecase):
     context = {}
     context['segment'] = 'edit_project'
     context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
-    context['step_basic'] = step_basic.filter(id_usecase=id_usecase).get()
+    context['step_basic'] = step_basic.objects.filter(id_usecase=id_usecase)
 
     return render(request, 'page/edit_use_case.html', {'context' : context})
 
@@ -209,7 +209,6 @@ def delete_use_case(request,id_usecase):
     
     use_case = usecase.objects.filter(id_usecase=id_usecase).get()
     idProject = use_case.id_project.id_project
-    print('id = ',idProject)
     usecase_target = get_object_or_404(usecase, pk=id_usecase).delete()
 
     return redirect('usecase',id_project=idProject)

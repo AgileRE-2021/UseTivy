@@ -45,6 +45,12 @@
                                         placeholder="Precondition" value="{{ context.use_case.precondition }}">
                               </div>
                             </div> 
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Postcondition</label>
+                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition" value="{{ context.use_case.postcondition }}">
+                              </div>
+                            </div>
                           </div>
                           <div class="row">
                             <div class="col-lg-6">
@@ -88,7 +94,22 @@
                       <!-- Basic FLow -->
                         <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
                         <div class="pl-lg-4">
-                          <label class="form-control-label" for="input-address">Step</label>
+                          <div class='table-responsive'>
+                            <table class="table align-items-center table-flush">
+                              {% for sb in context.step_basic %} 
+                                <tr>
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>
+                                    <div class="media align-items-center">
+                                      <p><b>{{ sb.step_value }}</b></p>
+                                    </div>
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                            </table>
+                          </div>
+                          </br>
+                          <label class="form-control-label" for="input-address">Add Step</label>
                           <div class="row">
                             <div class="dropdown">
                               <div class="col-md-8">
@@ -112,14 +133,6 @@
                                 <i class="fa fa-plus pr-2"></i>
                               </button>
                             </div>                                                            
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                              </div>
-                            </div>                                            
                           </div>
                         </div>
                         <hr class="my-4" />

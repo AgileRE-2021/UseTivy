@@ -15,7 +15,7 @@
           <div class="col-md-12">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                    <a href="" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
+                    <a href="/use_case/{{ context.id_project }}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
                       <div>
                         <i class="ni ni-bold-left"></i>
                         <span> Back</span>
@@ -36,7 +36,7 @@
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label class="form-control-label" for="input-brief-desc">Brief Description</label>
-                                <p>{{context.use_case.bried_description}}</p>
+                                <p>{{context.use_case.brief_description}}</p>
                               </div>
                             </div>
                             <div class="col-lg-8">
@@ -82,7 +82,7 @@
                           <label class="form-control-label" for="input-address">Step</label>
                           <div class="row">                                                          
                             <div class="col-md-8">
-                              <p>Rule + Step Basic Flow</p>                            
+                              <p>{{context.basic_flow.steps_basicflow}}</p>                            
                             </div>
                           </div>                            
                           <div class="row">

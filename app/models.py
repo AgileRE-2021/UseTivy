@@ -35,6 +35,18 @@ class basic_flow(models.Model):
     steps_basicflow=models.CharField(max_length=1000)
     postcondition_basic=models.CharField(max_length=100)
 
+class bounded_flow(models.Model):
+    id_boundedflow=models.AutoField(primary_key=True)
+    id_project=models.ForeignKey(project,on_delete=models.CASCADE)
+    steps_boundedflow=models.CharField(max_length=1000)
+    postcondition_bounded=models.CharField(max_length=100)
+
+class global_flow(models.Model):
+    id_globalflow=models.AutoField(primary_key=True)
+    id_project=models.ForeignKey(project,on_delete=models.CASCADE)
+    steps_globalflow=models.CharField(max_length=1000)
+    postcondition_global=models.CharField(max_length=100)
+
 class usecase(models.Model):
     id_usecase=models.AutoField(primary_key=True)
     id_basicflow=models.ForeignKey(basic_flow,on_delete=models.CASCADE)
@@ -55,3 +67,4 @@ class alternative_flow(models.Model):
     rfs=models.FloatField(max_length=8)
     steps_alternativeflow=models.CharField(max_length=1000)
     postcondition_alternative=models.CharField(max_length=100)
+

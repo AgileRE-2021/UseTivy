@@ -91,7 +91,9 @@
                                   <td>{{ forloop.counter }}</td>
                                   <td>
                                     <div class="media align-items-center">
-                                      <p><b>{{ sb.step_value }}</b></p>
+                                      <p><b>{{ sb.step_actor_basic }} </b>
+                                        <b>{{ sb.step_value }} </b>
+                                      </p>
                                     </div>
                                   </td>
                                   <td>
@@ -128,9 +130,11 @@
                               </div>                                              
                             </div>
                             <div class="col-md-4">
-                              <button class="btn btn-primary text-white" v-on:click="step_input" style="margin-bottom :10px"> 
-                                <i class="fa fa-plus pr-2"></i>
-                              </button>
+                              <a href="/edit_use_case/{{ context.use_case.id_usecase }}" class="btn btn-primary text-white" v-on:click="step_input" style="margin-bottom :10px">
+                                <div>
+                                  <i class="fa fa-plus pr-2"></i>
+                                </div>
+                              </a>
                             </div>                                                            
                           </div>
                         </div>

@@ -61,16 +61,27 @@
                             <div class="col-md-8">
                               <div class='table-responsive'>
                                 <table class="table align-items-center table-flush">
+                                  <thead>
+                                    <tr>
+                                      <th>No</th>
+                                      <th>Steps</th>
+                                    </tr>
+                                  </thead>
                                   {% for sb in context.step_basic %} 
+                                  <tbody>
                                     <tr>
                                       <td>{{ forloop.counter }}</td>
                                       <td>
                                         <div class="media align-items-center">
-                                          <p><b>{{ sb.step_value }}</b></p>
+                                          <p>
+                                            <b>{{ sb.step_actor_basic }}</b>
+                                            <b>{{ sb.step_value }}</b>
+                                          </p>
                                         </div>
                                       </td>
                                     </tr>
-                                  {% endfor %}
+                                    {% endfor %}
+                                  </tbody>                                    
                                 </table>
                               </div>                            
                             </div>

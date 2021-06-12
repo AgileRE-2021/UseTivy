@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %} Create Project {% endblock title %}
+{% block title %} Add New Use Case {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -15,22 +15,23 @@
               <div class="col-md-12">
                   <div class="card" style="width: 100%;">
                       <div class="card-body">
-                        <h1 class="card-title"></h1>Create Project</h1>
+                        <h1 class="card-title"></h1>Add New Use Case</h1>
                         <hr>
-                        <form method=POST action='/new_project/create'>
+                        <form method=POST action='/usecase_create'>
                           {% csrf_token %}
+                          <input type=hidden name=id_project value={{context.project.id_project}}>
                           <div class="form-group">                                          
-                              <label for="exampleInputEmail1">Project Name</label>
+                              <label for="exampleInputEmail1">Use Case Name</label>
                               <div class="row">
                                   <div class="col-md-8">
                                       <div class="input-group mb-4">
-                                          <input class="form-control" name="nama_project" placeholder="Project Name" type="text">
+                                          <input class="form-control" name="nama_usecase" placeholder="Use Case Name" type="text">
                                       </div>
                                   </div>
                               </div>                                                                                                                                    
                           </div>
-                          <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
-                          <button type="submit" class="btn btn-primary">Create Project</button>
+                          <a href="/use_case/{{ context.project.id_project }}" class="btn btn-danger">Cancel</a>
+                          <button type="submit" class="btn btn-primary">Add New Use Case</button>
                         </form>
                       </div>
                     </div>

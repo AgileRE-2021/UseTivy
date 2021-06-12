@@ -1,0 +1,109 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Use Case {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col-md-12">
+              <div class="card" style="width: 100%;">
+                  <div class="card-body">
+                      <h1 class="card-title"></h1>Use Case List Project : "{{ context.name.nama_project }}"</h1>
+                      <hr>
+                      <div class="form-group">                                          
+                        <div class="table-responsive">
+                          <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Use Case</th>
+                                <th scope="col">Activity Diagram</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for u in context.use_case %}
+                                  <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                      <div class="media align-items-center">
+                                        <p>{{u.nama_usecase}}</p>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div class="row">
+                                        <a href="/activity_diagram/{{ u.id_usecase }}" class="btn btn-sm btn-primary">Activity Diagram</a>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div class="row">
+                                        <a href="/usecase_view/{{ u.id_usecase }}" class="btn btn-sm btn-icon-only"  role="button"  
+                                          style="background-color:#F4D03F"
+                                          data-toggle="tooltip" title="Details">
+                                          <i class="ni ni-align-left-2" style="color:white;"></i>
+                                        </a>
+                                        <a href="/edit_use_case/{{ u.id_usecase }}" class="btn btn-sm btn-icon-only"  role="button"  
+                                          style="background-color: #58D68D "
+                                          data-toggle="tooltip" title="Edit">
+                                          <i class="ni ni-bag-17" style="color:white;"></i>
+                                        </a>
+                                        <a href="/delete_use_case/{{ u.id_usecase }}" class="btn btn-sm btn-icon-only "  role="button"  
+                                          style="background-color:#CB4335"
+                                          data-toggle="tooltip" title="Delete">
+                                          <i class="ni ni-basket" style="color:white"></i>
+                                        </a>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                          <div class="container">
+                            </br>
+                            <a href="/new_usecase/{{context.project}}" class="btn btn-primary">Add New Use Case</a>
+                          </div>
+                        </div>                              
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<!-- <script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+
+  $('.clk a').click(function(){
+    $(this).find('i').toggleClass('fa-plus-circle fa-minus-circle')
+});
+  </script> -->
+
+{% endblock javascripts %}

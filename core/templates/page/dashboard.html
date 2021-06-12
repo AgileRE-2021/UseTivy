@@ -19,57 +19,52 @@
                       <hr>
                       <div class="form-group">                                          
                         <div class="table-responsive">
+                          <input type="hidden" class="form-control" name="id_project" value="{{context.id_project}}">
                           <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                               <tr>
+                                <th scope="col">No</th>
                                 <th scope="col">Project</th>
                                 <th scope="col">Last Update</th>
-                                <th scope="col">Date Created</th>
+                                <th scope="col">Use Case</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
+                            {% for p in context.project %}
                               <tr>
-                                <th scope="row">
-                                  <div class="media align-items-center">
-                                    <p>Project Peminjaman Buku Perpus</p>
-                                  </div>
-                                </th>
+                                <td>{{ forloop.counter }}</td>
                                 <td>
                                   <div class="media align-items-center">
-                                    <p>27-05-2021 00:00</p>
+                                    <p>{{p.nama_project}}</p>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="media align-items-center">
-                                    <p>27-05-2021 00:00</p>
+                                    <p>{{p.dateaccessed}}</p>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="row">
-                                    <a href="new_project" class="btn btn-sm btn-icon-only"  role="button"  
-                                      style="background-color:#FFA07A"
-                                      data-toggle="tooltip" title="Edit Project Name">
-                                      <i class="ni ni-ruler-pencil" style="color:white;"></i>
-                                    </a>
-
-                                    <a href="usecase" class="btn btn-sm btn-icon-only"  role="button"  
-                                      style="background-color:#F4D03F"
-                                      data-toggle="tooltip" title="View Project">
-                                      <i class="ni ni-folder-17" style="color:white;"></i>
-                                    </a>
-
-                                    
-                                    <button class="btn btn-sm btn-icon-only "  role="button"  
-                                      style="background-color:#CB4335"
-                                      data-toggle="tooltip" title="Delete Project">
-                                      <i class="ni ni-basket" style="color:white"></i>
-                                    </button>
-                                    
+                                    <a href="use_case/{{ p.id_project }}" class="btn btn-sm btn-primary">Use Case</a>
                                   </div>
                                 </td>
-                            
+                                <td>
+                                  <div class="row">
+                                    <a href="edit_project/{{ p.id_project }}" class="btn btn-sm btn-icon-only" role="button"  
+                                      style="background-color: #58D68D "
+                                      data-toggle="tooltip" title="Edit">
+                                      <i class="ni ni-bag-17" style="color:white;"></i>
+                                    </a>
+                                    <a href="delete_project/{{ p.id_project }}" class="btn btn-sm btn-icon-only "  role="button"
+                                      style="background-color:#CB4335"
+                                      data-toggle="tooltip" title="Delete">
+                                      <i class="ni ni-basket" style="color:white"></i>
+                                    </a>
+                                  </div>
+                                </td>
                               </tr>
+                            {% endfor %}
                             </tbody>
                           </table>
                           <a href="new_project" class="btn btn-primary">Create New Project</a>

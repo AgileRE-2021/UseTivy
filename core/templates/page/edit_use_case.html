@@ -1,0 +1,227 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Edit Use Case {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col-md-12">
+              <div class="card" style="width: 100%;">
+                  <div class="card-body">
+                      <h1 class="card-title"></h1>Edit Use Case</h1>
+                      <hr>
+                      <!-- Basic Information -->                                                    
+                      <form method=POST action='/edit_use_case/update'>
+                        {% csrf_token %}
+                        <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
+                        <h6 class="heading-small text-muted mb-4">Basic Information</h6>
+                        <div class="pl-lg-4">
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-usecase-name">Usecase Name</label>
+                                <input type="text" id="input-usecase-name" name="input-usecase-name" class="form-control form-control-alternative" 
+                                        placeholder="Usecase Name" value="{{ context.use_case.nama_usecase }}">
+                              </div>
+                            </div>
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-brief-desc">Brief Description</label>
+                                <input type="text" id="input-brief-desc" name="input-brief-desc" class="form-control form-control-alternative" 
+                                        placeholder="Brief Description" value="{{ context.use_case.brief_description }}">
+                              </div>
+                            </div>
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-precondition">Precondition</label>
+                                <input type="text" id="input-precond" name="input-precondition" class="form-control form-control-alternative" 
+                                        placeholder="Precondition" value="{{ context.use_case.precondition }}">
+                              </div>
+                            </div> 
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Postcondition</label>
+                                <input type="text" id="input-city"  name="input-postcondition" class="form-control form-control-alternative" placeholder="Postcondition" value="{{ context.use_case.postcondition }}">
+                              </div>
+                            </div>
+                          </div>
+                          <!--
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-depedency">Depedency</label>
+                                <input type="text" id="input-depedency" name="input-depedency" class="form-control form-control-alternative" 
+                                        placeholder="Depedency" value="{{ context.use_case.dependency }}">
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-generalization">Generalization</label>
+                                <input type="text" id="input-generalization" name="input-generalization"  class="form-control form-control-alternative" 
+                                        placeholder="Generalization" value="{{ context.use_case.generalization }}">
+                              </div>
+                            </div>
+                          </div>
+                          -->
+                        </div>
+                        <hr class="my-4" />
+
+                      <!-- Basic FLow -->
+                        <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
+                        <div class="pl-lg-4">
+                          <div class='table-responsive'>
+                            <table class="table align-items-center table-flush">
+                              <thead>
+                                <tr>
+                                  <th>No</th>
+                                  <th>Steps</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for sb in context.step_basic %} 
+                                <tr>
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>
+                                    <div class="media align-items-center">
+                                      <p><b>{{ sb.step_value }}</b></p>
+                                    </div>
+                                  </td>
+                                  <td>
+
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                          </br>
+                          <label class="form-control-label" for="input-address">Add Step</label>
+                          <div class="row">
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                <input id="actor_input" name="actor_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                              </div>                                              
+                            </div>
+                            <div class="dropdown">
+                              <div class="col-md-4">
+                                  <a class="btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom :10px">
+                                    Choose Rule 
+                                  </a>
+                                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                      <a class="dropdown-item" href="#">Rule 1</a>
+                                      <a class="dropdown-item" href="#">Rule 2</a>
+                                      <a class="dropdown-item" href="#">Rule 3</a>
+                                  </div>                                        
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">                                                
+                                <input id="step_input" name="step_input" class="form-control form-control-alternative" placeholder="Step" type="text">                                               
+                              </div>                                              
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-primary text-white" v-on:click="step_input" style="margin-bottom :10px"> 
+                                <i class="fa fa-plus pr-2"></i>
+                              </button>
+                            </div>                                                            
+                          </div>
+                        </div>
+                        
+                        <hr class="my-4" />
+                        <!-- Specific FLow -->
+                        <h6 class="heading-small text-muted mb-4">Alternative Flow</h6>
+                        <div class="pl-lg-4">
+                          <label class="form-control-label" for="input-address">Step</label>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">                                                
+                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
+                              </div>                                              
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
+                                  class="fa fa-plus pr-2"></i></button>
+                          </div>                                                            
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Postcondition</label>
+                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
+                              </div>
+                            </div>                                            
+                          </div>
+                        </div>
+                        <!--
+                        <h6 class="heading-small text-muted mb-4">Bounded Flow</h6>
+                        <div class="pl-lg-4">
+                          <label class="form-control-label" for="input-address">Step</label>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">                                                
+                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
+                              </div>                                              
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
+                                  class="fa fa-plus pr-2"></i></button>
+                          </div>                                                            
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Postcondition</label>
+                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
+                              </div>
+                            </div>                                            
+                          </div>
+                        </div>
+                        <hr class="my-4" />
+
+                        <h6 class="heading-small text-muted mb-4">Global Flow</h6>
+                        <div class="pl-lg-4">
+                          <label class="form-control-label" for="input-address">Step</label>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">                                                
+                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
+                              </div>                                              
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
+                                  class="fa fa-plus pr-2"></i></button>
+                          </div>                                                            
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Postcondition</label>
+                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
+                              </div>
+                            </div>                                            
+                          </div>
+                        </div>  
+                          -->
+                        <hr class="my-4" />
+                        <button type="submit" class="btn btn-primary">Save Use Case</button>
+                      </form>
+                   </div>
+                </div>
+            </div>
+          </div>                    
+        </div>                                   
+     </div>                                                                                             
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

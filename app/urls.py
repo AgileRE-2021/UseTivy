@@ -10,10 +10,7 @@ from app import views
 urlpatterns = [
 
     # The home page
-    path('', views.index, name='home'),
-
-    # Use Case Page 
-    path('usecase', views.usecase, name='usecase'),
+    path('', views.dashboard, name='home'),
 
     # Basic Info Page 
     path('basic_info', views.basic_info, name='basic_info'),
@@ -21,9 +18,41 @@ urlpatterns = [
     #dashboard
     path('dashboard', views.dashboard, name="dashboard"),
 
+    #-------------PROJECT-------------
     #create new project
     path('new_project', views.new_project, name="new_project"),
+    path('new_project/create', views.create_project, name="create_project"),
 
+    #edit project page
+    path('edit_project/<int:id_project>', views.edit_project, name="edit_project"),
+    path('edit_project/update', views.update_project, name="update_project"),
+
+    #delete project
+    path('delete_project/<int:id_project>', views.delete_project, name="delete_project"),
+
+
+
+    #-------------USE CASE-------------
+    # Use Case Page 
+    path('use_case/<int:id_project>', views.use_case, name='usecase'),
+
+    #view use case page
+    path('usecase_view/<int:id_usecase>', views.usecase_view, name="usecase_view"),
+
+    #create use case
+    path('new_usecase/<int:id_project>', views.new_usecase, name="new_usecase"),
+    path('usecase_create',views.usecase_create, name="usecase_create"),
+
+    #edit use caase
+    path('edit_use_case/<int:id_usecase>', views.edit_use_case, name="edit_use_case"),
+    path('edit_use_case/update', views.update_use_case, name="update_use_case"),
+
+    #delete use case
+    path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
+
+
+
+     #------------- FLOW -------------
     #form basic flow
     path('basic_flow', views.basic_flow, name="basic_flow"),
 
@@ -36,14 +65,12 @@ urlpatterns = [
     #form global flow
     path('global_flow', views.global_flow, name="global_flow"),
 
+
+
+     #-------------ACTIVITY DIAGRAM------------
     # activity diagram page
-    path('activity_diagram', views.activity_diagram, name="activity_diagram"),
+    path('activity_diagram/<int:id_usecase>', views.activity_diagram, name="activity_diagram"),
 
-    #project view page
-    path('project_view', views.project_view, name="project_view"),
-
-    #edit project page
-    path('edit_project', views.edit_project, name="edit_project"),
 
     # Matches any html file
     url(r'^.*\.*', views.pages, name='pages'),

@@ -181,28 +181,34 @@ def update_use_case(request):
     context = {}
     usecase_target = get_object_or_404(usecase, pk=request.POST.get("id_usecase"))
     id_url = usecase_target.id_project.id_project
-
     #get from request
     namaUseCase = request.POST.get('input-usecase-name')
     briefDes = request.POST.get('input-brief-desc')
     preCondition = request.POST.get('input-precondition')
     postCondition = request.POST.get('input-postcondition')
-    #primaryActor = request.POST.get('input-prim-actor')
-    #secondaryActor = request.POST.get('input-sec-actor')
-    #dependency_input = request.POST.get('input-depedency')
-    #generalization_input = request.POST.get('input-generalization')
-
     #apply in usecase
     usecase_target.nama_usecase = namaUseCase
     usecase_target.brief_description = briefDes
     usecase_target.precondition = preCondition
     usecase_target.postcondition =postCondition
-    #usecase_target.primary_actor = primaryActor
-    #usecase_target.secondary_actor = secondaryActor
-    #usecase_target.dependency =  dependency_input
-    #usecase_target.generalization = generalization_input
 
     usecase_target.save()
+
+    try:
+        stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
+        actorBasic = request.POST.get('actor_input')
+        stepBasic_target.step_actor_basic=actorBasic
+        stepBasic_target.save()
+    except:
+        actorBasic = request.POST.get('actor_input')
+        stepBasic = request.POST.get('step_input')
+        newStepBasic = step_basic(
+            step_actor_basic=actorBasic,
+            step_value=stepBasic,
+            id_usecase=usecase_target
+        )
+        newStepBasic.save()
+
     
     return redirect('usecase',id_project=id_url)
 

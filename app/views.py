@@ -186,7 +186,8 @@ def update_use_case(request):
     namaUseCase = request.POST.get('input-usecase-name')
     briefDes = request.POST.get('input-brief-desc')
     preCondition = request.POST.get('input-precondition')
-    primaryActor = request.POST.get('input-prim-actor')
+    postCondition = request.POST.get('input-postcondition')
+    #primaryActor = request.POST.get('input-prim-actor')
     #secondaryActor = request.POST.get('input-sec-actor')
     #dependency_input = request.POST.get('input-depedency')
     #generalization_input = request.POST.get('input-generalization')
@@ -195,7 +196,8 @@ def update_use_case(request):
     usecase_target.nama_usecase = namaUseCase
     usecase_target.brief_description = briefDes
     usecase_target.precondition = preCondition
-    usecase_target.primary_actor = primaryActor
+    usecase_target.postcondition =postCondition
+    #usecase_target.primary_actor = primaryActor
     #usecase_target.secondary_actor = secondaryActor
     #usecase_target.dependency =  dependency_input
     #usecase_target.generalization = generalization_input
@@ -224,7 +226,19 @@ def activity_diagram(request,id_usecase):
 
     context = {}
     context['segment'] = 'activity_diagram'
-    context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
+    #get use case
+    use_case = usecase.objects.filter(id_usecase=id_usecase).get()
+    #get step basic
+    step_basic_target = step_basic.objects.filter(id_usecase=id_usecase)
+
+    for (step, i) in  step_basic_target :
+        #get actor
+        actor_basic = step.step_actor_basic
+        #get step value
+        value_basic = step.step_value
+        
+
+
     
     return render(request, 'page/activity_diagram.html', {'context': context}) 
 

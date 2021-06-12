@@ -214,10 +214,25 @@ def delete_use_case(request,id_usecase):
     return redirect('usecase',id_project=idProject)
 
 
+'''
+----------  ACTIVITY DIAGRAM  ----------
+'''
+
+
+@login_required(login_url="/login/")
+def activity_diagram(request,id_usecase):
+
+    context = {}
+    context['segment'] = 'activity_diagram'
+    context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
+    
+    return render(request, 'page/activity_diagram.html', {'context': context}) 
+
 
 '''
 ----------  FLOW  ----------
 '''
+
 
 @login_required(login_url="/login/")
 def basic_info(request):
@@ -264,11 +279,3 @@ def global_flow(request):
     html_template = loader.get_template( 'page/global_flow.html' )
     return HttpResponse(html_template.render(context, request)) 
 
-@login_required(login_url="/login/")
-def activity_diagram(request):
-    
-    context = {}
-    context['segment'] = 'activity_diagram'
-
-    html_template = loader.get_template( 'page/activity_diagram.html' )
-    return HttpResponse(html_template.render(context, request)) 

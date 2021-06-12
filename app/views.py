@@ -251,7 +251,7 @@ def activity_diagram(request,id_usecase):
         if i == 1 :
             #get actor
             actor = step.step_actor_basic
-            activity_text.write("|" +str(actor)+ "|" + "\n")
+            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
 
             activity_text.write("start \n")
 
@@ -262,7 +262,7 @@ def activity_diagram(request,id_usecase):
         else :
             #get actor
             actor = step.step_actor_basic
-            activity_text.write("|" +str(actor)+ "|" + "\n")
+            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
 
             #get step value
             value_basic = step.step_value

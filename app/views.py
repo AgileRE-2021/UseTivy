@@ -10,6 +10,9 @@ from django.http import HttpResponse, request
 from django import template
 from app.models import project, usecase, step_basic, alternative_flow, step_alternative_flow, activity_diagram
 from django.utils import timezone
+from plantuml import PlantUML
+import os
+from os.path import abspath
 
 @login_required(login_url="/login/")
 def index(request):
@@ -232,21 +235,57 @@ def activity_diagram(request,id_usecase):
 
     context = {}
     context['segment'] = 'activity_diagram'
-    #get use case
+
+    #get use case & project id & nama usecase
     use_case = usecase.objects.filter(id_usecase=id_usecase).get()
+    projectID = use_case.id_project.id_project
+    useCaseID = use_case.id_usecase
+    namaUseCase = use_case.nama_usecase
+
     #get step basic
-    step_basic_target = step_basic.objects.filter(id_usecase=id_usecase)
+    target = step_basic.objects.filter(id_usecase=id_usecase)
 
-    for (step, i) in  step_basic_target :
-        #get actor
-        actor_basic = step.step_actor_basic
-        #get step value
-        value_basic = step.step_value
+    #make the empty txt file
+    activity_text = open("activity_"+str(projectID)+"_"+str(useCaseID)+".txt","w+")
+    #activity_text.write("@startuml \n")
+    activity_text.write("title " +str(namaUseCase)+ "\n")
+    i = 1
+
+    for step in target.iterator() :
+        if i == 1 :
+            #get actor
+            actor = step.step_actor_basic
+            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+
+            activity_text.write("start \n")
+
+            #get step value
+            value_basic = step.step_value
+            activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+            i = i+1
+        else :
+            #get actor
+            actor = step.step_actor_basic
+            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+
+            #get step value
+            value_basic = step.step_value
+            activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+            i = i+1
+
+    activity_text.write("end")
+    #activity_text.write("@enduml \n")
+
+    activity_text = open("activity_"+str(projectID)+"_"+str(useCaseID)+".txt","r")
+
+    #generate activity diagram
+    server = PlantUML(url='http://www.plantuml.com/plantuml/img/',
+                        basic_auth={},
+                        form_auth={}, http_opts={}, request_opts={})
+
+    server.processes_file(abspath(f"activity_"+str(projectID)+"_"+str(useCaseID)+".txt"))
         
-
-
-    
-    return render(request, 'page/activity_diagram.html', {'context': context}) 
+    return redirect('usecase',id_project=projectID)
 
 
 '''

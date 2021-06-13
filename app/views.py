@@ -183,7 +183,7 @@ def update_use_case(request):
 
     context = {}
     usecase_target = get_object_or_404(usecase, pk=request.POST.get("id_usecase"))
-    id_url = usecase_target.id_project.id_project
+    id_url = usecase_target.id_usecase
     #get from request
     namaUseCase = request.POST.get('input-usecase-name')
     briefDes = request.POST.get('input-brief-desc')
@@ -213,7 +213,17 @@ def update_use_case(request):
         newStepBasic.save()
 
     
-    return redirect('usecase',id_project=id_url)
+    return redirect('edit_use_case',id_usecase=id_url)
+
+@login_required(login_url="/login/")
+def delete_step_basic(request,id_step_basic):
+    
+    step_basic = step_basic.objects.filter(id_step_basic=id_step_basic).get()
+    idUsecase = step_basic.id_usecase.id_usecase
+    stepbasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
+
+    return redirect('edit_use_case',id_usecase=idUsecase)
+
 
 @login_required(login_url="/login/")
 def delete_use_case(request,id_usecase):

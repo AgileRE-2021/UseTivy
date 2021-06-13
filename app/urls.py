@@ -46,9 +46,13 @@ urlpatterns = [
     #edit use caase
     path('edit_use_case/<int:id_usecase>', views.edit_use_case, name="edit_use_case"),
     path('edit_use_case/update', views.update_use_case, name="update_use_case"),
-
+    
     #delete use case
     path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
+
+    #delete step basic
+    path('delete_step_basic/<int:id_step_basic>', views.delete_step_basic, name="delete_step_basic"),
+
 
 
 

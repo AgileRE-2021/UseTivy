@@ -8,8 +8,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse, request
 from django import template
-from app.models import alternative_flow, usecase, basic_flow, activity_diagram, project
+from app.models import project, usecase, step_basic, alternative_flow, step_alternative_flow, activity_diagram
 from django.utils import timezone
+from plantuml import PlantUML
+import os
+from os.path import abspath
 
 @login_required(login_url="/login/")
 def index(request):
@@ -135,6 +138,7 @@ def usecase_view(request,id_usecase):
     context = {}
     context['segment'] = 'usecase_view'
     context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
+    context['step_basic'] = step_basic.objects.filter(id_usecase=id_usecase)
 
     return render(request, 'page/usecase_view.html', {'context': context})
 
@@ -170,6 +174,7 @@ def edit_use_case(request,id_usecase):
     context = {}
     context['segment'] = 'edit_project'
     context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
+    context['step_basic'] = step_basic.objects.filter(id_usecase=id_usecase)
 
     return render(request, 'page/edit_use_case.html', {'context' : context})
 
@@ -179,26 +184,34 @@ def update_use_case(request):
     context = {}
     usecase_target = get_object_or_404(usecase, pk=request.POST.get("id_usecase"))
     id_url = usecase_target.id_project.id_project
-
     #get from request
     namaUseCase = request.POST.get('input-usecase-name')
-    briedDes = request.POST.get('input-brief-desc')
+    briefDes = request.POST.get('input-brief-desc')
     preCondition = request.POST.get('input-precondition')
-    primaryActor = request.POST.get('input-prim-actor')
-    secondaryActor = request.POST.get('input-sec-actor')
-    dependency = request.POST.get('input-depedency')
-    generalization = request.POST.get('input-generalization')
-
+    postCondition = request.POST.get('input-postcondition')
     #apply in usecase
     usecase_target.nama_usecase = namaUseCase
-    usecase_target.brief_description = briedDes
+    usecase_target.brief_description = briefDes
     usecase_target.precondition = preCondition
-    usecase_target.primary_actor = primaryActor
-    usecase_target.secondary_actor = secondaryActor
-    usecase_target.dependency = dependency
-    usecase_target.generalization = generalization
+    usecase_target.postcondition =postCondition
 
     usecase_target.save()
+
+    try:
+        stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
+        actorBasic = request.POST.get('actor_input')
+        stepBasic_target.step_actor_basic=actorBasic
+        stepBasic_target.save()
+    except:
+        actorBasic = request.POST.get('actor_input')
+        stepBasic = request.POST.get('step_input')
+        newStepBasic = step_basic(
+            step_actor_basic=actorBasic,
+            step_value=stepBasic,
+            id_usecase=usecase_target
+        )
+        newStepBasic.save()
+
     
     return redirect('usecase',id_project=id_url)
 
@@ -207,16 +220,78 @@ def delete_use_case(request,id_usecase):
     
     use_case = usecase.objects.filter(id_usecase=id_usecase).get()
     idProject = use_case.id_project.id_project
-    print('id = ',idProject)
     usecase_target = get_object_or_404(usecase, pk=id_usecase).delete()
 
     return redirect('usecase',id_project=idProject)
 
 
+'''
+----------  ACTIVITY DIAGRAM  ----------
+'''
+
+
+@login_required(login_url="/login/")
+def activity_diagram(request,id_usecase):
+
+    context = {}
+    context['segment'] = 'activity_diagram'
+
+    #get use case & project id & nama usecase
+    use_case = usecase.objects.filter(id_usecase=id_usecase).get()
+    projectID = use_case.id_project.id_project
+    useCaseID = use_case.id_usecase
+    namaUseCase = use_case.nama_usecase
+
+    #get step basic
+    target = step_basic.objects.filter(id_usecase=id_usecase)
+
+    #make the empty txt file
+    activity_text = open("activity_"+str(projectID)+"_"+str(useCaseID)+".txt","w+")
+    #activity_text.write("@startuml \n")
+    activity_text.write("title " +str(namaUseCase)+ "\n")
+    i = 1
+
+    for step in target.iterator() :
+        if i == 1 :
+            #get actor
+            actor = step.step_actor_basic
+            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+
+            activity_text.write("start \n")
+
+            #get step value
+            value_basic = step.step_value
+            activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+            i = i+1
+        else :
+            #get actor
+            actor = step.step_actor_basic
+            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+
+            #get step value
+            value_basic = step.step_value
+            activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+            i = i+1
+
+    activity_text.write("end")
+    #activity_text.write("@enduml \n")
+
+    activity_text = open("activity_"+str(projectID)+"_"+str(useCaseID)+".txt","r")
+
+    #generate activity diagram
+    server = PlantUML(url='http://www.plantuml.com/plantuml/img/',
+                        basic_auth={},
+                        form_auth={}, http_opts={}, request_opts={})
+
+    server.processes_file(abspath(f"activity_"+str(projectID)+"_"+str(useCaseID)+".txt"))
+        
+    return redirect('usecase',id_project=projectID)
+
 
 '''
 ----------  FLOW  ----------
 '''
+
 
 @login_required(login_url="/login/")
 def basic_info(request):
@@ -263,11 +338,3 @@ def global_flow(request):
     html_template = loader.get_template( 'page/global_flow.html' )
     return HttpResponse(html_template.render(context, request)) 
 
-@login_required(login_url="/login/")
-def activity_diagram(request):
-    
-    context = {}
-    context['segment'] = 'activity_diagram'
-
-    html_template = loader.get_template( 'page/activity_diagram.html' )
-    return HttpResponse(html_template.render(context, request)) 

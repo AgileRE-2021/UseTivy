@@ -69,7 +69,7 @@ urlpatterns = [
 
      #-------------ACTIVITY DIAGRAM------------
     # activity diagram page
-    path('activity_diagram', views.activity_diagram, name="activity_diagram"),
+    path('activity_diagram/<int:id_usecase>', views.activity_diagram, name="activity_diagram"),
 
 
     # Matches any html file

@@ -15,7 +15,7 @@
           <div class="col-md-12">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                    <a href="/use_case/{{ context.id_project }}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
+                    <a href="/use_case/{{ context.use_case.id_project.id_project }}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
                       <div>
                         <i class="ni ni-bold-left"></i>
                         <span> Back</span>
@@ -45,58 +45,51 @@
                                 <p>{{context.use_case.precondition}}</p>
                               </div>
                             </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                               <div class="form-group">
-                                <label class="form-control-label" for="input-first-name">Primary Actor</label>
-                                <p>{{context.use_case.primary_actor}}</p>
+                                <label class="form-control-label" for="input-city">Postcondition</label>
+                                <p>{{context.use_case.postcondition}}</p>
                               </div>
                             </div>
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-sec-actor">Secondary Actor</label>
-                                <p>{{context.use_case.secondary_actor}}</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-depedency">Depedency</label>
-                                <p>{{context.use_case.dependency}}</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-generalization">Generalization</label>
-                                <p>{{context.use_case.generalization}}</p>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                         <hr class="my-4" />
                         <!-- Basic FLow -->
                         <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
-                          <div class="row">                                                          
+                          <div class="row">                                     
                             <div class="col-md-8">
-                              <p>{{context.basic_flow.steps_basicflow}}</p>                            
+                              <div class='table-responsive'>
+                                <table class="table align-items-center table-flush">
+                                  <thead>
+                                    <tr>
+                                      <th>No</th>
+                                      <th>Steps</th>
+                                    </tr>
+                                  </thead>
+                                  {% for sb in context.step_basic %} 
+                                  <tbody>
+                                    <tr>
+                                      <td>{{ forloop.counter }}</td>
+                                      <td>
+                                        <div class="media align-items-center">
+                                          <p>
+                                            <b>{{ sb.step_actor_basic }}</b>
+                                            <b>{{ sb.step_value }}</b>
+                                          </p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    {% endfor %}
+                                  </tbody>                                    
+                                </table>
+                              </div>                            
                             </div>
-                          </div>                            
-                          <div class="row">
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                <p>Postcondition Basic Flow</p>
-                              </div>
-                            </div>                                            
                           </div>
                         </div>
                         <hr class="my-4" />
                         <!-- Specific FLow -->
-                        <h6 class="heading-small text-muted mb-4">Specific Flow</h6>
+                        <h6 class="heading-small text-muted mb-4">Alternative Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
                           <div class="row">                                                          
@@ -113,8 +106,7 @@
                             </div>                                            
                           </div>
                         </div>
-                        <hr class="my-4" />
-                        <!-- Bounded FLow -->
+                        <!--
                         <h6 class="heading-small text-muted mb-4">Bounded Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
@@ -133,7 +125,7 @@
                           </div>
                         </div>
                         <hr class="my-4" />
-                        <!-- Global FLow -->
+                        <!-- Global FLow 
                         <h6 class="heading-small text-muted mb-4">Global Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
@@ -151,9 +143,10 @@
                             </div>                                            
                           </div>
                         </div>
+                        -->
                         <hr class="my-4" />
                         <a href="/edit_use_case/{{ context.use_case.id_usecase }}" class="btn btn-primary">Edit Use Case</a>
-                        <a href="activity_diagram" class="btn btn-primary">Activity Diagram</a>
+                        <a href="/activity_diagram/{{ context.use_case.id_usecase }}" class="btn btn-primary">Activity Diagram</a>
                       </form>
                     </div>
                   </div>

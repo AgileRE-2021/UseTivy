@@ -218,7 +218,7 @@ def update_use_case(request):
 @login_required(login_url="/login/")
 def delete_step_basic(request,id_step_basic):
     
-    step_basic = step_basic.objects.filter(id_step_basic=id_step_basic).get()
+    step_basic = usecase.objects.filter(id_step_basic=id_step_basic).get()
     idUsecase = step_basic.id_usecase.id_usecase
     stepbasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
 

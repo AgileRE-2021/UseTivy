@@ -15,6 +15,12 @@
           <div class="col-md-12">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
+                    <a href="/usecase_view/{{ context.use_case.id_usecase}}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
+                      <div>
+                        <i class="ni ni-bold-left"></i>
+                        <span> Back</span>
+                      </div>
+                    </a>
                       <h1 class="card-title"></h1>Edit Use Case</h1>
                       <hr>
                       <!-- Basic Information -->                                                    
@@ -52,24 +58,7 @@
                               </div>
                             </div>
                           </div>
-                          <!--
-                          <div class="row">
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-depedency">Depedency</label>
-                                <input type="text" id="input-depedency" name="input-depedency" class="form-control form-control-alternative" 
-                                        placeholder="Depedency" value="{{ context.use_case.dependency }}">
-                              </div>
-                            </div>
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-generalization">Generalization</label>
-                                <input type="text" id="input-generalization" name="input-generalization"  class="form-control form-control-alternative" 
-                                        placeholder="Generalization" value="{{ context.use_case.generalization }}">
-                              </div>
-                            </div>
-                          </div>
-                          -->
+                       
                         </div>
                         <hr class="my-4" />
 
@@ -77,6 +66,7 @@
                         <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
                         <div class="pl-lg-4">
                           <div class='table-responsive'>
+                            <input type="hidden" class="form-control" name="id_step_basic" value="{{context.id_step_basic}}">
                             <table class="table align-items-center table-flush">
                               <thead>
                                 <tr>
@@ -91,13 +81,24 @@
                                   <td>{{ forloop.counter }}</td>
                                   <td>
                                     <div class="media align-items-center">
-                                      <p><b>{{ sb.step_actor_basic }} </b>
-                                        <b>{{ sb.step_value }} </b>
-                                      </p>
+                                      
+                                        <input type="text" id="actor_input" name="actor_input" class="form-control form-control-alternative" 
+                                        placeholder="Input actor" value=" {{ sb.step_actor_basic }} ">
+                      
+                                        <input type="text" id="step_input" name="step_input" class="form-control form-control-alternative" 
+                                        placeholder="Input step" value=" {{ sb.step_value }} ">  
+                                      
+                                      
                                     </div>
                                   </td>
                                   <td>
-
+                                    <div class="row"> 
+                                      <a href="/delete_step_basic/{{sb.id_step_basic}}" class="btn btn-sm btn-icon-only "  role="button"
+                                        style="background-color:#CB4335"
+                                        data-toggle="tooltip" title="Delete">
+                                        <i class="ni ni-basket" style="color:white"></i>
+                                      </a>
+                                    </div>
                                   </td>
                                 </tr>
                               {% endfor %}
@@ -126,16 +127,18 @@
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">                                                
-                                <input id="step_input" name="step_input" class="form-control form-control-alternative" placeholder="Step" type="text">                                               
-                              </div>                                              
+                                <input id="step_input" name="step_input" class="form-control form-control-alternative" placeholder="Step" type="text">      
+                                                            
+                              </div>  
                             </div>
-                            <div class="col-md-4">
-                              <a href="/edit_use_case/{{ context.use_case.id_usecase }}" class="btn btn-primary text-white" v-on:click="step_input" style="margin-bottom :10px">
-                                <div>
-                                  <i class="fa fa-plus pr-2"></i>
-                                </div>
-                              </a>
-                            </div>                                                            
+                            <div class="col-md-2"> 
+                              
+                                <a href="/add_step_basic/{{sb.id_step_basic}}" class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"  role="button"
+                                style="margin-bottom :10px" data-toggle="tooltip" title="Add Step Basic">
+                                  <i class="fa fa-plus pr-2" style="color:white"></i>
+                                </a>                                        
+                            </div>
+                                                                                    
                           </div>
                         </div>
                         

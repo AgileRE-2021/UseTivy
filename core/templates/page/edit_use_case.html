@@ -97,7 +97,23 @@
                                     </div>
                                   </td>
                                   <td>
-
+                                    <div class="row">
+                                      <a href="" class="btn btn-sm btn-icon-only"  role="button"  
+                                        style="background-color: #58D68D "
+                                        data-toggle="tooltip" title="Edit">
+                                        <i class="ni ni-bag-17" style="color:white;"></i>
+                                      </a>
+                                      <a href="/delete_step_basic/{{ sb.id_step_basic }}" class="btn btn-sm btn-icon-only "  role="button"  
+                                        style="background-color:#CB4335"
+                                        data-toggle="tooltip" title="Delete">
+                                        <i class="ni ni-basket" style="color:white"></i>
+                                      </a>
+                                      <a href="/alternative_step/{{ sb.id_step_basic }}" class="btn btn-sm btn-icon-only"  role="button"  
+                                        style="background-color:#5e72e4"
+                                        data-toggle="tooltip" title="Add Alternative">
+                                        <i class="fa fa-plus" style="color:white;"></i>
+                                      </a>
+                                    </div>
                                   </td>
                                 </tr>
                               {% endfor %}
@@ -138,9 +154,9 @@
                             </div>                                                            
                           </div>
                         </div>
-                        
+                        <!--
                         <hr class="my-4" />
-                        <!-- Specific FLow -->
+                         Specific FLow 
                         <h6 class="heading-small text-muted mb-4">Alternative Flow</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
@@ -164,6 +180,7 @@
                             </div>                                            
                           </div>
                         </div>
+                        -->
                         <!--
                         <h6 class="heading-small text-muted mb-4">Bounded Flow</h6>
                         <div class="pl-lg-4">

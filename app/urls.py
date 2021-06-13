@@ -50,7 +50,8 @@ urlpatterns = [
     #delete use case
     path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
 
-
+    #delete step basic
+    path('delete_step_basic/<int:id_step_basic>', views.delete_step_basic, name="delete_step_basic"),
 
      #------------- FLOW -------------
     #form basic flow
@@ -65,7 +66,8 @@ urlpatterns = [
     #form global flow
     path('global_flow', views.global_flow, name="global_flow"),
 
-
+    #form alternative step
+    path('alternative_step/<int:id_usecase>', views.alternative_step, name="alternative_step"),
 
      #-------------ACTIVITY DIAGRAM------------
     # activity diagram page

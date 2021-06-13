@@ -1,9 +1,11 @@
-title Menambah Data Murid
-|TATA USAHA|
+title 1
+|AKU|
 start 
-:memasuki laman pengelolaan data murid;
-|SISTEM|
-:akan menampilkan pilihan menu yang dapat dilakukan laman pengelolaan data murid;
-|TATA USAHA|
-:memilih pilihan tambah data murid pada laman pengelolaan data murid;
+:suka;
+|DIA|
+:gasuka;
+|AKU|
+:berusaha;
+|DIA|
+:gasuka aku;
 end

@@ -199,9 +199,9 @@ def update_use_case(request):
 
     try:
         stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
-        actorBasic = request.POST.get('actor_input')
-        stepBasic_target.step_actor_basic=actorBasic
-        stepBasic_target.save()
+        # actorBasic = request.POST.get('actor_input')
+        # stepBasic_target.step_actor_basic=actorBasic
+        # stepBasic_target.save()
     except:
         actorBasic = request.POST.get('actor_input')
         stepBasic = request.POST.get('step_input')
@@ -223,6 +223,15 @@ def delete_use_case(request,id_usecase):
     usecase_target = get_object_or_404(usecase, pk=id_usecase).delete()
 
     return redirect('usecase',id_project=idProject)
+
+@login_required(login_url="/login/")
+def delete_step_basic(request,id_step_basic):
+    
+    stepbasic = step_basic.objects.filter(id_step_basic=id_step_basic).get()
+    idStepbasic = stepbasic.id_step_basic.id_step_basic
+    stepBasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
+
+    return redirect('edit_use_case',id_step_basic=idStepbasic)
 
 
 '''
@@ -338,3 +347,11 @@ def global_flow(request):
     html_template = loader.get_template( 'page/global_flow.html' )
     return HttpResponse(html_template.render(context, request)) 
 
+@login_required(login_url="/login/")
+def alternative_step(request):
+    
+    context = {}
+    context['segment'] = 'alternative_step'
+
+    html_template = loader.get_template( 'page/alternative_step.html' )
+    return HttpResponse(html_template.render(context, request)) 

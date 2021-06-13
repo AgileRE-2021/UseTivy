@@ -91,13 +91,24 @@
                                   <td>{{ forloop.counter }}</td>
                                   <td>
                                     <div class="media align-items-center">
-                                      <p><b>{{ sb.step_actor_basic }} </b>
-                                        <b>{{ sb.step_value }} </b>
-                                      </p>
+                                      
+                                        <input type="text" id="actor_input" name="actor_input" class="form-control form-control-alternative" 
+                                        placeholder="Input actor" value=" {{ sb.step_actor_basic }} ">
+                      
+                                        <input type="text" id="step_input" name="step_input" class="form-control form-control-alternative" 
+                                        placeholder="Input step" value=" {{ sb.step_value }} ">  
+                                      
+                                      
                                     </div>
                                   </td>
                                   <td>
-
+                                    <div class="row"> 
+                                      <a href="" class="btn btn-sm btn-icon-only "  role="button"
+                                        style="background-color:#CB4335"
+                                        data-toggle="tooltip" title="Delete">
+                                        <i class="ni ni-basket" style="color:white"></i>
+                                      </a>
+                                    </div>
                                   </td>
                                 </tr>
                               {% endfor %}

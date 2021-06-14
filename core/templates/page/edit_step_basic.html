@@ -1,0 +1,75 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Edit Step Basic {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <h1 class="card-title"></h1>Edit Step Basic</h1>
+                            <hr>
+                            <form method=POST action='/edit_step_basic/update'>
+                                {% csrf_token %}
+                                <!-- <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
+                             -->
+                                <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic }}">
+                                <label class="form-control-label" for="input-address">Add Step</label>
+                                <div class="row">
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <input id="actor_input" name="actor_input" class="form-control form-control-alternative" 
+                                      placeholder="Actor" type="text" value="{{context.step_basic.step_actor_basic}}">                                             
+                                    </div>                                              
+                                  </div>
+                                  <div class="dropdown">
+                                    <div class="col-md-4">
+                                        <a class="btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom :10px">
+                                          Choose Rule 
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="#">Rule 1</a>
+                                            <a class="dropdown-item" href="#">Rule 2</a>
+                                            <a class="dropdown-item" href="#">Rule 3</a>
+                                        </div>                                        
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="form-group">                                                
+                                      <input id="step_input" name="step_input" class="form-control form-control-alternative" 
+                                      placeholder="Step" type="text"  value="{{context.step_basic.step_value}}">      
+                                                                  
+                                    </div>  
+                                  </div>
+                                  <div style="text-align: right; margin-right: 50px">
+                                    <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
+                                    <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
+                                </div>                                            
+                                </div>
+                              </div>
+                              
+                              <hr class="my-4" />
+                             
+                            </form>
+                            
+                            
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

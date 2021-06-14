@@ -83,17 +83,20 @@
                                   <td>
                                     <div class="media align-items-center">
                                       
-                                        <input type="text" id="actor_input" name="actor_input" class="form-control form-control-alternative" 
-                                        placeholder="Input actor" value=" {{ sb.step_actor_basic }} ">
-                      
-                                        <input type="text" id="step_input" name="step_input" class="form-control form-control-alternative" 
-                                        placeholder="Input step" value=" {{ sb.step_value }} ">  
+                                        <b> {{ sb.step_actor_basic }} </b>
+                                        &nbsp;
+                                         <b> {{ sb.step_value }} </b>
                                       
                                       
                                     </div>
                                   </td>
                                   <td>
                                     <div class="row"> 
+                                      <a href="/edit_step_basic/{{sb.id_step_basic}}" class="btn btn-sm btn-icon-only "  role="button"
+                                        style="background-color:#58D68D"
+                                        data-toggle="tooltip" title="Edit Step Basic">
+                                        <i class="ni ni-basket" style="color:white"></i>
+                                      </a>
                                       <a href="/delete_step_basic/{{sb.id_step_basic}}" class="btn btn-sm btn-icon-only "  role="button"
                                         style="background-color:#CB4335"
                                         data-toggle="tooltip" title="Delete">
@@ -109,9 +112,7 @@
                             </table>
                           </div>
                           </br>
-                          <div style="text-align: right; margin-right: 50px">
-                            <!-- <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>    -->
-                          </div>
+                          
                         </form>
 
                           <form method=POST action='/add_step_basic'>

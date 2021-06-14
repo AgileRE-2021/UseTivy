@@ -15,12 +15,6 @@
           <div class="col-md-12">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                    <a href="/usecase_view/{{ context.use_case.id_usecase}}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
-                      <div>
-                        <i class="ni ni-bold-left"></i>
-                        <span> Back</span>
-                      </div>
-                    </a>
                       <h1 class="card-title"></h1>Edit Use Case</h1>
                       <hr>
                       <!-- Basic Information -->                                                    
@@ -58,15 +52,22 @@
                               </div>
                             </div>
                           </div>
-                       
-                        </div>
-                        <hr class="my-4" />
-
+                          <div style="text-align: right; margin-right: 50px">
+                            <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
+                          </div>
+                      </div>  
+                      </form>
                       <!-- Basic FLow -->
+                      <hr class="my-4" />
+                      <form method=POST action='/update_step_basic/update'>
+                        {% csrf_token %}
+                        <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
+                        <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic}}">
+
                         <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
                         <div class="pl-lg-4">
                           <div class='table-responsive'>
-                            <input type="hidden" class="form-control" name="id_step_basic" value="{{context.id_step_basic}}">
+                          
                             <table class="table align-items-center table-flush">
                               <thead>
                                 <tr>
@@ -98,6 +99,8 @@
                                         data-toggle="tooltip" title="Delete">
                                         <i class="ni ni-basket" style="color:white"></i>
                                       </a>
+                                      <a href="" class="btn btn-sm btn-icon-only"  role="button" style="background-color:#5e72e4" data-toggle="tooltip" title="Add Alternative"> <i class="fa fa-plus" style="color:white;"></i>
+                                      </a>
                                     </div>
                                   </td>
                                 </tr>
@@ -106,6 +109,15 @@
                             </table>
                           </div>
                           </br>
+                          <div style="text-align: right; margin-right: 50px">
+                            <!-- <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>    -->
+                          </div>
+                        </form>
+
+                          <form method=POST action='/add_step_basic'>
+                          {% csrf_token %}
+                          <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
+
                           <label class="form-control-label" for="input-address">Add Step</label>
                           <div class="row">
                             <div class="col-md-2">
@@ -132,94 +144,22 @@
                               </div>  
                             </div>
                             <div class="col-md-2"> 
-                              
-                                <a href="" class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"  role="button"
-                                style="margin-bottom :10px" data-toggle="tooltip" title="Add Step Basic">
-                                  <i class="fa fa-plus pr-2" style="color:white"></i>
-                                </a>                                        
+                              <button type="submit" class="btn btn-primary"><i class="fa fa-plus pr-2" style="color:white" data-toggle="tooltip" title="Add Step Basic"></i></button>
+  
                             </div>
                                                                                     
                           </div>
                         </div>
                         
                         <hr class="my-4" />
-                        <!-- Specific FLow -->
-                        <h6 class="heading-small text-muted mb-4">Alternative Flow</h6>
-                        <div class="pl-lg-4">
-                          <label class="form-control-label" for="input-address">Step</label>
-                          <div class="row">
-                            <div class="col-md-4">
-                              <div class="form-group">                                                
-                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
-                              </div>                                              
-                            </div>
-                            <div class="col-md-4">
-                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
-                                  class="fa fa-plus pr-2"></i></button>
-                          </div>                                                            
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                              </div>
-                            </div>                                            
-                          </div>
-                        </div>
-                        <!--
-                        <h6 class="heading-small text-muted mb-4">Bounded Flow</h6>
-                        <div class="pl-lg-4">
-                          <label class="form-control-label" for="input-address">Step</label>
-                          <div class="row">
-                            <div class="col-md-4">
-                              <div class="form-group">                                                
-                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
-                              </div>                                              
-                            </div>
-                            <div class="col-md-4">
-                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
-                                  class="fa fa-plus pr-2"></i></button>
-                          </div>                                                            
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                              </div>
-                            </div>                                            
-                          </div>
-                        </div>
-                        <hr class="my-4" />
-
-                        <h6 class="heading-small text-muted mb-4">Global Flow</h6>
-                        <div class="pl-lg-4">
-                          <label class="form-control-label" for="input-address">Step</label>
-                          <div class="row">
-                            <div class="col-md-4">
-                              <div class="form-group">                                                
-                                <input id="input-address" class="form-control form-control-alternative" placeholder="Step 1" type="text">                                                
-                              </div>                                              
-                            </div>
-                            <div class="col-md-4">
-                              <button class="btn btn-primary text-white" v-on:click="addStep" style="margin-bottom :10px"> <i
-                                  class="fa fa-plus pr-2"></i></button>
-                          </div>                                                            
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Postcondition">
-                              </div>
-                            </div>                                            
-                          </div>
-                        </div>  
-                          -->
-                        <hr class="my-4" />
-                        <button type="submit" class="btn btn-primary">Save Use Case</button>
+                         
                       </form>
+                      <a href="/usecase_view/{{ context.use_case.id_usecase}}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
+                        <div>
+                          <i class="ni ni-bold-left"></i>
+                          <span> Back</span>
+                        </div>
+                      </a>
                    </div>
                 </div>
             </div>

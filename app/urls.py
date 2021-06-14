@@ -48,14 +48,18 @@ urlpatterns = [
     path('edit_use_case/update', views.update_use_case, name="update_use_case"),
     
     #add step basic
-    path('add_step_basic/<int:id_step_basic>', views.add_step_basic, name="add_step_basic"),
-    
-    #delete use case
-    path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
+    path('add_step_basic', views.add_step_basic, name="add_step_basic"),
+
+    #update step basic
+    path('edit_step_basic/update', views.update_step_basic, name="update_step_basic"),
 
     #delete step basic
     path('delete_step_basic/<int:id_step_basic>', views.delete_step_basic, name="delete_step_basic"),
 
+    #delete use case
+    path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
+
+   
 
 
 

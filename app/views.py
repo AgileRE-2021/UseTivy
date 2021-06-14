@@ -197,20 +197,20 @@ def update_use_case(request):
 
     usecase_target.save()
 
-    # try:
-    #     stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
-    #     actorBasic = request.POST.get('actor_input')
-    #     stepBasic_target.step_actor_basic=actorBasic
-    #     stepBasic_target.save()
-    # except:
-    #     actorBasic = request.POST.get('actor_input')
-    #     stepBasic = request.POST.get('step_input')
-    #     newStepBasic = step_basic(
-    #         step_actor_basic=actorBasic,
-    #         step_value=stepBasic,
-    #         id_usecase=usecase_target
-    #     )
-    #     newStepBasic.save()
+    try:
+        stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
+        actorBasic = request.POST.get('actor_input')
+        stepBasic_target.step_actor_basic=actorBasic
+        stepBasic_target.save()
+    except:
+        actorBasic = request.POST.get('actor_input')
+        stepBasic = request.POST.get('step_input')
+        newStepBasic = step_basic(
+            step_actor_basic=actorBasic,
+            step_value=stepBasic,
+            id_usecase=usecase_target
+        )
+        newStepBasic.save()
 
     
     return redirect('usecase_view',id_usecase=id_url)

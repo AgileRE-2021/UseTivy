@@ -24,7 +24,7 @@
                             <h1 class="card-title"></h1>Alternative Step</h1>
                             <hr>
                             <!-- Alternative Step -->
-                            <form method="POST" action="/alternative_step_create">
+                            <form method="POST" action="">
                                 {% csrf_token %}
                                 <input type="" class="form-control" name="step_basic" value="{{ context.usecase.id_usecase }}">
                                 <h6 class="heading-small text-muted mb-4">Alternative Step</h6>
@@ -73,7 +73,9 @@
                                         </tbody>
                                         </table>
                                     </div>
+                            </form>
                                     </br>
+                            <form method="POST" action="/alternative_step_create"></form>
                                     <label class="form-control-label" for="input-address">Add Step</label>
                                     <div class="row">
                                         <div class="col-md-2">

@@ -228,10 +228,10 @@ def delete_use_case(request,id_usecase):
 def delete_step_basic(request,id_step_basic):
     
     stepbasic = step_basic.objects.filter(id_step_basic=id_step_basic).get()
-    idStepbasic = stepbasic.id_step_basic.id_step_basic
-    stepBasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
+    idUsecase = stepbasic.id_usecase.id_usecase
+    stepbasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
 
-    return redirect('edit_use_case',id_step_basic=idStepbasic)
+    return redirect('edit_use_case',id_usecase=idUsecase)
 
 
 '''

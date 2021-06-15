@@ -36,14 +36,12 @@ class step_basic(models.Model):
 
 class alternative_flow(models.Model):
     id_alternativeflow=models.AutoField(primary_key=True)
-    id_usecase=models.ForeignKey(usecase, on_delete=models.CASCADE)
     id_step_basic=models.ForeignKey(step_basic,on_delete=models.CASCADE)
     nama_alternative=models.CharField(max_length=200)
     postcondition_alternative=models.CharField(max_length=100)
 
 class step_alternative_flow(models.Model):
     id_step_alternative=models.AutoField(primary_key=True)
-    id_alternativeflow=models.ForeignKey(alternative_flow,on_delete=models.CASCADE)
     id_step_basic=models.ForeignKey(step_basic,on_delete=models.CASCADE)
     id_usecase=models.ForeignKey(usecase, on_delete=models.CASCADE)
     step_alternavie=models.CharField(max_length=1000)

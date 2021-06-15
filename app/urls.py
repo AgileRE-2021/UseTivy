@@ -66,8 +66,9 @@ urlpatterns = [
     #form global flow
     path('global_flow', views.global_flow, name="global_flow"),
 
-    #form alternative step
-    path('alternative_step/<int:id_usecase>', views.alternative_step, name="alternative_step"),
+    #create alternative step
+    path('alternative_step/<int:id_step_basic>', views.alternative_step, name="alternative_step"),
+    path('alternative_step_create',views.alternative_step_create, name="alternative_step_create"),
 
      #-------------ACTIVITY DIAGRAM------------
     # activity diagram page

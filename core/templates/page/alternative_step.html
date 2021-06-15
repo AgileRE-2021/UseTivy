@@ -24,8 +24,9 @@
                             <h1 class="card-title"></h1>Alternative Step</h1>
                             <hr>
                             <!-- Alternative Step -->
-                            <form action="">
+                            <form method="POST" action="/alternative_step_create">
                                 {% csrf_token %}
+                                <input type="" class="form-control" name="step_basic" value="{{ context.usecase.id_usecase }}">
                                 <h6 class="heading-small text-muted mb-4">Alternative Step</h6>
                                 <div class="pl-lg-4">
                                     <div class='table-responsive'>
@@ -38,13 +39,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for sb in context.step_basic %} 
+                                            {% for sa in context.step_alternative %} 
                                             <tr>
                                             <td>{{ forloop.counter }}</td>
                                             <td>
                                                 <div class="media align-items-center">
-                                                <p><b>{{ sb.step_actor_basic }} </b>
-                                                    <b>{{ sb.step_value }} </b>
+                                                <p><b>{{ sa.step_actor_alternative }} </b>
+                                                    <b>{{ sa.step_alternative }} </b>
                                                 </p>
                                                 </div>
                                             </td>
@@ -77,7 +78,8 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                         <div class="form-group">
-                                            <input id="actor_input" name="actor_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                                            <input id="actor_input" name="actor_input" class="form-control form-control-alternative" 
+                                                placeholder="actor" value="{{ context.step_basic.step_actor_basic }}" type="text">                                                
                                         </div>                                              
                                         </div>
                                         <div class="dropdown">
@@ -98,11 +100,10 @@
                                         </div>                                              
                                         </div>
                                         <div class="col-md-4">
-                                        <a href="/edit_use_case/{{ context.use_case.id_usecase }}" class="btn btn-primary text-white" v-on:click="step_input" style="margin-bottom :10px">
-                                            <div>
-                                            <i class="fa fa-plus pr-2"></i>
-                                            </div>
-                                        </a>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-plus pr-2" style="color:white" data-toggle="tooltip" title="Add Step Basic"></i>
+                                                <span>Add</span>
+                                            </button>
                                         </div>                                                            
                                     </div>
                                 </div> 

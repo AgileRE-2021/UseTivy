@@ -70,6 +70,9 @@ urlpatterns = [
     path('alternative_step/<int:id_step_basic>', views.alternative_step, name="alternative_step"),
     path('alternative_step_create',views.alternative_step_create, name="alternative_step_create"),
 
+    #delete step basic
+    path('delete_alternative_step/<int:id_step_basic>', views.delete_alternative_step, name="delete_step_basic"),
+
      #-------------ACTIVITY DIAGRAM------------
     # activity diagram page
     path('activity_diagram/<int:id_usecase>', views.activity_diagram, name="activity_diagram"),

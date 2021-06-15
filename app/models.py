@@ -44,7 +44,7 @@ class step_alternative_flow(models.Model):
     id_step_alternative=models.AutoField(primary_key=True)
     id_step_basic=models.ForeignKey(step_basic,on_delete=models.CASCADE)
     id_usecase=models.ForeignKey(usecase, on_delete=models.CASCADE)
-    step_alternavie=models.CharField(max_length=1000)
+    step_alternative=models.CharField(max_length=1000)
     step_actor_alternative=models.CharField(max_length=20)
 
 class activity_diagram(models.Model):

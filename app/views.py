@@ -352,8 +352,6 @@ def alternative_step(request,id_step_basic):
     
     context = {}
     context['segment'] = 'alternative_step'
-    # context['use_case'] = id_usecase
-    # context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
     context['step_basic'] = step_basic.objects.filter(id_step_basic=id_step_basic).get()
     context['step_alternative'] = step_alternative_flow.objects.filter(id_step_basic=id_step_basic)
 
@@ -362,18 +360,27 @@ def alternative_step(request,id_step_basic):
 @login_required(login_url="/login/")
 def alternative_step_create(request):
     
+    context = {}
     actorAlternative = request.POST.get("actor_alternative_input")
-    stepAlternative = request.POST.get("step_alternative_input")
-    # usecase_target = get_object_or_404(usecase, pk=request.POST.get("id_usecase"))
-    stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
-    id_url = stepBasic_target.id_step_basic
+    id_stepbasic = request.POST.get("id_step_basic")
+    id_usecase = request.POST.get("id_usecase")
+    stepAlternative = request.POST.get("step_alternative_input")  
     
     newStepAlternative = step_alternative_flow(
             step_actor_alternative=actorAlternative,
             step_alternative=stepAlternative,
-            # id_usecase=usecase_target,
-            id_step_basic=stepBasic_target
+            id_step_basic_id=id_stepbasic,
+            id_usecase_id=id_usecase
         )
     newStepAlternative.save()
 
-    return redirect('alternative_step',id_step_basic=id_url)
+    return redirect('alternative_step',id_stepbasic)
+
+@login_required(login_url="/login/")
+def delete_alternative_step(request,id_step_basic):
+    
+    stepbasic = step_basic.objects.filter(id_step_basic=id_step_basic).get()
+    idUsecase = stepbasic.id_usecase.id_usecase
+    stepbasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
+
+    return redirect('edit_use_case',id_usecase=idUsecase)

@@ -172,7 +172,7 @@ def usecase_create(request):
 def edit_use_case(request,id_usecase):
     
     context = {}
-    context['segment'] = 'edit_project'
+    context['segment'] = 'edit_usecase'
     context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
     context['step_basic'] = step_basic.objects.filter(id_usecase=id_usecase)
 
@@ -220,10 +220,12 @@ def add_step_basic(request):
         )
         newStepBasic.save()
 
+
     return redirect('edit_use_case',id_usecase=id_url)
 
 @login_required(login_url="/login/")
 def edit_step_basic(request, id_step_basic):
+
     
     context = {}
     context['segment'] = 'edit_step_basic'
@@ -243,13 +245,14 @@ def update_step_basic(request):
     stepActor = request.POST.get("actor_input")
     stepValue = request.POST.get("step_input")
 
+
     #update value
     stepbasic_target.step_value = stepValue
     stepbasic_target.step_actor_basic = stepActor
     stepbasic_target.save()
 
+
     return redirect('edit_use_case',id_url) 
-    # return redirect('dashboard')
 
 @login_required(login_url="/login/")
 def delete_step_basic(request,id_step_basic):

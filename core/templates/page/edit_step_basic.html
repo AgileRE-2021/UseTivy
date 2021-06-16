@@ -19,6 +19,7 @@
                             <hr>
                             <form method=POST action='/edit_step_basic/update'>
                                 {% csrf_token %}
+
                                 <input type="" class="form-control" name="id_usecase" value="{{ context.step_basic.id_usecase_id }}">                           
                                 <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic }}">
                                 <label class="form-control-label" for="input-address">Add Step</label>
@@ -50,7 +51,9 @@
                                   </div>
                                   <div style="text-align: right; margin-right: 50px">
                                     <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
+
                                     <a href="/edit_use_case/{{ context.step_basic.id_usecase_id }}" class="btn btn-danger">Cancel</a>
+
                                 </div>                                            
                                 </div>
                               </div>

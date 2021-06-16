@@ -8,4 +8,5 @@ start
 :berusaha;
 |DIA|
 :gasuka aku;
+
 end

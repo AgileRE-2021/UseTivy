@@ -73,6 +73,7 @@
                                 <tr>
                                   <th>No</th>
                                   <th>Steps</th>
+                                  <th>Alternative Step</th>
                                   <th>Action</th>
                                 </tr>
                               </thead>
@@ -85,9 +86,12 @@
                                       
                                         <b> {{ sb.step_actor_basic }} </b>
                                         &nbsp;
-                                         <b> {{ sb.step_value }} </b>
-                                      
-                                      
+                                         <b> {{ sb.step_value }} </b> 
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="row">
+                                      <a href="/alternative_step/{{ sb.id_step_basic }}" class="btn btn-sm btn-primary">Alternative Step</a>
                                     </div>
                                   </td>
                                   <td>
@@ -101,8 +105,6 @@
                                         style="background-color:#CB4335"
                                         data-toggle="tooltip" title="Delete">
                                         <i class="ni ni-basket" style="color:white"></i>
-                                      </a>
-                                      <a href="/alternative_step/{{ sb.id_step_basic }}" class="btn btn-sm btn-icon-only"  role="button" style="background-color:#5e72e4" data-toggle="tooltip" title="Add Alternative"> <i class="fa fa-plus" style="color:white;"></i>
                                       </a>
                                     </div>
                                   </td>

@@ -19,7 +19,7 @@
                         <hr>
                         <form method=POST action='/usecase_create'>
                           {% csrf_token %}
-                          <input type="" name=id_project value={{context.project.id_project}}>
+                          <input type="hidden" name=id_project value={{context.project.id_project}}>
                           <div class="form-group">                                          
                               <label for="exampleInputEmail1">Use Case Name</label>
                               <div class="row">

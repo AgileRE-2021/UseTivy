@@ -139,6 +139,8 @@ def usecase_view(request,id_usecase):
     context['segment'] = 'usecase_view'
     context['use_case'] = usecase.objects.filter(id_usecase=id_usecase).get()
     context['step_basic'] = step_basic.objects.filter(id_usecase=id_usecase)
+    context['step_alternative'] = step_alternative_flow.objects.filter(id_usecase=id_usecase)
+
 
     return render(request, 'page/usecase_view.html', {'context': context})
 

@@ -88,20 +88,36 @@
                           </div>
                         </div>
                         <hr class="my-4" />
-                        <!-- Specific FLow -->
-                        <h6 class="heading-small text-muted mb-4">Alternative Flow</h6>
+                        <!-- Alternative Step -->
+                        <h6 class="heading-small text-muted mb-4">Alternative Step</h6>
                         <div class="pl-lg-4">
                           <label class="form-control-label" for="input-address">Step</label>
                           <div class="row">                                                          
                             <div class="col-md-8">
-                              <p>Rule + Step Specific Flow</p>                            
-                            </div>
-                          </div>                            
-                          <div class="row">
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label class="form-control-label" for="input-city">Postcondition</label>
-                                <p>Postcondition Specific Flow</p>
+                              <div class='table-responsive'>
+                                <table class="table align-items-center table-flush">
+                                  <thead>
+                                    <tr>
+                                      <th>No</th>
+                                      <th>Steps</th>
+                                    </tr>
+                                  </thead>
+                                  {% for sa in context.step_alternative %} 
+                                  <tbody>
+                                    <tr>
+                                      <td>{{ forloop.counter }}</td>
+                                      <td>
+                                        <div class="media align-items-center">
+                                          <p>
+                                            <b>{{ sa.step_actor_alternative }}</b>
+                                            <b>{{ sa.step_alternative }}</b>
+                                          </p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    {% endfor %}
+                                  </tbody>                                    
+                                </table>
                               </div>
                             </div>                                            
                           </div>

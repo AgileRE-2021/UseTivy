@@ -377,10 +377,10 @@ def alternative_step_create(request):
     return redirect('alternative_step',id_stepbasic)
 
 @login_required(login_url="/login/")
-def delete_alternative_step(request,id_step_basic):
+def delete_alternative_step(request,id_step_alternative):
     
-    stepbasic = step_basic.objects.filter(id_step_basic=id_step_basic).get()
-    idUsecase = stepbasic.id_usecase.id_usecase
-    stepbasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
+    stepalternative = step_alternative_flow.objects.filter(id_step_alternative=id_step_alternative).get()
+    idStepbasic = stepalternative.id_step_basic.id_step_basic
+    stepalternative_target = get_object_or_404(step_alternative_flow, pk=id_step_alternative).delete()
 
-    return redirect('edit_use_case',id_usecase=idUsecase)
+    return redirect('alternative_step',id_step_basic=idStepbasic)

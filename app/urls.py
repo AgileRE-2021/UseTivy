@@ -71,7 +71,7 @@ urlpatterns = [
     path('alternative_step_create',views.alternative_step_create, name="alternative_step_create"),
 
     #delete step basic
-    path('delete_alternative_step/<int:id_step_basic>', views.delete_alternative_step, name="delete_step_basic"),
+    path('delete_alternative_step/<int:id_step_alternative>', views.delete_alternative_step, name="delete_alternative_step"),
 
      #-------------ACTIVITY DIAGRAM------------
     # activity diagram page

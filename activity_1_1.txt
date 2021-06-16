@@ -1,15 +1,12 @@
-title panpaanzzz
-|FIRDA|
+title 1
+|AKU|
 start 
-:makan permen;
-|FIRDA|
-:beli kue;
-||
-:;
-||
-:;
-||
-:;
-||
-:;
+:suka;
+|DIA|
+:gasuka;
+|AKU|
+:berusaha;
+|DIA|
+:gasuka aku;
+
 end

@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %} Edit Step Basic {% endblock title %}
+{% block title %} Edit Step Alternative {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -15,19 +15,18 @@
                 <div class="col-md-12">
                     <div class="card" style="width: 100%;">
                         <div class="card-body">
-                            <h1 class="card-title"></h1>Edit Step Basic</h1>
+                            <h1 class="card-title"></h1>Edit Step Alternative</h1>
                             <hr>
-                            <form method=POST action='/edit_step_basic/update'>
+                            <form method=POST action='/edit_alternative_step/update'>
                                 {% csrf_token %}
-
-                                <input type="" class="form-control" name="id_usecase" value="{{ context.step_basic.id_usecase_id }}">                           
-                                <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic }}">
+                                <input type="" class="form-control" name="id_step_basic" value="{{ context.step_alternative.id_step_basic_id }}">
+                                <input type="" class="form-control" name="id_step_alternative" value="{{ context.step_alternative.id_step_alternative }}">
                                 <label class="form-control-label" for="input-address">Add Step</label>
                                 <div class="row">
                                   <div class="col-md-2">
                                     <div class="form-group">
                                       <input id="actor_input" name="actor_input" class="form-control form-control-alternative" 
-                                      placeholder="Actor" type="text" value="{{context.step_basic.step_actor_basic}}">                                             
+                                      placeholder="Actor" type="text" value="{{context.step_alternative.step_actor_alternative}}">                                             
                                     </div>                                              
                                   </div>
                                   <div class="dropdown">
@@ -45,15 +44,13 @@
                                   <div class="col-md-4">
                                     <div class="form-group">                                                
                                       <input id="step_input" name="step_input" class="form-control form-control-alternative" 
-                                      placeholder="Step" type="text"  value="{{context.step_basic.step_value}}">      
+                                      placeholder="Step" type="text"  value="{{context.step_alternative.step_alternative}}">      
                                                                   
                                     </div>  
                                   </div>
                                   <div style="text-align: right; margin-right: 50px">
                                     <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
-
-                                    <a href="/edit_use_case/{{ context.step_basic.id_usecase_id }}" class="btn btn-danger">Cancel</a>
-
+                                    <a href="/alternative_step/{{context.step_alternative.id_step_basic_id}}" class="btn btn-danger">Cancel</a>
                                 </div>                                            
                                 </div>
                               </div>

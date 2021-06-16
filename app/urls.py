@@ -57,11 +57,20 @@ urlpatterns = [
     #delete step basic
     path('delete_step_basic/<int:id_step_basic>', views.delete_step_basic, name="delete_step_basic"),
 
+    #add step basic
+    path('add_step_basic', views.add_step_basic, name="add_step_basic"),
+
+    #edit step 
+    path('edit_step_basic/<int:id_step_basic>', views.edit_step_basic, name="edit_step_basic"),
+    path('edit_step_basic/update', views.update_step_basic, name="update_step_basic"),
+
+    #delete step basic
+    path('delete_step_basic/<int:id_step_basic>', views.delete_step_basic, name="delete_step_basic"),
+
     #delete use case
     path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
 
    
-
 
 
      #------------- FLOW -------------
@@ -77,7 +86,16 @@ urlpatterns = [
     #form global flow
     path('global_flow', views.global_flow, name="global_flow"),
 
+    #create alternative step
+    path('alternative_step/<int:id_step_basic>', views.alternative_step, name="alternative_step"),
+    path('alternative_step_create',views.alternative_step_create, name="alternative_step_create"),
 
+    #delete alternative step
+    path('delete_alternative_step/<int:id_step_alternative>', views.delete_alternative_step, name="delete_alternative_step"),
+
+    #edit alternative step
+    path('edit_alternative_step/<int:id_step_alternative>', views.edit_alternative_step, name="edit_alternative_step"),
+    path('edit_alternative_step/update', views.update_alternative_step, name="update_alternative_step"),
 
      #-------------ACTIVITY DIAGRAM------------
     # activity diagram page

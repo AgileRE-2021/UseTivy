@@ -225,6 +225,7 @@ def add_step_basic(request):
 
 @login_required(login_url="/login/")
 def edit_step_basic(request, id_step_basic):
+
     
     context = {}
     context['segment'] = 'edit_step_basic'
@@ -240,19 +241,18 @@ def update_step_basic(request):
 
     #get from request
     stepbasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
+    id_url=request.POST.get("id_usecase")
     stepActor = request.POST.get("actor_input")
     stepValue = request.POST.get("step_input")
 
-    # stepbasic = step_basic.objects.filter(id_step_basic=stepbasic_target).get()
-    # idUsecase = stepbasic.id_usecase.id_usecase
 
     #update value
     stepbasic_target.step_value = stepValue
     stepbasic_target.step_actor_basic = stepActor
     stepbasic_target.save()
 
-    # return redirect('edit_use_case',id_usecase=idUsecase) 
-    return redirect('dashboard') 
+
+    return redirect('edit_use_case',id_url) 
 
 @login_required(login_url="/login/")
 def delete_step_basic(request,id_step_basic):
@@ -384,6 +384,72 @@ def global_flow(request):
     context = {}
     context['segment'] = 'global_flow'
 
-    html_template = loader.get_template( 'page/global_flow.html' )
-    return HttpResponse(html_template.render(context, request)) 
+    
+    return render(request, 'page/global_flow.html', {'context' : context})
 
+@login_required(login_url="/login/")
+def alternative_step(request,id_step_basic):
+    
+    context = {}
+    context['segment'] = 'alternative_step'
+    context['step_basic'] = step_basic.objects.filter(id_step_basic=id_step_basic).get()
+    context['step_alternative'] = step_alternative_flow.objects.filter(id_step_basic=id_step_basic)
+
+    return render(request, 'page/alternative_step.html', {'context' : context})
+
+@login_required(login_url="/login/")
+def alternative_step_create(request):
+    
+    context = {}
+    actorAlternative = request.POST.get("actor_alternative_input")
+    id_stepbasic = request.POST.get("id_step_basic")
+    id_usecase = request.POST.get("id_usecase")
+    stepAlternative = request.POST.get("step_alternative_input")  
+    
+    newStepAlternative = step_alternative_flow(
+            step_actor_alternative=actorAlternative,
+            step_alternative=stepAlternative,
+            id_step_basic_id=id_stepbasic,
+            id_usecase_id=id_usecase
+        )
+    newStepAlternative.save()
+
+    return redirect('alternative_step',id_stepbasic)
+
+@login_required(login_url="/login/")
+def delete_alternative_step(request,id_step_alternative):
+    
+    stepalternative = step_alternative_flow.objects.filter(id_step_alternative=id_step_alternative).get()
+    idStepbasic = stepalternative.id_step_basic.id_step_basic
+    stepalternative_target = get_object_or_404(step_alternative_flow, pk=id_step_alternative).delete()
+
+    return redirect('alternative_step',id_step_basic=idStepbasic)
+
+@login_required(login_url="/login/")
+def edit_alternative_step(request, id_step_alternative):
+    
+    context = {}
+    context['segment'] = 'edit_alternative_step'
+    context['id_step_alternative'] = id_step_alternative
+    context['step_alternative'] = step_alternative_flow.objects.filter(pk=id_step_alternative).get()
+
+    return render(request, 'page/edit_alternative_step.html', {'context': context}) 
+
+@login_required(login_url="/login/")
+def update_alternative_step(request):
+    
+    context = {}
+
+    #get from request
+    stepalternative_target = get_object_or_404(step_alternative_flow, pk=request.POST.get("id_step_alternative"))
+    id_url=request.POST.get("id_step_basic")
+    actorAlternative = request.POST.get("actor_input")
+    stepAlternative = request.POST.get("step_input")
+
+    #update value
+    stepalternative_target.step_alternative = stepAlternative
+    stepalternative_target.step_actor_alternative = actorAlternative
+    stepalternative_target.save()
+
+    return redirect('alternative_step',id_url) 
+    # return redirect('dashboard') 

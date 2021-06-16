@@ -1,0 +1,125 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Alternative Step {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <a href="/edit_use_case/{{ context.step_basic.id_usecase_id }}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
+                                <div>
+                                  <i class="ni ni-bold-left"></i>
+                                  <span> Back</span>
+                                </div>
+                            </a>
+                            <h1 class="card-title"></h1>Alternative Step</h1>
+                            <hr>
+                            <!-- Alternative Step -->
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                
+                                <h6 class="heading-small text-muted mb-4">Alternative Step</h6>
+                                <div class="pl-lg-4">
+                                    <div class='table-responsive'>
+                                        <table class="table align-items-center table-flush">
+                                        <thead>
+                                            <tr>
+                                            <th>No</th>
+                                            <th>Steps</th>
+                                            <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for sa in context.step_alternative %} 
+                                            <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <p>
+                                                        <b>{{ sa.step_actor_alternative }} </b>
+                                                        <b>{{ sa.step_alternative }} </b>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <a href="/edit_alternative_step/{{sa.id_step_alternative}}" class="btn btn-sm btn-icon-only"  role="button"  
+                                                        style="background-color: #58D68D "
+                                                        data-toggle="tooltip" title="Edit">
+                                                        <i class="ni ni-bag-17" style="color:white;"></i>
+                                                    </a>
+                                                    <a href="/delete_alternative_step/{{sa.id_step_alternative}}" class="btn btn-sm btn-icon-only "  role="button"  
+                                                        style="background-color:#CB4335"
+                                                        data-toggle="tooltip" title="Delete">
+                                                        <i class="ni ni-basket" style="color:white"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        </table>
+                                    </div>
+                            </form>
+                                    </br>
+                            <form method="POST" action="/alternative_step_create">
+                                {% csrf_token %}
+                                <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic }}">
+                                <input type="hidden" class="form-control" name="id_usecase" value="{{ context.step_basic.id_usecase_id }}">
+                                    <label class="form-control-label" for="input-address">Add Step</label>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input id="actor_input" name="actor_alternative_input" class="form-control form-control-alternative" 
+                                                placeholder="actor" value="{{ context.step_basic.step_actor_basic }}" type="text">                                                
+                                        </div>                                              
+                                        </div>
+                                        <div class="dropdown">
+                                        <div class="col-md-4">
+                                            <a class="btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom :10px">
+                                                Choose Rule 
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="#">Rule 1</a>
+                                                <a class="dropdown-item" href="#">Rule 2</a>
+                                                <a class="dropdown-item" href="#">Rule 3</a>
+                                            </div>                                        
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">                                                
+                                            <input id="step_input" name="step_alternative_input" class="form-control form-control-alternative" placeholder="Step" type="text">                                               
+                                        </div>                                              
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-plus pr-2" style="color:white" data-toggle="tooltip" title="Add Step Basic"></i>
+                                                <span>Add</span>
+                                            </button>
+                                        </div>                                                            
+                                    </div>
+                                </div> 
+                                <hr class="my-4" />
+                                <!-- <button type="submit" class="btn btn-primary">Save Use Case</button> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

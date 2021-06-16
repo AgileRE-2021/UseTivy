@@ -384,3 +384,34 @@ def delete_alternative_step(request,id_step_alternative):
     stepalternative_target = get_object_or_404(step_alternative_flow, pk=id_step_alternative).delete()
 
     return redirect('alternative_step',id_step_basic=idStepbasic)
+
+@login_required(login_url="/login/")
+def edit_alternative_step(request, id_step_alternative):
+    
+    context = {}
+    context['segment'] = 'edit_alternative_step'
+    context['id_step_alternative'] = id_step_alternative
+    context['step_alternative'] = step_alternative_flow.objects.filter(pk=id_step_alternative).get()
+
+    return render(request, 'page/edit_alternative_step.html', {'context': context}) 
+
+@login_required(login_url="/login/")
+def update_alternative_step(request):
+    
+    context = {}
+
+    #get from request
+    stepalternative_target = get_object_or_404(step_alternative_flow, pk=request.POST.get("id_step_alternative"))
+    actorAlternative = request.POST.get("actor_input")
+    stepAlternative = request.POST.get("step_input")
+
+    # stepbasic = step_basic.objects.filter(id_step_basic=stepbasic_target).get()
+    # idUsecase = stepbasic.id_usecase.id_usecase
+
+    #update value
+    stepalternative_target.step_alternative = stepAlternative
+    stepalternative_target.step_actor_alternative = actorAlternative
+    stepalternative_target.save()
+
+    # return redirect('edit_use_case',id_usecase=idUsecase) 
+    return redirect('dashboard') 

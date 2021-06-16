@@ -20,7 +20,7 @@
                             <form method=POST action='/edit_step_basic/update'>
                                 {% csrf_token %}
 
-                                <input type="" class="form-control" name="id_usecase" value="{{ context.step_basic.id_usecase_id }}">                           
+                                <input type="hidden" class="form-control" name="id_usecase" value="{{ context.step_basic.id_usecase_id }}">                           
                                 <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic }}">
                                 <label class="form-control-label" for="input-address">Add Step</label>
                                 <div class="row">

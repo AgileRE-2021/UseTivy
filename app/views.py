@@ -183,7 +183,7 @@ def update_use_case(request):
 
     context = {}
     usecase_target = get_object_or_404(usecase, pk=request.POST.get("id_usecase"))
-    id_url = usecase_target.id_project.id_project
+    id_url = usecase_target.id_usecase
     #get from request
     namaUseCase = request.POST.get('input-usecase-name')
     briefDes = request.POST.get('input-brief-desc')
@@ -196,12 +196,20 @@ def update_use_case(request):
     usecase_target.postcondition =postCondition
 
     usecase_target.save()
+    
+    return redirect('usecase_view',id_usecase=id_url)
+
+@login_required(login_url="/login/")
+def add_step_basic(request):
+    context = {}
+    usecase_target = get_object_or_404(usecase, pk=request.POST.get("id_usecase"))
+    id_url = usecase_target.id_usecase
 
     try:
         stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
-        # actorBasic = request.POST.get('actor_input')
-        # stepBasic_target.step_actor_basic=actorBasic
-        # stepBasic_target.save()
+        actorBasic = request.POST.get('actor_input')
+        stepBasic_target.step_actor_basic=actorBasic
+        stepBasic_target.save()
     except:
         actorBasic = request.POST.get('actor_input')
         stepBasic = request.POST.get('step_input')
@@ -212,17 +220,36 @@ def update_use_case(request):
         )
         newStepBasic.save()
 
-    
-    return redirect('usecase',id_project=id_url)
+    return redirect('edit_use_case',id_usecase=id_url)
 
 @login_required(login_url="/login/")
-def delete_use_case(request,id_usecase):
+def edit_step_basic(request, id_step_basic):
     
-    use_case = usecase.objects.filter(id_usecase=id_usecase).get()
-    idProject = use_case.id_project.id_project
-    usecase_target = get_object_or_404(usecase, pk=id_usecase).delete()
+    context = {}
+    context['segment'] = 'edit_step_basic'
+    context['id_step_basic'] = id_step_basic
+    context['step_basic'] = step_basic.objects.filter(pk=id_step_basic).get()
 
-    return redirect('usecase',id_project=idProject)
+    return render(request, 'page/edit_step_basic.html', {'context': context})  
+
+@login_required(login_url="/login/")
+def update_step_basic(request):
+    
+    context = {}
+
+    #get from request
+    stepbasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
+    id_url=request.POST.get("id_usecase")
+    stepActor = request.POST.get("actor_input")
+    stepValue = request.POST.get("step_input")
+
+    #update value
+    stepbasic_target.step_value = stepValue
+    stepbasic_target.step_actor_basic = stepActor
+    stepbasic_target.save()
+
+    return redirect('edit_use_case',id_url) 
+    # return redirect('dashboard')
 
 @login_required(login_url="/login/")
 def delete_step_basic(request,id_step_basic):
@@ -232,6 +259,16 @@ def delete_step_basic(request,id_step_basic):
     stepbasic_target = get_object_or_404(step_basic, pk=id_step_basic).delete()
 
     return redirect('edit_use_case',id_usecase=idUsecase)
+
+
+@login_required(login_url="/login/")
+def delete_use_case(request,id_usecase):
+    
+    use_case = usecase.objects.filter(id_usecase=id_usecase).get()
+    idProject = use_case.id_project.id_project
+    usecase_target = get_object_or_404(usecase, pk=id_usecase).delete()
+
+    return redirect('usecase',id_project=idProject)
 
 
 '''
@@ -402,16 +439,14 @@ def update_alternative_step(request):
 
     #get from request
     stepalternative_target = get_object_or_404(step_alternative_flow, pk=request.POST.get("id_step_alternative"))
+    id_url=request.POST.get("id_step_basic")
     actorAlternative = request.POST.get("actor_input")
     stepAlternative = request.POST.get("step_input")
-
-    # stepbasic = step_basic.objects.filter(id_step_basic=stepbasic_target).get()
-    # idUsecase = stepbasic.id_usecase.id_usecase
 
     #update value
     stepalternative_target.step_alternative = stepAlternative
     stepalternative_target.step_actor_alternative = actorAlternative
     stepalternative_target.save()
 
-    # return redirect('edit_use_case',id_usecase=idUsecase) 
-    return redirect('dashboard') 
+    return redirect('alternative_step',id_url) 
+    # return redirect('dashboard') 

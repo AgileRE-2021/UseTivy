@@ -300,32 +300,73 @@ def activity_diagram(request,id_usecase):
     activity_text = open("activity_"+str(projectID)+"_"+str(useCaseID)+".txt","w+")
     #activity_text.write("@startuml \n")
     activity_text.write("title " +str(namaUseCase)+ "\n")
-    i = 1
+    i=1
+    j=1
 
-    for step in target.iterator() :
-        if i == 1 :
-            #get actor
-            actor = step.step_actor_basic
-            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+    for basic in target.iterator() :
+        target = step_alternative_flow.objects.filter(id_usecase=id_usecase)
+        for alt in target.iterator() :
+            if basic.id_step_basic == alt.id_step_basic_id : 
+                if i==1:
+                    if j == 1:
+                        #get actor
+                        actor = basic.step_actor_basic
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                        activity_text.write("start \n")
+                        #get step value
+                        value_basic = basic.step_value
+                        value_alt = alt.step_alternative
+                        activity_text.write("if ("+ str(value_basic)+ ") then \n :" + str(value_alt)+"; \n")
+                        i = i+1
+                        j = j+1
+                    else:                                             
+                        #get step value
+                        value_basic = basic.step_value
+                        value_alt = alt.step_alternative
+                        activity_text.write("else \n:" + str(value_alt)+";\n""endif\n")
+                        i = i+1
+                        j = j+1
+                else:
+                    if j == 1:
+                        #get actor
+                        actor = basic.step_actor_basic
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                        #get step value
+                        value_basic = basic.step_value
+                        value_alt = alt.step_alternative
+                        activity_text.write("if ("+ str(value_basic)+ ") then \n :" + str(value_alt)+";\n")
+                        i = i+1
+                        j = j+1
+                    else:
+                        #get step value
+                        value_basic = basic.step_value
+                        value_alt = alt.step_alternative
+                        activity_text.write("else \n:" + str(value_alt)+";\n""endif\n")
+                        i = i+1
+                        j = j+1                
+            else :  
+                if i==1:
+                    #get actor
+                    actor = basic.step_actor_basic
+                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                    activity_text.write("start \n")
+                    #get step value
+                    value_basic = basic.step_value
+                    activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+                    i = i+1
+                    break
+                else:
+                     #get actor
+                    actor = basic.step_actor_basic
+                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                    #get step value
+                    value_basic = basic.step_value
+                    activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+                    i = i+1   
+                    break         
 
-            activity_text.write("start \n")
-
-            #get step value
-            value_basic = step.step_value
-            activity_text.write(":"+ str(value_basic)+ ";" + "\n")
-            i = i+1
-        else :
-            #get actor
-            actor = step.step_actor_basic
-            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
-
-            #get step value
-            value_basic = step.step_value
-            activity_text.write(":"+ str(value_basic)+ ";" + "\n")
-            i = i+1
-
-    activity_text.write("end")
-    #activity_text.write("@enduml \n")
+    activity_text.write("end\n")
+    activity_text.write("@enduml \n")
 
     activity_text = open("activity_"+str(projectID)+"_"+str(useCaseID)+".txt","r")
 

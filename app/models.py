@@ -33,6 +33,7 @@ class step_basic(models.Model):
     id_usecase=models.ForeignKey(usecase,on_delete=models.CASCADE)
     step_value=models.CharField(max_length=1000)
     step_actor_basic=models.CharField(max_length=20)
+    rule=models.CharField(max_length=20)
 
 class alternative_flow(models.Model):
     id_alternativeflow=models.AutoField(primary_key=True)

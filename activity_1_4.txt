@@ -1,0 +1,16 @@
+title test1
+|TATA USAHA|
+start 
+:Memasuki lama pengelolaan data murid;
+|SISTEM|
+:Menampilkan menu pilihan;
+|TATA USAHA|
+:Memilih menu tambah data murid;
+|SISTEM|
+:Menampilkan form pengisian data murid;
+|TATA USAHA|
+if () then 
+ :Mengisi data dengan benar dan lengkap; 
+ else 
+:Melakukan pengisian form namun tidak lengkap;
+endif

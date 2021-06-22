@@ -210,15 +210,18 @@ def add_step_basic(request):
     try:
         stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
         actorBasic = request.POST.get('actor_input')
+        stepRule = request.POST.get('rule_input')
         stepBasic_target.step_actor_basic=actorBasic
         stepBasic_target.save()
     except:
         actorBasic = request.POST.get('actor_input')
         stepBasic = request.POST.get('step_input')
+        stepRule = request.POST.get("rule_input")
         newStepBasic = step_basic(
             step_actor_basic=actorBasic,
             step_value=stepBasic,
-            id_usecase=usecase_target
+            id_usecase=usecase_target,
+            rule=stepRule
         )
         newStepBasic.save()
 
@@ -245,11 +248,13 @@ def update_step_basic(request):
     stepbasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
     id_url=request.POST.get("id_usecase")
     stepActor = request.POST.get("actor_input")
+    stepRule = request.POST.get("rule_input")
     stepValue = request.POST.get("step_input")
 
 
     #update value
     stepbasic_target.step_value = stepValue
+    stepbasic_target.rule = stepRule
     stepbasic_target.step_actor_basic = stepActor
     stepbasic_target.save()
 
@@ -305,65 +310,63 @@ def activity_diagram(request,id_usecase):
 
     for basic in target.iterator() :
         target = step_alternative_flow.objects.filter(id_usecase=id_usecase)
-        for alt in target.iterator() :
-            if basic.id_step_basic == alt.id_step_basic_id : 
-                if i==1:
-                    if j == 1:
+        if basic.rule == "0":
+            if i==1:
+                #get actor
+                actor = basic.step_actor_basic
+                activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                activity_text.write("start \n")
+                #get step value
+                value_basic = basic.step_value
+                activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+                i = i+1
+                
+            else:
+                #get actor
+                actor = basic.step_actor_basic
+                activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                #get step value
+                value_basic = basic.step_value
+                activity_text.write(":"+ str(value_basic)+ ";" + "\n")
+                i = i+1   
+                
+        elif basic.rule == "1":                        
+            for alt in target.iterator() :            
+                if basic.id_step_basic == alt.id_step_basic_id :                             
+                    if i==1:                        
                         #get actor
                         actor = basic.step_actor_basic
                         activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
                         activity_text.write("start \n")
                         #get step value
-                        value_basic = basic.step_value
+                        value_basic = basic.step_value                        
                         value_alt = alt.step_alternative
-                        activity_text.write("if ("+ str(value_basic)+ ") then \n :" + str(value_alt)+"; \n")
+                        activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n""endif\n")
                         i = i+1
-                        j = j+1
-                    else:                                             
-                        #get step value
-                        value_basic = basic.step_value
-                        value_alt = alt.step_alternative
-                        activity_text.write("else \n:" + str(value_alt)+";\n""endif\n")
-                        i = i+1
-                        j = j+1
-                else:
-                    if j == 1:
+                            
+                    else:                                                                                             
                         #get actor
                         actor = basic.step_actor_basic
                         activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
                         #get step value
-                        value_basic = basic.step_value
+                        value_basic = basic.step_value                        
                         value_alt = alt.step_alternative
-                        activity_text.write("if ("+ str(value_basic)+ ") then \n :" + str(value_alt)+";\n")
-                        i = i+1
-                        j = j+1
-                    else:
-                        #get step value
-                        value_basic = basic.step_value
-                        value_alt = alt.step_alternative
-                        activity_text.write("else \n:" + str(value_alt)+";\n""endif\n")
-                        i = i+1
-                        j = j+1                
-            else :  
-                if i==1:
-                    #get actor
-                    actor = basic.step_actor_basic
-                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
-                    activity_text.write("start \n")
-                    #get step value
-                    value_basic = basic.step_value
-                    activity_text.write(":"+ str(value_basic)+ ";" + "\n")
-                    i = i+1
-                    break
-                else:
-                     #get actor
-                    actor = basic.step_actor_basic
-                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
-                    #get step value
-                    value_basic = basic.step_value
-                    activity_text.write(":"+ str(value_basic)+ ";" + "\n")
-                    i = i+1   
-                    break         
+                        activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n""endif\n")                    
+        elif basic.rule == "2": 
+            for alt in target.iterator() :            
+                if basic.id_step_basic == alt.id_step_basic_id :                             
+                    if i==1:                        
+                        if j==1:
+                            #get actor
+                            actor = basic.step_actor_basic
+                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                            activity_text.write("start \n")
+                            #get step value
+                            value_basic = basic.step_value                        
+                            value_alt = alt.step_alternative
+                            activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n""endif\n")
+                            i = i+1
+
 
     activity_text.write("end\n")
     activity_text.write("@enduml \n")

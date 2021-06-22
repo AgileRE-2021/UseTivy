@@ -30,16 +30,15 @@
                                       placeholder="Actor" type="text" value="{{context.step_basic.step_actor_basic}}">                                             
                                     </div>                                              
                                   </div>
-                                  <div class="dropdown">
-                                    <div class="col-md-4">
-                                        <a class="btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom :10px">
-                                          Choose Rule 
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Rule 1</a>
-                                            <a class="dropdown-item" href="#">Rule 2</a>
-                                            <a class="dropdown-item" href="#">Rule 3</a>
-                                        </div>                                        
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <select id="rule_input" name="rule_input" class="form-control form-control-alternative" 
+                                      placeholder="Step" type="text" value="{{context.step_basic.rule}}" onchange="">
+                                        <option value="0">--Choose Rule--</option>
+                                        <option value="0">Basic step</option>
+                                        <option value="1">If step</option>
+                                        <option value="2">Repeat step</option>
+                                      </select> 
                                     </div>
                                   </div>
                                   <div class="col-md-4">

@@ -376,6 +376,9 @@ def activity_diagram(request,id_usecase):
                         form_auth={}, http_opts={}, request_opts={})
 
     server.processes_file(abspath(f"activity_"+str(projectID)+"_"+str(useCaseID)+".txt"))
+
+    response = HttpResponse(content_type='png')
+    response['Content-Disposition'] = 'attachment; filename=f"activity_"+str(projectID)+"_"+str(useCaseID)+".txt"'
         
     return redirect('usecase',id_project=projectID)
 

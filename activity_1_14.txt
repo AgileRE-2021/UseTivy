@@ -1,5 +1,0 @@
-title yuk bisa yuk
-|FIRDA|
-start 
-:makan tissue;
-end

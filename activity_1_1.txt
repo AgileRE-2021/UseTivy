@@ -1,12 +1,22 @@
-title 1
-|AKU|
+title Menambah Data Murid
+|TATA USAHA|
 start 
-:suka;
-|DIA|
-:gasuka;
-|AKU|
-:berusaha;
-|DIA|
-:gasuka aku;
-
+:memasuki laman pengelolaan data murid;
+|SISTEM|
+:akan menampilkan pilihan menu yang dapat dilakukan laman pengelolaan data murid;
+|TATA USAHA|
+:memilih pilihan tambah data murid pada laman pengelolaan data murid;
+|SISTEM|
+:akan menampilkan form untuk menambah data murid;
+|TATA USAHA|
+:melakukan pengisian form terkait data murid yang ingin ditambahkan lalu mengirimkan ke sistem;
+|TATA USAHA|
+if (melakukan pengecekan) then 
+ :melakukan pengisian form terkait data murid tetapi belum lengkap;
+else 
+:memberikan peringatan kesalahan bahwa form belum lengkap di isi;
+endif
+|SISTEM|
+:memasukkan data murid yang baru dan menampilkan pesan sukses;
 end
+@enduml 

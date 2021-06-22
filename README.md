@@ -77,7 +77,14 @@ $ # Access the web app in browser: http://127.0.0.1:8000/
 > Note: To use the app, please access the registration page and create a new user. After authentication, the app will unlock the private pages.
 
 <br />
-
+## Installation Guide
+Berikut adalah langkah-langkah instalasi aplikasi UseTivy:
+1. Install Git pada computer Anda.
+2. Install Python 3.9.5 (Pastikan untuk mencetang Add To PATH)
+3. Buat direktori untuk menyimpanaplikasi
+ ```sh
+   mkdir *nama direktori*
+   ```
 ## Documentation
 The documentation for the **Argon Dashboard Django** is hosted at our [website](https://demos.creative-tim.com/argon-dashboard-django/docs/getting-started/getting-started-django.html).
 

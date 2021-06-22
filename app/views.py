@@ -346,6 +346,10 @@ def activity_diagram(request,id_usecase):
                             i = i+1
                             j=j+1
                         else:
+                            #get actor
+                            actor = alt.step_actor_alternative
+                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                            #get step value
                             value_alt = alt.step_alternative
                             activity_text.write(":" + str(value_alt)+"; \n" )
                             j=j+1                            
@@ -361,6 +365,10 @@ def activity_diagram(request,id_usecase):
                             activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n")                    
                             j=j+1
                         else:                                         
+                            #get actor
+                            actor = alt.step_actor_alternative
+                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                            #get step value
                             value_alt = alt.step_alternative
                             activity_text.write(":" + str(value_alt)+"; \n" )
                             j=j+1

@@ -13,6 +13,7 @@ if () then
  :Mengisi data dengan benar dan lengkap; 
  else 
 :Melakukan pengisian form namun tidak lengkap;
+|SISTEM|
 :Memberikan peringatan; 
 endif
 |SISTEM|

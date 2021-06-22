@@ -13,4 +13,9 @@ if () then
  :Mengisi data dengan benar dan lengkap; 
  else 
 :Melakukan pengisian form namun tidak lengkap;
+:Memberikan peringatan; 
 endif
+|SISTEM|
+:Memasukan data murid baru;
+end
+@enduml 

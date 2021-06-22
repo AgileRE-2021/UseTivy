@@ -334,24 +334,37 @@ def activity_diagram(request,id_usecase):
             for alt in target.iterator() :            
                 if basic.id_step_basic == alt.id_step_basic_id :                             
                     if i==1:                        
-                        #get actor
-                        actor = basic.step_actor_basic
-                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
-                        activity_text.write("start \n")
-                        #get step value
-                        value_basic = basic.step_value                        
-                        value_alt = alt.step_alternative
-                        activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n""endif\n")
-                        i = i+1
-                            
-                    else:                                                                                             
-                        #get actor
-                        actor = basic.step_actor_basic
-                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
-                        #get step value
-                        value_basic = basic.step_value                        
-                        value_alt = alt.step_alternative
-                        activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n""endif\n")                    
+                        if j==1:
+                            #get actor
+                            actor = basic.step_actor_basic
+                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                            activity_text.write("start \n")
+                            #get step value
+                            value_basic = basic.step_value                        
+                            value_alt = alt.step_alternative
+                            activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n")
+                            i = i+1
+                            j=j+1
+                        else:
+                            value_alt = alt.step_alternative
+                            activity_text.write(":" + str(value_alt)+"; \n" )
+                            j=j+1                            
+
+                    else:   
+                        if j ==1:
+                            #get actor
+                            actor = basic.step_actor_basic
+                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                            #get step value
+                            value_basic = basic.step_value                        
+                            value_alt = alt.step_alternative
+                            activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n")                    
+                            j=j+1
+                        else:                                         
+                            value_alt = alt.step_alternative
+                            activity_text.write(":" + str(value_alt)+"; \n" )
+                            j=j+1
+            activity_text.write("endif\n")                    
         elif basic.rule == "2": 
             for alt in target.iterator() :            
                 if basic.id_step_basic == alt.id_step_basic_id :                             

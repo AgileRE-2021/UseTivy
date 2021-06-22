@@ -77,14 +77,71 @@ $ # Access the web app in browser: http://127.0.0.1:8000/
 > Note: To use the app, please access the registration page and create a new user. After authentication, the app will unlock the private pages.
 
 <br />
+
 ## Installation Guide
 Berikut adalah langkah-langkah instalasi aplikasi UseTivy:
 1. Install Git pada computer Anda.
 2. Install Python 3.9.5 (Pastikan untuk mencetang Add To PATH)
-3. Buat direktori untuk menyimpanaplikasi
- ```sh
-   mkdir *nama direktori*
+3. Buat direktori untuk menyimpan aplikasi
+   ```sh
+   mkdir *nama direktori*  
    ```
+4. Pastikan Anda sudah berada di dalam direktori tersebut
+   ```
+   cd *nama direktori*  
+   ```
+5. Setelah itu, buatlah _virtual environment_ pada Python 
+   ```
+   py -m venv env  
+   ```
+6. Lakukan _clone_ pada _repository_    
+   ```
+   git clone https://github.com/AgileRE-2021/UseTivy.git  
+   ```
+7. Masuk ke dalam _virtual environment_ tersebut 
+   ```
+   env\scripts\activate.bat  
+   ```
+8. Masuk ke folder aplikasi UseTivy 
+   ```
+   cd UseTivy  
+   ```
+9. Lakukan instalasi Django Framework 
+   ```
+   py -m pip install Django  
+   ```
+10. Lakukan instalasi modul - SQLite Storage 
+    ```
+    pip3 install -r requirements.txt  
+    ```
+11. Lakukan instalasi modul plantuml
+    ```
+    pip install plantuml  
+    ```
+12. Lakukan instalasi modul six
+    ```
+    pip install six  
+    ```
+13. Buat migrasi pada tabel yang ada
+    ```
+    python manage.py makemigrations  
+    ```
+    ```
+    python manage.py migrate  
+    ```
+14. Jalankan aplikasi UseTivy (_development mode_)
+    ```
+    python manage.py runserver  
+    ```
+15. Jalankan aplikasi UseTivy (_custom port_)
+    ```
+    Akses aplikasi web di browser http://127.0.0.1:8000/
+    ```
+16. Klik Register, isikan _username_, _email_ dan _password_ kemudian klik Create Account
+17.	Setelah proses pembuatan akun berhasil, klik Login. Anda akan diminta untuk mengisikan _username_ dan _password_ yang baru Anda buat, lalu klik Sign In
+
+ <br />  
+ 
 ## Documentation
 The documentation for the **Argon Dashboard Django** is hosted at our [website](https://demos.creative-tim.com/argon-dashboard-django/docs/getting-started/getting-started-django.html).
 

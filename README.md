@@ -10,7 +10,7 @@
 [UseTivy](https://github.com/AgileRE-2021/UseTivy) adalah aplikasi berbasis web yang dapat melakukan generasi artefak **Activity Diagram** berdasarkan **Use Case Specification**. Use case specification bisa langsung diinputkan kedalam aplikasi, sehingga user tidak perlu melakukan *upload* file apapun. Activity diagram akan otomatis dibuat dan tersimpan pada folder tempat user melakukan *clone*
 >- **Activity Diagram** pada dasarnya memiliki struktur yang mirip dengan *flowchart* atau diagram alir dalam perencanaan sistem secara terstruktur dan dibuat berdasarkan sebuah use case atau beberapa use case dalam use case diagram.
 >- **Use Case Specification** merupakan salah satu artefak pengembangan software atau sistem informasi untuk menangkap fungsional dari sistem yang bersangkutan sekaligus menjelaskan interaksi yang terjadi antara Aktor dengan suatu sistem yang ada.
->
+
 <br />
 <br />
 
@@ -24,7 +24,7 @@
 * [Cara Instalasi](#cara-instalasi)
 * [Cara Penggunaan Aplikasi](#cara-penggunaan-aplikasi)
 * [UI Template](#ui-template)
-* [Licensing](#licensing)
+* [Developer](#developer)
 
 ## Aplication Requirements
 1. [Git](https://git-scm.com/downloads)
@@ -109,9 +109,15 @@ beberapa hal yang dapat dilihat lebih lanjut mengenai template :
 - Support: <https://www.creative-tim.com/contact-us>
 - Issues: [Github Issues Page](https://github.com/creativetimofficial/argon-dashboard-django/issues)
 
-## Licensing
-
-- Copyright 2019 - present [Creative Tim](https://www.creative-tim.com/)
-- Licensed under [Creative Tim EULA](https://www.creative-tim.com/license)
+## Developer
+*UseTivy dibangun oleh mahasiswa S1 Sistem Informasi Universitas Airlangga*
+- Bramantio Ghani S.	081811633005
+- Aulia Marcha R. P	081811633016
+- Hafidh Yanuar P.	081811633034
+- Zhafira Hajar	081811633035
+- Corine Stafanie	081811633040
+- M. Najib Wafirur R.	081811633042
+- Rizki Agung Mahendra	081811633045
+- Ghalib Atthallah Alam	081811633056
 
 ---

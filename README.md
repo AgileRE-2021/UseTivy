@@ -30,7 +30,7 @@
 1. [Git](https://git-scm.com/downloads)
 2. [Python 3.7 or higher](https://www.python.org/downloads/)
 >make sure you put your python.exe into your computer PATH 
-3. Browser yang mensupport :
+3. Browser support :
 
 <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
 

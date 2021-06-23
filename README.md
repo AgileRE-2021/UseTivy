@@ -1,6 +1,7 @@
 
 # [UseTivy](https://github.com/AgileRE-2021/UseTivy) 
 
+![UseTivy Logo.](https://github.com/AgileRE-2021/UseTivy/blob/master/core/static/assets/img/brand/logo_small.png)
 
 [UseTivy](https://github.com/AgileRE-2021/UseTivy) adalah aplikasi berbasis web yang dapat melakukan generasi artefak **Activity Diagram** berdasarkan **Use Case Specification**. Use case specification bisa langsung diinputkan kedalam aplikasi, sehingga user tidak perlu melakukan *upload* file apapun. Activity diagram akan otomatis dibuat dan tersimpan pada folder tempat user melakukan *clone*
 >- **Activity Diagram** pada dasarnya memiliki struktur yang mirip dengan *flowchart* atau diagram alir dalam perencanaan sistem secara terstruktur dan dibuat berdasarkan sebuah use case atau beberapa use case dalam use case diagram.
@@ -8,7 +9,7 @@
 >
 <br />
 
-![Argon Dashboard Django - Admin Dashboard coded in Django.](https://github.com/AgileRE-2021/UseTivy/blob/master/contoh_1.png)
+![UseTify Dashboard Page.](https://github.com/AgileRE-2021/UseTivy/blob/master/contoh_1.png)
 
 <br />
 

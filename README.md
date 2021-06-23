@@ -36,12 +36,6 @@
 
 ##  Cara Instalasi
 
-> To authenticate use the default credentials ***test / ApS12_ZZs8*** or create a new user on the **registration page**.
-
-> UNZIP the sources or clone the private repository. After getting the code, open a terminal and navigate to the working directory, with product source code.
-
-> Note: To use the app, please access the registration page and create a new user. After authentication, the app will unlock the private pages.
-
 Berikut adalah langkah-langkah instalasi aplikasi UseTivy:
 
 1. Buat direktori untuk menyimpan aplikasi

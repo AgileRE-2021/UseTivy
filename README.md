@@ -15,7 +15,7 @@
 ## Table of Contents
 
 * [Application Requirement](#aplication-requirements)
-* [Cara Instalasi](#demo)
+* [Cara Instalasi](#cara-instalasi)
 * [Cara Penggunaan Aplikasi](#cara-penggunaan-aplikasi)
 * [UI Template](#ui-template)
 * [Licensing](#licensing)

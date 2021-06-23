@@ -8,7 +8,7 @@
 >
 <br />
 
-![Argon Dashboard Django - Admin Dashboard coded in Django.](https://github.com/creativetimofficial/argon-dashboard-django/blob/master/media/argon-dashboard-django-screen.png)
+![Argon Dashboard Django - Admin Dashboard coded in Django.](https://github.com/AgileRE-2021/UseTivy/blob/master/contoh_1.png)
 
 <br />
 

@@ -121,3 +121,5 @@ beberapa hal yang dapat dilihat lebih lanjut mengenai template :
 - Ghalib Atthallah Alam	081811633056
 
 ---
+<h2 align="center"> -------S1 Sistem Informasi - Universitas Airlangga - 2021------- </h2>
+<br/>

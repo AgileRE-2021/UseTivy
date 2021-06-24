@@ -98,7 +98,7 @@ Berikut adalah langkah-langkah instalasi aplikasi UseTivy:
 
 ## Cara Penggunaan Aplikasi
 1. Register : Buat akun jika ada
-(https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/register.png)
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset">
 
 3. 
 

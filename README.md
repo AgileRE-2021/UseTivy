@@ -97,10 +97,24 @@ Berikut adalah langkah-langkah instalasi aplikasi UseTivy:
 15.	Setelah proses pembuatan akun berhasil, klik Login. Anda akan diminta untuk mengisikan _username_ dan _password_ yang baru Anda buat, lalu klik Sign In
 
 ## Cara Penggunaan Aplikasi
-1. Register : Buat akun jika ada
-<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset">
-
-3. 
+1. Register : Buat akun jika belum ada
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/register.PNG">
+2. Login : Login untuk Masuk ke dalam aplikasi
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/login.PNG">
+3. Dashboard : Setelah login user akan diarahkan ke Halaman ini. Halaman ini berisikan informasi projek yang baru dibuat.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/dashboard.PNG">
+4. New Project : Untuk membuat projek pilih button 'New Project' yang ada di halaman dashboard. Setelah itu user dapat memasukan nama projecknya.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/new_projek.PNG">
+5. Usecase : Setelah membuat projek user akan diarahkan ke Halaman ini dengan cara memilih button 'Usecase' yang ada pada halaman dashboard. Halaman ini berisikan informasi usecase yang baru dibuat.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/usecase.PNG">
+6. Add New Usecase : Pertama, user dapat membuat usecase sesuai dengan keinginan.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/add_usecase.PNG">
+7. Edit Usecase : lalu user dapat melakukan pengisian form yang berisikan deskripsi usecase, Precondition, Postcondition, Basic step. 
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/edit_usecase.PNG">
+8. Basic Step : user dapat mengisi basic step untuk menjelaskan langkah-langkah yang terjadi pada usecase.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/basic_step.PNG">
+9. Usecase View : halaman ini berisikan informasi yang telah di-inputkan pada halaman 'Edit Usecase' seperti deskripsi usecase, Precondition, Postcondition, Basic step.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/usecase_view.PNG">
 
 ## UI Template
 UI template yang digunakan pada aplikasi UseTivy adalah [Argon admin template](https://github.com/creativetimofficial/argon-dashboard-django)

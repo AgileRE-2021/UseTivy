@@ -14,7 +14,7 @@
 <br />
 <br />
 
-![UseTify Dashboard Page.](https://github.com/AgileRE-2021/UseTivy/blob/master/contoh_1.png)
+![UseTify Dashboard Page.](https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/contoh_1.png)
 
 <br />
 

@@ -35,11 +35,14 @@ class step_basic(models.Model):
     step_actor_basic=models.CharField(max_length=20)
     rule=models.CharField(max_length=20)
 
-class alternative_flow(models.Model):
-    id_alternativeflow=models.AutoField(primary_key=True)
+class step_if(models.Model):
+    id_step_if =models.AutoField(primary_key=True)
     id_step_basic=models.ForeignKey(step_basic,on_delete=models.CASCADE)
-    nama_alternative=models.CharField(max_length=200)
-    postcondition_alternative=models.CharField(max_length=100)
+    id_usecase=models.ForeignKey(usecase,on_delete=models.CASCADE)
+    true_step=models.CharField(max_length=1000)
+    false_step=models.CharField(max_length=1000)    
+    step_actor_true=models.CharField(max_length=20)
+    step_actor_false=models.CharField(max_length=20)
 
 class step_alternative_flow(models.Model):
     id_step_alternative=models.AutoField(primary_key=True)
@@ -47,6 +50,7 @@ class step_alternative_flow(models.Model):
     id_usecase=models.ForeignKey(usecase, on_delete=models.CASCADE)
     step_alternative=models.CharField(max_length=1000)
     step_actor_alternative=models.CharField(max_length=20)
+    condition=models.CharField(max_length=1000)   
 
 class activity_diagram(models.Model):
     id_activity=models.AutoField(primary_key=True)

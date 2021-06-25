@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse, request
 from django import template
-from app.models import project, usecase, step_basic, alternative_flow, step_alternative_flow, activity_diagram
+from app.models import project, usecase, step_basic, step_alternative_flow, activity_diagram, step_if
 from django.utils import timezone
 from plantuml import PlantUML
 import os
@@ -236,6 +236,7 @@ def edit_step_basic(request, id_step_basic):
     context['segment'] = 'edit_step_basic'
     context['id_step_basic'] = id_step_basic
     context['step_basic'] = step_basic.objects.filter(pk=id_step_basic).get()
+    context['rule'] = step_basic.objects.filter(pk=id_step_basic).get()
 
     return render(request, 'page/edit_step_basic.html', {'context': context})  
 
@@ -309,7 +310,6 @@ def activity_diagram(request,id_usecase):
     j=1
 
     for basic in target.iterator() :
-        target = step_alternative_flow.objects.filter(id_usecase=id_usecase)
         if basic.rule == "0":
             if i==1:
                 #get actor
@@ -330,50 +330,104 @@ def activity_diagram(request,id_usecase):
                 activity_text.write(":"+ str(value_basic)+ ";" + "\n")
                 i = i+1   
                 
-        elif basic.rule == "1":                        
-            for alt in target.iterator() :            
-                if basic.id_step_basic == alt.id_step_basic_id :                             
-                    if i==1:                        
-                        if j==1:
-                            #get actor
-                            actor = basic.step_actor_basic
-                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
-                            activity_text.write("start \n")
-                            #get step value
-                            value_basic = basic.step_value                        
-                            value_alt = alt.step_alternative
-                            activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n")
-                            i = i+1
-                            j=j+1
-                        else:
-                            #get actor
-                            actor = alt.step_actor_alternative
-                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
-                            #get step value
-                            value_alt = alt.step_alternative
-                            activity_text.write(":" + str(value_alt)+"; \n" )
-                            j=j+1                            
+        elif basic.rule == "1":                 
+            #call step if
+            target = step_if.objects.filter(id_usecase=id_usecase)                                           
+            for IF in target.iterator() :                            
+                if basic.id_step_basic == IF.id_step_basic_id :                
+                    if i==1:                                                
+                        #get actor
+                        actor = basic.step_actor_basic
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")
+                        activity_text.write("start \n")                                                        
+                        #get step value
+                        value_basic = basic.step_value
+                        activity_text.write(":"+ str(value_basic)+ ";" + "\n")                    
+                        #get actor
+                        actor = IF.step_actor_true
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                        #get step true
+                        value_true = IF.true_step                            
+                        activity_text.write("if ("+ str()+ ") then \n :" + str(value_true)+"; \n")
 
-                    else:   
-                        if j ==1:
-                            #get actor
-                            actor = basic.step_actor_basic
-                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
-                            #get step value
-                            value_basic = basic.step_value                        
-                            value_alt = alt.step_alternative
-                            activity_text.write("if ("+ str()+ ") then \n :" + str(value_basic)+"; \n else \n:" + str(value_alt)+";\n")                    
-                            j=j+1
-                        else:                                         
-                            #get actor
-                            actor = alt.step_actor_alternative
-                            activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
-                            #get step value
-                            value_alt = alt.step_alternative
-                            activity_text.write(":" + str(value_alt)+"; \n" )
-                            j=j+1
+                        #call alt step
+                        target = step_alternative_flow.objects.filter(id_usecase=id_usecase)                   
+                        for alt in target.iterator() :       
+                            if basic.id_step_basic == alt.id_step_basic_id :
+                                if alt.condition == "0" :                                                              
+                                    #get actor
+                                    actor = alt.step_actor_alternative
+                                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                                    #get step value
+                                    value_alt = alt.step_alternative
+                                    activity_text.write(":" + str(value_alt)+"; \n" )                        
+                        
+                        #get actor
+                        actor = IF.step_actor_false 
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                        #get step false                        
+                        value_false = IF.false_step 
+                        activity_text.write("else \n:" + str(value_false)+";\n")                        
+
+                        #call alt step
+                        target = step_alternative_flow.objects.filter(id_usecase=id_usecase)                   
+                        for alt in target.iterator() :       
+                            if basic.id_step_basic == alt.id_step_basic_id :
+                                if alt.condition == "1" :                                                                                   
+                                    #get actor
+                                    actor = alt.step_actor_alternative
+                                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                                    #get step value
+                                    value_alt = alt.step_alternative
+                                    activity_text.write(":" + str(value_alt)+"; \n" )                                                
+                    else:                               
+                        #get actor
+                        actor = basic.step_actor_basic
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                        #get step value
+                        value_basic = basic.step_value
+                        activity_text.write(":"+ str(value_basic)+ ";" + "\n")                    
+                        #get actor
+                        actor = IF.step_actor_true
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                        #get step true
+                        value_true = IF.true_step                            
+                        activity_text.write("if ("+ str()+ ") then \n :" + str(value_true)+"; \n")
+
+                        #call alt step
+                        target = step_alternative_flow.objects.filter(id_usecase=id_usecase)                   
+                        for alt in target.iterator() :       
+                            if basic.id_step_basic == alt.id_step_basic_id :                                
+                                if alt.condition == "0" :                                                                      
+                                    #get actor
+                                    actor = alt.step_actor_alternative
+                                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                                    #get step value
+                                    value_alt = alt.step_alternative
+                                    activity_text.write(":" + str(value_alt)+"; \n" )                        
+                        
+                        #get actor
+                        actor = IF.step_actor_false 
+                        activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                        #get step false
+                        value_false = IF.false_step 
+                        activity_text.write("else \n:" + str(value_false)+";\n")                        
+
+                        #call alt step
+                        target = step_alternative_flow.objects.filter(id_usecase=id_usecase)                   
+                        for alt in target.iterator() :       
+                            if basic.id_step_basic == alt.id_step_basic_id :                                
+                                if alt.condition == "1" :                                                                  
+                                    #get actor
+                                    actor = alt.step_actor_alternative
+                                    activity_text.write("|" +(str(actor)).upper()+ "|" + "\n")                        
+                                    #get step value
+                                    value_alt = alt.step_alternative
+                                    activity_text.write(":" + str(value_alt)+"; \n" )                        
+            i=i+1
             activity_text.write("endif\n")                    
         elif basic.rule == "2": 
+            target = step_alternative_flow.objects.filter(id_usecase=id_usecase)
             for alt in target.iterator() :            
                 if basic.id_step_basic == alt.id_step_basic_id :                             
                     if i==1:                        

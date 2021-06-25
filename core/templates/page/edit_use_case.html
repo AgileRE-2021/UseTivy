@@ -5,7 +5,6 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
 {% endblock stylesheets %}
-
 {% block content %}
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
@@ -15,7 +14,7 @@
           <div class="col-md-12">
               <div class="card" style="width: 100%;">
                   <div class="card-body">
-                      <h1 class="card-title"></h1>Edit Use Case</h1>
+                      <b><h1 class="card-title"></h1>Edit Use Case : "{{context.use_case.nama_usecase}}"</h1></b>
                       <hr>
                       <!-- Basic Information -->                                                    
                       <form method=POST action='/edit_use_case/update'>
@@ -53,22 +52,21 @@
                             </div>
                           </div>
                           <div style="text-align: right; margin-right: 50px">
-                            <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
+                            <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Basic Info</button>   
                           </div>
                       </div>  
                       </form>
-                      <!-- Basic FLow -->
+                      <!-- Basic Step -->
                       <hr class="my-4" />
                       <form method=POST action='/update_step_basic/update'>
                         {% csrf_token %}
                         <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
                         <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic}}">
 
-                        <h6 class="heading-small text-muted mb-4">Basic Flow</h6>
+                        <h6 class="heading-small text-muted mb-4">Basic Step</h6>
                         <div class="pl-lg-4">
                           <div class='table-responsive'>
-                          
-                            <table class="table align-items-center table-flush">
+                            <table class="table align-items-center table-flush" style="width: 100%">
                               <thead>
                                 <tr>
                                   <th>No</th>
@@ -81,13 +79,9 @@
                                 {% for sb in context.step_basic %} 
                                 <tr>
                                   <td>{{ forloop.counter }}</td>
-                                  <td>
-                                    <div class="media align-items-center">
-                                      
-                                        <b> {{ sb.step_actor_basic }} </b>
-                                        &nbsp;
-                                         <b> {{ sb.step_value }} </b> 
-                                    </div>
+                                  <td style="white-space: normal;">
+                                    <b> {{ sb.step_actor_basic }} </b>
+                                    <b> {{ sb.step_value }} </b>
                                   </td>
                                   <td>
                                     <div class="row">
@@ -120,23 +114,21 @@
                           <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
                           <label class="form-control-label" for="input-address">Add Step</label>
                           <div class="row">
+                            <div class="form-group">
+                              <select id="rule_input" name ="rule_input"class="btn btn-primary text-white" placeholder="Step" type="text" onchange="ifStep(this);">
+                                <option value="0">Choose Rule</option>
+                                <option value="0">Basic step</option>
+                                <option value="1">If step</option>
+                              </select> 
+                            </div>
                             <div class="col-md-2">
                               <div class="form-group">
                                 <input id="actor_input" name="actor_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
                               </div>                                              
                             </div>
-                            <div class="col-md-2">
-                              <div class="form-group">
-                                <select id="rule_input" name ="rule_input"class="form-control form-control-alternative" placeholder="Step" type="text" onchange="ifStep(this);">
-                                  <option value="0">Choose Rule</option>
-                                  <option value="0">Basic step</option>
-                                  <option value="1">If step</option>
-                                </select> 
-                              </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                               <div class="form-group">                                                
-                                <input id="step_input" name="step_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                <input style="white-space: normal;" id="step_input" name="step_input" class="form-control form-control-alternative" placeholder="Step" type="text">
                               </div>  
                             </div>
                             <div class="col-md-2"> 
@@ -145,47 +137,50 @@
                           </div>
                         </div>
                         <!--SHOW THIS WHEN RULE == 1-->
-                        <div id="if_step" style="display:none">
-                          <form method=POST action='/add_step_basic'>
-                            {% csrf_token %}
-                            <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
-                            <label class="form-control-label" for="input-address">True Condition</label>
-                            <div class="row">
-                              <div class="col-md-2">
-                                <div class="form-group">
-                                  <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
-                                </div>                                              
+                        <div class="pl-lg-4">
+                          <div id="if_step" style="display:none">
+                            <form method=POST action='/add_step_basic'>
+                              {% csrf_token %}
+                              <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
+                              <label class="form-control-label" for="input-address">True Condition</label>
+                              <div class="row">
+                                <div class="col-md-2">
+                                  <div class="form-group">
+                                    <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                                  </div>                                              
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">                                                
+                                    <input id="step_input" name="step_true_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                  </div>  
+                                </div> 
                               </div>
-                              <div class="col-md-6">
-                                <div class="form-group">                                                
-                                  <input id="step_input" name="step_true_input" class="form-control form-control-alternative" placeholder="Step" type="text">
-                                </div>  
-                              </div> 
-                            </div>
-                            <label class="form-control-label" for="input-address">False Condition</label>
-                            <div class="row">
-                              <div class="col-md-2">
-                                <div class="form-group">
-                                  <input id="actor_input" name="actor_false_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
-                                </div>                                              
+                              <label class="form-control-label" for="input-address">False Condition</label>
+                              <div class="row">
+                                <div class="col-md-2">
+                                  <div class="form-group">
+                                    <input id="actor_input" name="actor_false_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                                  </div>                                              
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">                                                
+                                    <input id="step_input" name="step_false_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                  </div>  
+                                </div> 
                               </div>
-                              <div class="col-md-6">
-                                <div class="form-group">                                                
-                                  <input id="step_input" name="step_false_input" class="form-control form-control-alternative" placeholder="Step" type="text">
-                                </div>  
-                              </div> 
-                            </div>
-                            <div style="text-align: right; margin-right: 50px">
-                              <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
-                            </div>
-                          </form>
+                              <div style="text-align: right; margin-right: 50px">
+                                <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Condition</button>   
+                              </div>
+                            </form>
+                          </div>
+
                         </div>
                         <hr class="my-4" />
                       </form>
                       <a href="/use_case/{{ context.use_case.id_project_id}}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
                         <div>
                           <i class="ni ni-bold-left"></i>
-                          <span> Back</span>
+                          <span> Use Case List</span>
                         </div>
                       </a>
                    </div>

@@ -97,7 +97,10 @@ Berikut adalah langkah-langkah instalasi aplikasi UseTivy:
 15.	Setelah proses pembuatan akun berhasil, klik Login. Anda akan diminta untuk mengisikan _username_ dan _password_ yang baru Anda buat, lalu klik Sign In
 
 ## Cara Penggunaan Aplikasi
+1. Register : Buat akun jika ada
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset">
 
+3. 
 
 ## UI Template
 UI template yang digunakan pada aplikasi UseTivy adalah [Argon admin template](https://github.com/creativetimofficial/argon-dashboard-django)

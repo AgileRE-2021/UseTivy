@@ -114,13 +114,10 @@
                             </table>
                           </div>
                           </br>
-                          
                         </form>
-
-                          <form method=POST action='/add_step_basic'>
+                        <form method=POST action='/add_step_basic'>
                           {% csrf_token %}
                           <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
-
                           <label class="form-control-label" for="input-address">Add Step</label>
                           <div class="row">
                             <div class="col-md-2">
@@ -130,30 +127,60 @@
                             </div>
                             <div class="col-md-2">
                               <div class="form-group">
-                                <select id="rule_input" name ="rule_input"class="form-control form-control-alternative" placeholder="Step" type="text" >
-                                  <option value="0">--Choose Rule--</option>
+                                <select id="rule_input" name ="rule_input"class="form-control form-control-alternative" placeholder="Step" type="text" onchange="ifStep(this);">
+                                  <option value="0">Choose Rule</option>
                                   <option value="0">Basic step</option>
                                   <option value="1">If step</option>
-                                  <option value="2">Repeat step</option>
                                 </select> 
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">                                                
-                                <input id="step_input" name="step_input" class="form-control form-control-alternative" placeholder="Step" type="text">      
-                               
+                                <input id="step_input" name="step_input" class="form-control form-control-alternative" placeholder="Step" type="text">
                               </div>  
                             </div>
                             <div class="col-md-2"> 
                               <button type="submit" class="btn btn-primary"><i class="fa fa-plus pr-2" style="color:white" data-toggle="tooltip" title="Add Step Basic"></i></button>
-  
-                            </div>
-                                                                                    
+                            </div>                                                
                           </div>
                         </div>
-                        
+                        <!--SHOW THIS WHEN RULE == 1-->
+                        <div id="if_step" style="display:none">
+                          <form method=POST action='/add_step_basic'>
+                            {% csrf_token %}
+                            <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
+                            <label class="form-control-label" for="input-address">True Condition</label>
+                            <div class="row">
+                              <div class="col-md-2">
+                                <div class="form-group">
+                                  <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                                </div>                                              
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">                                                
+                                  <input id="step_input" name="step_true_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                </div>  
+                              </div> 
+                            </div>
+                            <label class="form-control-label" for="input-address">False Condition</label>
+                            <div class="row">
+                              <div class="col-md-2">
+                                <div class="form-group">
+                                  <input id="actor_input" name="actor_false_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                                </div>                                              
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">                                                
+                                  <input id="step_input" name="step_false_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                </div>  
+                              </div> 
+                            </div>
+                            <div style="text-align: right; margin-right: 50px">
+                              <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
+                            </div>
+                          </form>
+                        </div>
                         <hr class="my-4" />
-                         
                       </form>
                       <a href="/use_case/{{ context.use_case.id_project_id}}" class="btn btn-primary collapsible" style="background-color: #F39C12; border-color:#F39C12 ">
                         <div>
@@ -172,4 +199,14 @@
 {% endblock content %}
 
 <!-- Specific JS goes HERE --> 
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script>
+  function ifStep(e){
+    if (e.value == '1') {
+        $("#if_step").show();
+    } else {
+        $("#if_step").hide();
+    }
+  } 
+</script>
+{% endblock javascripts %}

@@ -80,6 +80,7 @@
                                 <tr>
                                   <td>{{ forloop.counter }}</td>
                                   <td style="white-space: normal;">
+                                    <b style="color: #F39C12;"> ( {{ sb.rule }} ) </b>
                                     <b> {{ sb.step_actor_basic }} </b>
                                     <b> {{ sb.step_value }} </b>
                                   </td>
@@ -137,9 +138,9 @@
                           </div>
                         </div>
                         <!--SHOW THIS WHEN RULE == 1-->
-                        <div class="pl-lg-4">
+                        <div class="pl-4">
                           <div id="if_step" style="display:none">
-                            <form method=POST action='/add_step_basic'>
+                            <form method=POST action=''>
                               {% csrf_token %}
                               <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
                               <label class="form-control-label" for="input-address">True Condition</label>

@@ -236,8 +236,12 @@ def edit_step_basic(request, id_step_basic):
     context['segment'] = 'edit_step_basic'
     context['id_step_basic'] = id_step_basic
     context['step_basic'] = step_basic.objects.filter(pk=id_step_basic).get()
-    context['rule'] = step_basic.objects.filter(pk=id_step_basic).get()
+    
+    step_basic_target = step_basic.objects.filter(pk=id_step_basic).get()
+    rule_target = step_basic_target.rule
 
+    context['rule_target'] = rule_target
+    
     return render(request, 'page/edit_step_basic.html', {'context': context})  
 
 @login_required(login_url="/login/")

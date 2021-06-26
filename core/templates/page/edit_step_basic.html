@@ -15,11 +15,10 @@
                 <div class="col-md-12">
                     <div class="card" style="width: 100%;">
                         <div class="card-body">
-                            <h1 class="card-title"></h1>Edit Step Basic</h1>
+                            <h1 class="card-title"></h1>Edit Step Basic "{{rule_target}} </h1>
                             <hr>
                             <form method=POST action='/edit_step_basic/update'>
                                 {% csrf_token %}
-
                                 <input type="hidden" class="form-control" name="id_usecase" value="{{ context.step_basic.id_usecase_id }}">                           
                                 <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic }}">
                                 <label class="form-control-label" for="input-address">Edit Basic Step</label>
@@ -32,9 +31,13 @@
                                   </div>
                                   <div class="form-group">
                                     <select id="rule_input" name ="rule_input"class="btn btn-primary text-white" placeholder="Step" type="text" onchange="ifStep(this);">
-                                      <option value="0">Choose Rule</option>
-                                      <option value="0">Basic step</option>
-                                      <option value="1">If step</option>
+                                      {% if context.rule_target == '1' %}
+                                        <option value="0">Basic step</option>
+                                        <option value="1" selected>If step</option>
+                                      {% else %}
+                                        <option value="0" selected>Basic step</option>
+                                        <option value="1">If step</option>
+                                      {% endif %}
                                     </select> 
                                   </div>
                                   <div class="col-md-6">
@@ -44,10 +47,47 @@
                                     </div>  
                                   </div>                                          
                                 </div>
-                                  <div style="text-align: right;">
-                                    <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
-                                    <a href="/edit_use_case/{{ context.step_basic.id_usecase_id }}" class="btn btn-danger">Cancel</a>
+                                
+                                <!--SHOW THIS WHEN RULE == 1-->
+                                <div class="pl-4">
+                                  <div id="if_step" style="display:none">
+                                    <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
+                                    <label class="form-control-label" for="input-address">True Condition</label>
+                                    <div class="row">
+                                      <div class="col-md-2">
+                                        <div class="form-group">
+                                          {% if context.rule_target == '1' %}
+                                            <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text" value="aktor true">      
+                                          {% else %}  
+                                            <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text">   
+                                          {% endif %}                                     
+                                        </div>                                              
+                                      </div>
+                                      <div class="col-md-6">
+                                        <div class="form-group">                                                
+                                          <input id="step_input" name="step_true_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                        </div>  
+                                      </div> 
+                                    </div>
+                                    <label class="form-control-label" for="input-address">False Condition</label>
+                                    <div class="row">
+                                      <div class="col-md-2">
+                                        <div class="form-group">
+                                          <input id="actor_input" name="actor_false_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                                        </div>                                              
+                                      </div>
+                                      <div class="col-md-6">
+                                        <div class="form-group">                                                
+                                          <input id="step_input" name="step_false_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                        </div>  
+                                      </div> 
+                                    </div>
                                   </div>
+                                </div>
+                                <div style="text-align: right;"> 
+                                  <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
+                                  <a href="/edit_use_case/{{ context.step_basic.id_usecase_id }}" class="btn btn-danger">Cancel</a>
+                                </div>
                                 </div> 
                               </div>
                               <hr class="my-4" />
@@ -63,4 +103,14 @@
 {% endblock content %}
 
 <!-- Specific JS goes HERE --> 
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script>
+  function ifStep(e){
+    if (e.value == '1') {
+        $("#if_step").show();
+    } else {
+        $("#if_step").hide();
+    }
+  } 
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,25 @@
+title Menambah Data Murid
+|TATA USAHA|
+start 
+:memasuki laman pengelolaan data murid;
+|SISTEM|
+:akan menampilkan pilihan menu yang dapat dilakukan laman pengelolaan data murid;
+|TATA USAHA|
+:memilih pilihan tambah data murid pada laman pengelolaan data murid;
+|SISTEM|
+:akan menampilkan form untuk menambah data murid;
+|TATA USAHA|
+:melakukan pengisian form terkait data murid yang ingin ditambahkan lalu mengirimkan ke sistem;
+|TATA USAHA|
+if () then 
+ :mengisikan data dengan BENAR; 
+|SISTEM|
+:Memberi pesan bahwa data sudah terisi dengan benar; 
+|TATA USAHA|
+else 
+:SALAH mengisikan data;
+|SISTEM|
+:tidak memasukkan data siswa kedalam database; 
+endif
+end
+@enduml 

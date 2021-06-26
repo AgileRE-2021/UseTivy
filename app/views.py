@@ -201,6 +201,11 @@ def update_use_case(request):
     
     return redirect('usecase_view',id_usecase=id_url)
 
+
+'''
+----------STEP BASIC----------
+'''
+
 @login_required(login_url="/login/")
 def add_step_basic(request):
     context = {}
@@ -210,38 +215,44 @@ def add_step_basic(request):
     try:
         stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
         actorBasic = request.POST.get('actor_input')
-        stepRule = request.POST.get('rule_input')
         stepBasic_target.step_actor_basic=actorBasic
-        stepBasic_target.save()
+        stepBasic_target.save()\
+
     except:
+        #stepBasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
         actorBasic = request.POST.get('actor_input')
         stepBasic = request.POST.get('step_input')
-        stepRule = request.POST.get("rule_input")
+
         newStepBasic = step_basic(
             step_actor_basic=actorBasic,
             step_value=stepBasic,
-            id_usecase=usecase_target,
-            rule=stepRule
+            id_usecase=usecase_target
         )
+
         newStepBasic.save()
-
-
-    return redirect('edit_use_case',id_usecase=id_url)
+        
+        return redirect('edit_use_case',id_usecase=id_url)
 
 @login_required(login_url="/login/")
 def edit_step_basic(request, id_step_basic):
 
-    
+    step_basic_target = step_basic.objects.filter(pk=id_step_basic).get()
+    rule_target = step_basic_target.rule
+
     context = {}
     context['segment'] = 'edit_step_basic'
     context['id_step_basic'] = id_step_basic
     context['step_basic'] = step_basic.objects.filter(pk=id_step_basic).get()
-    
-    step_basic_target = step_basic.objects.filter(pk=id_step_basic).get()
-    rule_target = step_basic_target.rule
+    try:
+        context['step_if'] = step_if.objects.filter(id_step_basic=id_step_basic).get()
+        print("MASUK TRY")
+    except:
+        context['step_if'] = ""
+        print("MASUK EXCEPT")
 
     context['rule_target'] = rule_target
 
+    print("DILUAR TRY EXCEPT")
     return render(request, 'page/edit_step_basic.html', {'context': context})  
 
 @login_required(login_url="/login/")
@@ -256,13 +267,36 @@ def update_step_basic(request):
     stepRule = request.POST.get("rule_input")
     stepValue = request.POST.get("step_input")
 
-
-    #update value
+    #update basic step
     stepbasic_target.step_value = stepValue
     stepbasic_target.rule = stepRule
     stepbasic_target.step_actor_basic = stepActor
     stepbasic_target.save()
 
+    #step if value from request
+    actorTrue = request.POST.get("actor_true_input")
+    stepTrue = request.POST.get("step_true_input")
+    actorFalse = request.POST.get("actor_false_input")
+    stepFalse = request.POST.get("step_false_input")
+
+    try: 
+        step_if_target = get_object_or_404(step_if, pk=request.POST.get("id_step_if"))
+        step_if_target.true_step =  stepTrue
+        step_if_target.false_step = stepFalse
+        step_if_target.step_actor_false = actorFalse
+        step_if_target.step_actor_true = actorTrue
+        step_if_target.save()
+
+    except:
+        newStepIf = step_if(
+            step_actor_true=actorTrue,
+            true_step=stepTrue,
+            step_actor_false=actorFalse,
+            false_step=stepFalse,
+            id_step_basic=stepbasic_target
+        )
+        newStepIf.save()
+        
 
     return redirect('edit_use_case',id_url) 
 
@@ -480,48 +514,13 @@ def basic_info(request):
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
-def basic_flow(request):
-    
-    context = {}
-    context['segment'] = 'basic_flow'
-
-    html_template = loader.get_template( 'page/basic_flow.html' )
-    return HttpResponse(html_template.render(context, request))
-
-@login_required(login_url="/login/")
-def specific_flow(request):
-    
-    context = {}
-    context['segment'] = 'specific_flow'
-
-    html_template = loader.get_template( 'page/specific_flow.html' )
-    return HttpResponse(html_template.render(context, request)) 
-
-@login_required(login_url="/login/")
-def bounded_flow(request):
-    
-    context = {}
-    context['segment'] = 'bounded_flow'
-
-    html_template = loader.get_template( 'page/bounded_flow.html' )
-    return HttpResponse(html_template.render(context, request)) 
-
-@login_required(login_url="/login/")
-def global_flow(request):
-    
-    context = {}
-    context['segment'] = 'global_flow'
-
-    
-    return render(request, 'page/global_flow.html', {'context' : context})
-
-@login_required(login_url="/login/")
 def alternative_step(request,id_step_basic):
     
     context = {}
     context['segment'] = 'alternative_step'
     context['step_basic'] = step_basic.objects.filter(id_step_basic=id_step_basic).get()
     context['step_alternative'] = step_alternative_flow.objects.filter(id_step_basic=id_step_basic)
+    context['step_if'] = step_if.objects.filter(id_step_basic=id_step_basic).get()
 
     return render(request, 'page/alternative_step.html', {'context' : context})
 
@@ -532,14 +531,17 @@ def alternative_step_create(request):
     actorAlternative = request.POST.get("actor_alternative_input")
     id_stepbasic = request.POST.get("id_step_basic")
     id_usecase = request.POST.get("id_usecase")
-    stepAlternative = request.POST.get("step_alternative_input")  
+    stepAlternative = request.POST.get("step_alternative_input")
+    scenarioType = request.POST.get("scenario_type")  
     
     newStepAlternative = step_alternative_flow(
             step_actor_alternative=actorAlternative,
             step_alternative=stepAlternative,
             id_step_basic_id=id_stepbasic,
-            id_usecase_id=id_usecase
+            id_usecase_id=id_usecase,
+            condition=scenarioType
         )
+        
     newStepAlternative.save()
 
     return redirect('alternative_step',id_stepbasic)
@@ -571,12 +573,15 @@ def update_alternative_step(request):
     #get from request
     stepalternative_target = get_object_or_404(step_alternative_flow, pk=request.POST.get("id_step_alternative"))
     id_url=request.POST.get("id_step_basic")
-    actorAlternative = request.POST.get("actor_input")
-    stepAlternative = request.POST.get("step_input")
+    actorAlternative = request.POST.get("actor_alternative_input")
+    stepAlternative = request.POST.get("step_alternative_input")
+    conditonStep = request.POST.get("scenario_type")
 
     #update value
     stepalternative_target.step_alternative = stepAlternative
     stepalternative_target.step_actor_alternative = actorAlternative
+    stepalternative_target.condition = conditonStep
+
     stepalternative_target.save()
 
     return redirect('alternative_step',id_url) 

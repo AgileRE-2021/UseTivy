@@ -12,9 +12,6 @@ urlpatterns = [
     # The home page
     path('', views.dashboard, name='home'),
 
-    # Basic Info Page 
-    path('basic_info', views.basic_info, name='basic_info'),
-
     #dashboard
     path('dashboard', views.dashboard, name="dashboard"),
 
@@ -69,22 +66,6 @@ urlpatterns = [
 
     #delete use case
     path('delete_use_case/<int:id_usecase>', views.delete_use_case, name="delete_use_case"),
-
-   
-
-
-     #------------- FLOW -------------
-    #form basic flow
-    path('basic_flow', views.basic_flow, name="basic_flow"),
-
-    #form specific flow
-    path('specific_flow', views.specific_flow, name="specific_flow"),
-
-    #form bounded flow
-    path('bounded_flow', views.bounded_flow, name="bounded_flow"),
-
-    #form global flow
-    path('global_flow', views.global_flow, name="global_flow"),
 
     #create alternative step
     path('alternative_step/<int:id_step_basic>', views.alternative_step, name="alternative_step"),

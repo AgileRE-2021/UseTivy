@@ -241,7 +241,7 @@ def edit_step_basic(request, id_step_basic):
     rule_target = step_basic_target.rule
 
     context['rule_target'] = rule_target
-    
+
     return render(request, 'page/edit_step_basic.html', {'context': context})  
 
 @login_required(login_url="/login/")

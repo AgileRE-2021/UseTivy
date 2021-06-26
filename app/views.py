@@ -262,6 +262,8 @@ def update_step_basic(request):
 
     #get from request
     stepbasic_target = get_object_or_404(step_basic, pk=request.POST.get("id_step_basic"))
+    id_usecase_target = stepbasic_target.id_usecase
+
     id_url=request.POST.get("id_usecase")
     stepActor = request.POST.get("actor_input")
     stepRule = request.POST.get("rule_input")
@@ -285,6 +287,9 @@ def update_step_basic(request):
         step_if_target.false_step = stepFalse
         step_if_target.step_actor_false = actorFalse
         step_if_target.step_actor_true = actorTrue
+        step_if_target.id_step_basic = stepbasic_target
+        stepbasic_target.id_usecase = id_usecase_target
+
         step_if_target.save()
 
     except:
@@ -293,7 +298,8 @@ def update_step_basic(request):
             true_step=stepTrue,
             step_actor_false=actorFalse,
             false_step=stepFalse,
-            id_step_basic=stepbasic_target
+            id_step_basic=stepbasic_target,
+            id_usecase=id_usecase_target
         )
         newStepIf.save()
         

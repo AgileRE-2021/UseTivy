@@ -22,14 +22,15 @@
                                 {% csrf_token %}
                                 <h6 class="heading-small text-muted mb-4">Alternative Step</h6>
                                 <div class="pl-lg-2">
-                                    <p>True Condition : "" </p>
-                                    <p>False Condition : "" </p>
+                                    <p style="color: darkgreen;"><b>True Condition : "{{ context.step_if.step_actor_true }} {{ context.step_if.true_step }}"</b></p>
+                                    <p style="color: darkred;"><b>False Condition : "{{ context.step_if.step_actor_false }} {{ context.step_if.false_step }}"</b></p>
                                     <div class='table-responsive'>
                                         <table class="table align-items-center table-flush">
                                             <thead>
                                                 <tr>
                                                 <th>No</th>
                                                 <th>Steps</th>
+                                                <th>Condition</th>
                                                 <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -37,14 +38,15 @@
                                                 {% for sa in context.step_alternative %} 
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
-                                                <td>
-                                                    <div class="media align-items-center">
-                                                        <p>
-                                                            <b>{{ sa.step_actor_alternative }} </b>
-                                                            <b>{{ sa.step_alternative }} </b>
-                                                        </p>
-                                                    </div>
+                                                <td style="white-space: normal;">
+                                                    <b>{{ sa.step_actor_alternative }} </b>
+                                                    <b>{{ sa.step_alternative }} </b>
                                                 </td>
+                                                {% if sa.condition == '1' %}
+                                                    <td style="color: darkred;"><b>False Condition</b></td>
+                                                {% else %}
+                                                    <td style="color:darkgreen;"><b>True Condition</b></td>
+                                                {% endif %}
                                                 <td>
                                                     <div class="row">
                                                         <a href="/edit_alternative_step/{{sa.id_step_alternative}}" class="btn btn-sm btn-icon-only"  role="button"  
@@ -81,11 +83,11 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">                                                
-                                                <input id="step_input" name="step_alternative_input" class="form-control form-control-alternative" placeholder="Step" type="text">                                               
+                                                <input id="step_alternative_input" name="step_alternative_input" class="form-control form-control-alternative" placeholder="Alternative Step" type="text">                                               
                                             </div>                                              
                                         </div>
                                         <div class="form-group">
-                                            <select id="scenario_input" name ="scenario_input"class="btn btn-primary text-white" placeholder="Step" type="text">
+                                            <select id="scenario_type" name ="scenario_type"class="btn btn-primary text-white" placeholder="Step" type="text">
                                                 <option value="0">Scenario</option>
                                                 <option value="0">True Scenario</option>
                                                 <option value="1">False Scenario</option>

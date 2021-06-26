@@ -21,7 +21,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" class="form-control" name="id_usecase" value="{{ context.step_basic.id_usecase_id }}">                           
                                 <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_basic.id_step_basic }}">
-                                <label class="form-control-label" for="input-address">Edit Basic Step</label>
+                                <label class="form-control-label">Edit Basic Step</label>
                                 <div class="row">
                                   <div class="col-md-2">
                                     <div class="form-group">
@@ -47,38 +47,50 @@
                                     </div>  
                                   </div>                                          
                                 </div>
-                                
+
                                 <!--SHOW THIS WHEN RULE == 1-->
                                 <div class="pl-4">
                                   <div id="if_step" style="display:none">
-                                    <input type="hidden" class="form-control" name="id_usecase" value="{{ context.use_case.id_usecase }}">
-                                    <label class="form-control-label" for="input-address">True Condition</label>
+                                    <input type="hidden" class="form-control" name="id_step_if" value="{{ context.step_if.id_step_if }}">
+                                    <label class="form-control-label">True Condition</label>
                                     <div class="row">
                                       <div class="col-md-2">
                                         <div class="form-group">
                                           {% if context.rule_target == '1' %}
-                                            <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text" value="aktor true">      
+                                            <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text" value="{{ context.step_if.step_actor_true }}">      
                                           {% else %}  
                                             <input id="actor_input" name="actor_true_input" class="form-control form-control-alternative" placeholder="Actor" type="text">   
                                           {% endif %}                                     
                                         </div>                                              
                                       </div>
                                       <div class="col-md-6">
-                                        <div class="form-group">                                                
-                                          <input id="step_input" name="step_true_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                        <div class="form-group">
+                                          {% if context.rule_target == '1' %}                                                
+                                            <input id="step_input" name="step_true_input" class="form-control form-control-alternative" placeholder="Step" type="text" value="{{ context.step_if.true_step }}">
+                                          {% else %} 
+                                            <input id="step_input" name="step_true_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                            {% endif %} 
                                         </div>  
                                       </div> 
                                     </div>
-                                    <label class="form-control-label" for="input-address">False Condition</label>
+                                    <label class="form-control-label">False Condition</label>
                                     <div class="row">
                                       <div class="col-md-2">
                                         <div class="form-group">
-                                          <input id="actor_input" name="actor_false_input" class="form-control form-control-alternative" placeholder="Actor" type="text">                                                
+                                          {% if context.rule_target == '1' %} 
+                                            <input id="actor_input" name="actor_false_input" class="form-control form-control-alternative" placeholder="Actor" type="text" value="{{ context.step_if.step_actor_false }}">
+                                          {% else %}
+                                            <input id="actor_input" name="actor_false_input" class="form-control form-control-alternative" placeholder="Actor" type="text">
+                                          {% endif %} 
                                         </div>                                              
                                       </div>
                                       <div class="col-md-6">
-                                        <div class="form-group">                                                
-                                          <input id="step_input" name="step_false_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                        <div class="form-group">
+                                          {% if context.rule_target == '1' %}                                                 
+                                            <input id="step_input" name="step_false_input" class="form-control form-control-alternative" placeholder="Step" type="text" value="{{ context.step_if.false_step }}">
+                                          {% else %}
+                                            <input id="step_input" name="step_false_input" class="form-control form-control-alternative" placeholder="Step" type="text">
+                                          {% endif %} 
                                         </div>  
                                       </div> 
                                     </div>

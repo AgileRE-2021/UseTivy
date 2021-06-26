@@ -21,37 +21,35 @@
                                 {% csrf_token %}
                                 <input type="hidden" class="form-control" name="id_step_basic" value="{{ context.step_alternative.id_step_basic_id }}">
                                 <input type="hidden" class="form-control" name="id_step_alternative" value="{{ context.step_alternative.id_step_alternative }}">
-                                <label class="form-control-label" for="input-address">Add Step</label>
+                                <label class="form-control-label" for="input-address">Edit Step</label>
                                 <div class="row">
                                   <div class="col-md-2">
-                                    <div class="form-group">
-                                      <input id="actor_input" name="actor_input" class="form-control form-control-alternative" 
-                                      placeholder="Actor" type="text" value="{{context.step_alternative.step_actor_alternative}}">                                             
-                                    </div>                                              
+                                      <div class="form-group">
+                                          <input id="actor_input" name="actor_alternative_input" class="form-control form-control-alternative" 
+                                              placeholder="actor" value="{{ context.step_alternative.step_actor_alternative }}" type="text">                                                
+                                      </div>                                              
                                   </div>
-                                  <div class="dropdown">
-                                    <div class="col-md-4">
-                                        <a class="btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom :10px">
-                                          Choose Rule 
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Rule 1</a>
-                                            <a class="dropdown-item" href="#">Rule 2</a>
-                                            <a class="dropdown-item" href="#">Rule 3</a>
-                                        </div>                                        
-                                    </div>
+                                  <div class="col-md-7">
+                                      <div class="form-group">                                                
+                                          <input id="step_alternative_input" name="step_alternative_input" class="form-control form-control-alternative" placeholder="Alternative Step" type="text"
+                                              value="{{ context.step_alternative.step_alternative }}">                                               
+                                      </div>                                              
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">                                                
-                                      <input id="step_input" name="step_input" class="form-control form-control-alternative" 
-                                      placeholder="Step" type="text"  value="{{context.step_alternative.step_alternative}}">      
-                                                                  
-                                    </div>  
-                                  </div>
-                                  <div style="text-align: right; margin-right: 50px">
-                                    <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
-                                    <a href="/alternative_step/{{context.step_alternative.id_step_basic_id}}" class="btn btn-danger">Cancel</a>
-                                </div>                                            
+                                  <div class="form-group">
+                                      <select id="scenario_type" name ="scenario_type" class="btn btn-primary text-white" placeholder="Step" type="text">
+                                        {% if context.step_alternative.condition == '0' %}
+                                          <option value="0" selected>True Scenario</option>
+                                          <option value="1">False Scenario</option>
+                                        {% else %}
+                                          <option value="0">True Scenario</option>
+                                          <option value="1" selected>False Scenario</option>
+                                        {% endif %}
+                                      </select> 
+                                  </div>                                                           
+                              </div>
+                                <div style="text-align: right; margin-right: 50px">
+                                  <button type="submit" class="btn btn-primary" style="background-color: #58D68D; border-color: #58D68D;">Save Changes</button>   
+                                  <a href="/alternative_step/{{context.step_alternative.id_step_basic_id}}" class="btn btn-danger">Cancel</a>
                                 </div>
                               </div>
                               

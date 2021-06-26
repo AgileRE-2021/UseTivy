@@ -23,10 +23,6 @@ class usecase(models.Model):
     brief_description=models.CharField(max_length=300)
     precondition=models.CharField(max_length=100)
     postcondition=models.CharField(max_length=100)
-    #actor=models.CharField(max_length=20)
-    #secondary_actor=models.CharField(max_length=20)
-    #dependency=models.CharField(max_length=30)
-    #generalization=models.CharField(max_length=30)
 
 class step_basic(models.Model):
     id_step_basic=models.AutoField(primary_key=True)

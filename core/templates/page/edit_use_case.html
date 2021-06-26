@@ -80,7 +80,11 @@
                                 <tr>
                                   <td>{{ forloop.counter }}</td>
                                   <td style="white-space: normal;">
-                                    <b style="color: #F39C12;"> ( {{ sb.rule }} ) </b>
+                                    {% if sb.rule == '1' %}
+                                    <b style="color: #F39C12;"> ( If Step ) </b>
+                                    {% else %}
+                                    <b style="color: darkgreen;"> ( Basic Step ) </b>
+                                    {% endif %}
                                     <b> {{ sb.step_actor_basic }} </b>
                                     <b> {{ sb.step_value }} </b>
                                   </td>

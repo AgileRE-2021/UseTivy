@@ -29,7 +29,7 @@ class step_basic(models.Model):
     id_usecase=models.ForeignKey(usecase,on_delete=models.CASCADE)
     step_value=models.CharField(max_length=1000)
     step_actor_basic=models.CharField(max_length=20)
-    rule=models.CharField(max_length=20)
+    rule=models.CharField(max_length=5, default='0')
 
 class step_if(models.Model):
     id_step_if =models.AutoField(primary_key=True)

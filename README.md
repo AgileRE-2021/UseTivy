@@ -113,8 +113,14 @@ Berikut adalah langkah-langkah instalasi aplikasi UseTivy:
 <img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/edit_usecase.PNG">
 8. Basic Step : user dapat mengisi basic step untuk menjelaskan langkah-langkah yang terjadi pada usecase.
 <img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/basic_step.PNG">
-9. Usecase View : halaman ini berisikan informasi yang telah di-inputkan pada halaman 'Edit Usecase' seperti deskripsi usecase, Precondition, Postcondition, Basic step.
+9. Edit Basic Step : pada halaman ini user dapat menambahkan kondisi "if" pada basic step, agar dapat menambahkan "true condition" serta "false condition" pada basic step.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/edit_basic_step.PNG">
+10. Alternative Step : selanjutnya, user dapat mengisi langkah-langkah kondisi "if" yang telah ditambahkan pada halaman 'Edit Basic Step'.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/alternative_step.PNG">
+11. Usecase View : halaman ini berisikan informasi yang telah di-inputkan pada halaman 'Edit Usecase' seperti deskripsi usecase, Precondition, Postcondition, Basic step, Alternative step.
 <img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/usecase_view.PNG">
+12. Activity Diagram : Activity diagram akan otomatis terdownload berupa file gambar ke folder “Usetivy”.
+<img src="https://github.com/AgileRE-2021/UseTivy/blob/master/readme_asset/activity_diagram.png">
 
 ## UI Template
 UI template yang digunakan pada aplikasi UseTivy adalah [Argon admin template](https://github.com/creativetimofficial/argon-dashboard-django)
